@@ -1,0 +1,63 @@
+---
+title: "Materials"
+---
+
+::: {.callout-tip title="Week 0" collapse=false}
+
+## Week 0: Read me first!
+
+* This course will be *dependent on software and technology*. Therefore, in preparation for the first class meeting:
+    * Install R from [here](https://cran.r-project.org/)
+    * Install Rstudio from [here](https://posit.co/download/rstudio-desktop/) (optional but will make your life easier)
+    * Install Quarto from [here](https://quarto.org/docs/get-started/)
+    * Make sure to bring your laptop to class on **Thursday**
+    * We'll troubleshoot to get everything functional in class
+
+* Syllabus  
+    * Take a look at the [syllabus](syllabus.qmd)
+    
+* Introduction
+    * There is a short video [here](https://youtu.be/oUm5mnCuhkY){target="_blank"} to orient you to the course and the **flipped** format
+    * The slides from the video are [here](slides/BTS510-25-0.qmd){target="_blank"}
+
+* Week 1 materials are below
+    * Watch lecture video 1
+    * Complete the lecture survey
+    * This will prepare you for our first in-person meeting on **Thursday morning**
+
+:::
+
+::: {.callout-tip title="Week 1" collapse=false}
+
+## Week 1: Introduction
+
+### Learning objectives
+
+* Review the course topics, structure, and goals
+* Start using **R** and **Rstudio**
+* Start using [Quarto documents](https://quarto.org/) in R as a **reproducible** method to present analyses along with **narrative text**
+
+### Before class: Lecture 
+
+* [Lecture 1](https://youtu.be/M7bNtrjm4XI){target="_blank"} 
+* [Lecture survey](https://forms.gle/iQ6SwSbBVg8pTuNt8){target="_blank"}: Complete by Wednesday, September 3 at 8pm
+* [Slides (html)](slides/BTS510-25-1.qmd){target="_blank"}
+    
+### During class: Lab
+
+* [Lab 1 (html with link to code)](lab/BTS510-25-lab1.qmd){target="_blank"}
+
+### After class: Assignment 
+
+* **No homework this week**
+    
+:::   
+
+
+::: {.callout-tip title="Week 2" collapse=true}
+
+
+
+:::
+
+

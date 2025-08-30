@@ -1,0 +1,201 @@
+---
+title: "References"
+---
+
+## General resources
+
+* UCLA Statistical Consulting: [https://stats.oarc.ucla.edu/](https://stats.oarc.ucla.edu/)
+
+* Statistics for Biologists portfolio: [https://www.nature.com/collections/qghhqm](https://www.nature.com/collections/qghhqm)
+
+* Motulsky, H. (2014). Intuitive biostatistics: a nonmathematical guide to statistical thinking. Oxford University Press, USA.
+
+* Imai, K., & Williams, N. W. (2022). Quantitative Social Science: An Introduction in Tidyverse. Princeton University Press.
+
+## Software
+
+### R and Rstudio
+
+* R: [https://cran.r-project.org/](https://cran.r-project.org/)
+
+* Rstudio: [https://posit.co/download/rstudio-desktop/](https://posit.co/download/rstudio-desktop/)
+
+* Wickham, H., Çetinkaya-Rundel, M., & Grolemund, G. (2023). R for data science. "O'Reilly Media, Inc.". 
+    * Full book available here: [https://r4ds.hadley.nz/](https://r4ds.hadley.nz/)
+    
+* [Commonly used R packages for different tasks](https://support.posit.co/hc/en-us/articles/201057987-Quick-list-of-useful-R-packages)
+
+* Cheatsheets on various topics: [https://posit.co/resources/cheatsheets/](https://posit.co/resources/cheatsheets/)
+
+### tidyverse
+
+* R packages in the [**tidyverse**](https://www.tidyverse.org/), which includes:
+    * **dplyr**: [https://dplyr.tidyverse.org/](https://dplyr.tidyverse.org/)
+    * **ggplot2**: [https://ggplot2.tidyverse.org/](https://ggplot2.tidyverse.org/)
+    * **tidyr**: [https://tidyr.tidyverse.org/](https://tidyr.tidyverse.org/)
+
+* Imai, K., & Williams, N. W. (2022). Quantitative Social Science: An Introduction in Tidyverse. Princeton University Press.
+
+* Wickham, H. (2010). A layered grammar of graphics. *Journal of computational and graphical statistics, 19*(1), 3-28.
+
+* Wickham, H. (2016). *ggplot2: elegant graphics for data analysis*.
+Springer.
+
+* Wilkinson, L. (2005). *The Grammar of Graphics (2nd ed.)*. Statistics and Computing, New York: Springer.
+
+### markdown and Quarto
+    
+* [Quarto](https://quarto.org/): "Next gen" of markdown
+
+* Xie, Y., Allaire, J. J., & Grolemund, G. (2018). R markdown: The definitive guide. Chapman and Hall/CRC. 
+    * Full book available here: [https://bookdown.org/yihui/rmarkdown/](https://bookdown.org/yihui/rmarkdown/)  
+
+## Linear models
+
+### Generalized linear models (GLiMs) -- includes linear, logistic, and Poisson
+
+* Agresti, A. (2003). Categorical data analysis (Vol. 482). John Wiley & Sons.
+
+* Agresti, A. (2018). An introduction to categorical data analysis. John Wiley & Sons.
+
+* Ai, C. & Norton, E. C. (2003). Interaction terms in logit and probit models. Economics Letters, 80 (1), 123–129. doi:10.1016/S0165-1765(03)00032-6
+
+* Dobson, A. J., & Barnett, A. G. (2018). An introduction to generalized linear models. Chapman and Hall/CRC.
+
+* Faraway, J. J. (2016). Extending the linear model with R: generalized linear, mixed effects and nonparametric regression models. Chapman and Hall/CRC.
+
+* Fox, J. (2015). Applied regression analysis and generalized linear models. Sage Publications.
+
+* Geldhof, G. J., Anthony, K. P., Selig, J. P., & Mendez-Luck, C. A. (2018). Accommodating binary and count variables in mediation: A case for conditional indirect effects. International Journal of Behavioral Development, 42(2), 300-308.
+
+* Green, P., & MacLeod, C. J. (2016). SIMR: an R package for power analysis of generalized linear mixed models by simulation. Methods in Ecology and Evolution, 7(4), 493-498.
+
+* Halvorson, M. A., McCabe, C. J., Kim, D. S., Cao, X., & King, K. M. (2022). Making sense of some odd ratios: A tutorial and improvements to present practices in reporting and visualizing quantities of interest for binary and count outcome models. Psychology of Addictive Behaviors, 36(3), 284.
+
+* Hardin, J. W. & Hilbe, J. M. (2007). Generalized linear models and extensions. Stata press.
+
+* Long, J. S. (1997). Regression models for categorical and limited dependent variables (Vol. 7). Advanced quantitative techniques in the social sciences, 219.
+
+* McCabe, C. J., Halvorson, M. A., King, K. M., Cao, X., & Kim, D. S. (2022). Interpreting interaction effects in generalized linear models of nonlinear probabilities and counts. Multivariate Behavioral Research, 57(2-3), 243-263.
+
+* McCullagh, P., & Nelder, J. A. (2019). Generalized linear models. Routledge.
+
+* Ng, V. K., & Cribbie, R. A. (2017). Using the gamma generalized linear model for modeling continuous, skewed and heteroscedastic outcomes in psychology. Current Psychology, 36(2), 225-235.
+
+* Norton, E. C., Wang, H., & Ai, C. (2004). Computing interaction effects and standard errors in logit and probit models. The Stata Journal, 4 (2), 154–167.
+
+* Smithson, M., & Merkle, E. C. (2013). Generalized linear models for categorical and continuous limited dependent variables. CRC Press.
+
+#### Interactions
+
+* Aiken, L. S. & West, S. G. (1991). Multiple regression: Testing and interpreting interactions. Newbury Park, CA: SAGE.
+
+* Johnson, P. O., & Fay, L. C. (1950). The Johnson-Neyman technique, its theory and application. Psychometrika, 15(4), 349-367.
+
+* Preacher, K. J., Curran, P. J., & Bauer, D. J. (2006). Computational tools for probing interactions in multiple linear regression, multilevel modeling, and latent curve analysis. Journal of educational and behavioral statistics, 31(4), 437-448.
+
+### Linear regression
+
+* Barker, L. E., & Shaw, K. M. (2015). Best (but oft-forgotten) practices: checking assumptions concerning regression residuals. The American journal of clinical nutrition, 102(3), 533-539.
+
+* Cohen, J., Cohen, P., West, S. G., & Aiken, L. S. (2013). Applied multiple regression/correlation analysis for the behavioral sciences. Routledge.
+
+* Darlington, R. B., & Hayes, A. F. (2016). Regression analysis and linear models: Concepts, applications, and implementation. Guilford Publications.
+
+* Fox, J. (2015). Applied regression analysis and generalized linear models. Sage publications.
+
+* Fox, J., & Weisberg, S. (2018). An R companion to applied regression. Sage publications.
+
+* Gelman, A., & Hill, J. (2006). Data analysis using regression and multilevel/hierarchical models. Cambridge University Press.
+
+* Hayes, A. F., & Montoya, A. K. (2017). A tutorial on testing, visualizing, and probing an interaction involving a multicategorical variable in linear regression analysis. Communication methods and measures, 11(1), 1-30.
+
+* Hickey, G. L., Kontopantelis, E., Takkenberg, J. J., & Beyersdorf, F. (2019). Statistical primer: checking model assumptions with regression diagnostics. Interactive cardiovascular and thoracic surgery, 28(1), 1-8.
+
+* * Kozak, M., & Piepho, H. P. (2018). What’s normal anyway? Residual plots are more telling than significance tests when checking ANOVA assumptions. Journal of agronomy and crop science, 204(1), 86-98.
+
+* Neter, J., Kutner, M. H., Nachtsheim, C. J., & Wasserman, W. (1996). Applied linear statistical models.
+
+* Osborne, J. W., & Waters, E. (2002). Four assumptions of multiple regression that researchers should always test. Practical assessment, research, and evaluation, 8(1), 2.
+
+* Weisberg, S. (2005). Applied linear regression (Vol. 528). John Wiley & Sons.
+
+### Logistic regression
+
+* Allison, P. D. (2012). Logistic regression using SAS: Theory and application. SAS Institute.
+
+* Bürkner, P. C., & Vuorre, M. (2019). Ordinal regression models in psychology: A tutorial. Advances in Methods and Practices in Psychological Science, 2(1), 77-101.
+
+* Chen, K., Cheng, Y., Berkout, O., & Lindhiem, O. (2016). Analyzing Proportion Scores as Outcomes for Prevention Trials: A Statistical Primer. Prevention Science, 1-10.
+
+* DeMaris, A. (2002). Explained variance in logistic regression: A Monte Carlo study of proposed measures. Sociological Methods & Research, 31(1), 27-74.
+
+* Hayes, A. F., & Matthes, J. (2009). Computational procedures for probing interactions in OLS and logistic regression: SPSS and SAS implementations. Behavior research methods, 41(3), 924-936.
+
+* Hedeker, D. (2015). Methods for multilevel ordinal data in prevention research. Prevention Science, 16(7), 997-1006.
+
+* Liddell, T. M., & Kruschke, J. K. (2018). Analyzing ordinal data with metric models: What could possibly go wrong?. Journal of Experimental Social Psychology, 79, 328-348.
+
+* Long, J. S., & Mustillo, S. A. (2021). Using predictions and marginal effects to compare groups in regression models for binary outcomes. Sociological Methods & Research, 50(3), 1284-1320.
+
+* Menard, S. (2002). Applied logistic regression analysis (No. 106). Sage.
+
+* Mood, C. (2010). Logistic regression: Why we cannot do what we think we can do, and what we can do about it. European sociological review, 26(1), 67-82.
+
+### Poisson regression
+
+* Atkins, D. C., & Gallop, R. J. (2007). Rethinking how family researchers model infrequent outcomes: a tutorial on count regression and zero-inflated models. Journal of Family Psychology, 21(4), 726.
+
+* Blevins, D. P., Tsang, E. W., & Spain, S. M. (2015). Count-Based Research in Management Suggestions for Improvement. Organizational Research Methods, 18(1), 47-69.
+
+* Brooks, M. E., Kristensen, K., van Benthem, K. J., Magnusson, A., Berg, C. W., Nielsen, A., … & Bolker, B. M. (2017). Modeling zero-inflated count data with glmmTMB. BioRxiv, 132753.
+
+* Campbell, H. (2021). The consequences of checking for zero‐inflation and overdispersion in the analysis of count data. Methods in Ecology and Evolution, 12(4), 665-680.
+
+* Coxe, S., West, S. G., & Aiken, L. S. (2009). The analysis of count data: A gentle introduction to Poisson regression and its alternatives. Journal of personality assessment, 91(2), 121-136.
+
+* Gardner, W., Mulvey, E. P., & Shaw, E. C. (1995). Regression analyses of counts and rates: Poisson, overdispersed Poisson, and negative binomial models. Psychological bulletin, 118(3), 392.
+
+* Green, J. (2020). A tutorial on modelling health behaviour as count data with Poisson and negative binomial regression.
+
+* Land, K. C., McCall, P. L., & Nagin, D. S. (1996). A comparison of Poisson, negative binomial, and semiparametric mixed Poisson regression models with empirical applications to criminal careers data. Sociological Methods & Research, 24(4), 387-442.
+
+* Yang, S. (2014). A comparison of different methods of zero-inflated data analysis and its application in health surveys. University of Rhode Island.
+
+### Survival analysis
+
+* Allison, P. D. (2014). Event history and survival analysis: Regression for longitudinal event data (Vol. 46). SAGE publications.
+
+* Bradburn, M., Clark, T., Love, S., & Altman, D. (2003). Survival Analysis Part II: Multivariate data analysis: An introduction to concepts and methods. British Journal of Cancer, 89(3), 431-436.
+
+* Bradburn, M., Clark, T., Love, S., & Altman, D. (2003). Survival analysis Part III: Multivariate data analysis: Choosing a model and assessing its adequacy and fit. 89(4), 605-11.
+
+* Clark, T., Bradburn, M., Love, S., & Altman, D. (2003). Survival analysis part I: Basic concepts and first analyses. 232-238. ISSN 0007-0920.
+
+* Clark, T., Bradburn, M., Love, S., & Altman, D. (2003). Survival analysis part IV: Further concepts and methods in survival analysis. 781-786. ISSN 0007-0920.
+
+* Moore, D. F. (2016). Applied survival analysis using R (Vol. 473, pp. 1-10). Cham: Springer.
+
+* Rai, S., Mishra, P., & Ghoshal, U. C. (2021). Survival analysis: A primer for the clinician scientists. Indian Journal of Gastroenterology, 40(5), 541-549.
+
+
+## Miscellaneous
+    
+### Genomics
+
+* [Computational Genomics with R](https://compgenomr.github.io/book/)
+
+* Bareyre, F. M., & Schwab, M. E. (2003). Inflammation, degeneration and regeneration in the injured spinal cord: insights from DNA microarrays. Trends in neurosciences, 26(10), 555-563.
+
+### Missing data
+
+* Enders, C. K. (2022). Applied missing data analysis. Guilford Publications.
+
+* Enders, C. K. (2023). Missing data: An update on the state of the art. Psychological Methods. <https://doi.org/10.1037/met0000563>
+
+* Little, R. J., & Rubin, D. B. (2019). Statistical analysis with missing data (Vol. 793). John Wiley & Sons.
+
+* National Research Council (US) Panel on Handling Missing Data in Clinical Trials. (2010). The Prevention and Treatment of Missing Data in Clinical Trials. National Academies Press (US).
+
+* Rubin, D. B. (1976). Inference and missing data. Biometrika, 63(3), 581-592.
+

@@ -1,0 +1,40 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "BTS 510 Fall 2025"
+  sidebar:
+    logo: "BTS510_F25.png"
+    style: "docked"       
+    search: true   
+    collapse-level: 1                   
+    contents:
+      - index.qmd      
+      - syllabus.qmd     
+      - schedule.qmd        
+      - materials.qmd
+      - assignments.qmd  
+      - refs.qmd       
+#      - section: "Complete labs"
+#        contents: 
+#          - labs_comp/Lab 1.qmd   
+#          - labs_comp/Lab 3.qmd      
+#          - labs_comp/Lab 4.qmd
+#          - labs_comp/Lab 5.qmd   
+#          - labs_comp/Lab 6.qmd   
+#          - labs_comp/Lab 7.qmd                
+#          - labs_comp/Lab 8.qmd
+#          - labs_comp/Lab 9.qmd
+#          - labs_comp/Lab 10.qmd    
+#          - labs_comp/Lab 11.qmd 
+#          - labs_comp/Lab 12.qmd 
+#          - labs_comp/Lab 13.qmd      
+
+              
+format:   
+  html: 
+    number-sections: false  
+    theme: yeti
+    css: styles.css
+    toc: true

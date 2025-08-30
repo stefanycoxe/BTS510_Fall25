@@ -1,0 +1,23 @@
+---
+title: "Home"
+---
+
+Welcome to the course website for **BTS 510: Biostatistics** for *Fall 2025*!
+
+* You can contact me at: [stefany.coxe@cshs.org](mailto:stefany.coxe@cshs.org)
+
+* We will meet each Thursday from 10am to 11:30am in **BTS classroom on the 7th floor of PDC**
+
+* Links to the [syllabus](syllabus.qmd), [schedule](schedule.qmd), and other [course materials](materials.qmd) are in the left menu
+  * For each week, there are lecture notes, lecture videos, code files, and other materials for the course
+  * All lecture videos (only) can be found [here](https://www.youtube.com/playlist?list=PLKrGRYggZL-FMsgmeUCLxykMwO9WVsijt)
+
+::: {.callout-note}
+* To download html files: Right click (or control click) and select "Save link as..."
+* To get code from lab files
+  * Open the lab file
+  * At the top of the page, in the upper right, there is a button that reads "</> Code"
+  * Click on that and a window with the code that made this page will pop up
+  * Click on the little notepad icon in the upper right to copy the entire document
+    * Sometimes this doesn't work so just select and copy the text
+:::

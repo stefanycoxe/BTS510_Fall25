@@ -1,0 +1,44 @@
+---
+title: "Schedule"
+format:
+    html: default
+    #pdf: default
+---
+
+- **L**: Watch lecture videos and respond to survey by **Wednesday at 8pm**.
+
+- **H**: Homework assignments are due by the **end of Sunday (midnight)**.
+
+- **Final project**  
+  - **Data**: Description of data due by September 28 
+  - **Proposal**: Proposal of final project due by November 2  
+  - **Presentation**: Presentation in class on December 18  
+  - **Paper**: Final paper due by December 21  
+
+Week	  | Date          |	Topic	                        |	L	    |	H	    |
+|:------|:--------------|:------------------------------|:------|:------|
+1	    |	Sept 04    	|	Introduction, R, markdown	        |	1	    |		|
+2	    |	Sept 11	    |	Data manipulation	                |	2	    |	1	|
+3	    |	Sept 18*    |	Samples, sampling distribution	  |	3	    |	 	|
+4	    |	Sept 25*	  |	NO CLASS	                        |	 	    |	Data	|
+5	    |	Oct 02*	    |	ggplot	                          |	4	    |	 	|
+6	    |	Oct 09	    |	ggplot	                          |	5	    |	2 |
+7	    |	Oct 16	    |	Linear regression                 |	6	    |	 	|
+8	    |	Oct 23	    |	Linear regression         	      |	7	    |	3	|
+9	    |	Oct 30  	  |	Linear regression    	            |	8	    |	Proposal	|
+10	  |	Nov 06	    |	Linear regression	                |	9	    |		|
+11	  |	Nov 13	    |	Linear regression   	            |	10    |	4	|
+12	  |	Nov 20	    |	Logistic regression   	          |	11	  |	  |
+13	  |	Nov 27*	    |	NO CLASS              	          |	  	  |		|
+14	  |	Dec 04      |	Poisson regression                |	12	  |	5	|
+15	  |	Dec 11    	|	Survival analysis                 |	13	  |	 	|
+16	  |	Dec 18  	  |	Presentations	                    |		    | Final	| 
+
+* Adjusted days  
+  * Sept 18: Remote, short class
+  * Sept 25: No class 
+  * Oct 02: Moved to Sept 30 for Yom Kippur
+  * Nov 27: Holiday (No class) 
+
+- **All due dates subject to change** due to weather, emergency, scheduling changes, etc. 
+

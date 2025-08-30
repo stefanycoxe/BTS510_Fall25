@@ -1,0 +1,74 @@
+---
+title: "Assignments"
+---
+
+::: {.callout-tip title="Final Project" collapse=true}
+
+**Big picture**: You will select a dataset, propose some research questions that can be answered using linear models (i.e., regression), write up the results, and present your findings to the class.
+
+* There will be 4 parts to the project throughout the semester
+  * Dataset selection
+  * Proposal
+  * Presentation
+  * Final paper
+  
+<!-- ::: {.callout-note collapse=true} -->
+
+<!-- ## Dataset selection -->
+
+
+<!-- ::: -->
+
+<!-- ::: {.callout-note collapse=true} -->
+
+<!-- ## Proposal -->
+
+
+<!-- ::: -->
+
+<!-- ::: {.callout-note collapse=true} -->
+
+<!-- ## Presentation -->
+
+
+<!-- ::: -->
+
+<!-- ::: {.callout-note collapse=true} -->
+
+<!-- ## Final paper assignment -->
+
+
+<!-- ::: -->
+
+:::
+
+::: {.callout-tip title="Homework 1" collapse=true}
+
+
+    
+:::   
+
+
+<!-- ::: {.callout-tip title="Homework 2" collapse=true} -->
+
+
+
+<!-- ::: -->
+
+<!-- ::: {.callout-tip title="Homework 3" collapse=true} -->
+
+
+
+<!-- ::: -->
+
+<!-- ::: {.callout-tip title="Homework 4" collapse=true} -->
+
+
+
+<!-- ::: -->
+
+<!-- ::: {.callout-tip title="Homework 5" collapse=true} -->
+
+
+
+<!-- ::: -->
