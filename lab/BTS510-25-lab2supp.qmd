@@ -2,6 +2,7 @@
 title: "Pivot wider then reverse back to tall data"
 format:
   html:
+    embed-resources: true
     self-contained: true
     self-contained-math: true
     html-math-method: katex

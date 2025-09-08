@@ -1,0 +1,33 @@
+---
+title: "Final project: Part 1"
+format:
+  html:
+    embed-resources: true
+    self-contained: true
+    self-contained-math: true
+    html-math-method: katex
+    code-tools: true
+---
+
+## Dataset selection
+
+* **Email to Stefany by midnight on Sunday, September 28, 2025 **  
+
+* Select a **dataset** to use for your project
+  * This can be a dataset from your lab or a publicly available dataset
+  * The dataset should include **at least 5 variables** 
+    * The variables can be continuous or categorical 
+  * The dataset should include **at least 50 subjects** (people, animals, etc.)
+    * If you work in a subfield that typically has much smaller samples than this, send me an email so we can talk about it. You can run these models with smaller samples, but you're more likely to have problems
+* For the assignment, **briefly describe the dataset**
+  * Where did the dataset come from?
+  * How many subjects are in the dataset?
+  * What are the variables? Continuous, categorical? 
+    * What variable(s) are you interested in **predicting** (outcome)?
+    * What variables might be **predictors** of that variable?
+    * It's ok if you're not sure. This can change.
+  * What is the study design? Randomized groups, observational?
+  * Any other design or study details that might be important, like repeated measures, clustering of units within higher levels (e.g., people in neighborhoods)
+    
+
+

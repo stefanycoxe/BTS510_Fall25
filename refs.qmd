@@ -4,6 +4,10 @@ title: "References"
 
 ## General resources
 
+* Data management: Keeping your data organized and secure
+    * The basics: [https://cghlewis.com/blog/project_beginning/](https://cghlewis.com/blog/project_beginning/)
+    * All the details: [https://datamgmtinedresearch.com/](https://datamgmtinedresearch.com/)
+
 * UCLA Statistical Consulting: [https://stats.oarc.ucla.edu/](https://stats.oarc.ucla.edu/)
 
 * Statistics for Biologists portfolio: [https://www.nature.com/collections/qghhqm](https://www.nature.com/collections/qghhqm)

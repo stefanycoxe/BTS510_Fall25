@@ -2,7 +2,7 @@
 title: "Assignments"
 ---
 
-::: {.callout-tip title="Final Project" collapse=true}
+::: {.callout-tip title="Final Project" collapse=false}
 
 **Big picture**: You will select a dataset, propose some research questions that can be answered using linear models (i.e., regression), write up the results, and present your findings to the class.
 
@@ -12,12 +12,11 @@ title: "Assignments"
   * Presentation
   * Final paper
   
-<!-- ::: {.callout-note collapse=true} -->
+::: {.callout-note title="Part 1: Due September 28, 2025" collapse=false}
 
-<!-- ## Dataset selection -->
+* [Dataset selection](assignments/data.qmd){target="_blank"}
 
-
-<!-- ::: -->
+:::
 
 <!-- ::: {.callout-note collapse=true} -->
 
@@ -42,9 +41,9 @@ title: "Assignments"
 
 :::
 
-::: {.callout-tip title="Homework 1" collapse=true}
+::: {.callout-tip title="Homework 1: Due September 14, 2025" collapse=false}
 
-
+* [Homework 1](assignments/hw1.qmd){target="_blank"}
     
 :::   
 

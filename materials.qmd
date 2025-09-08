@@ -2,7 +2,7 @@
 title: "Materials"
 ---
 
-::: {.callout-tip title="Week 0" collapse=false}
+::: {.callout-tip title="Week 0" collapse=true}
 
 ## Week 0: Read me first!
 
@@ -27,7 +27,7 @@ title: "Materials"
 
 :::
 
-::: {.callout-tip title="Week 1" collapse=false}
+::: {.callout-tip title="Week 1" collapse=true}
 
 ## Week 1: Introduction
 
@@ -54,9 +54,32 @@ title: "Materials"
 :::   
 
 
-::: {.callout-tip title="Week 2" collapse=true}
+::: {.callout-tip title="Week 2" collapse=false}
 
+## Week 2: Data manipulation
 
+### Learning objectives
+
+* Read data into R from external formats (e.g., Excel, .csv, SPSS)
+* Use [**dplyr** functions](https://dplyr.tidyverse.org/) in R to manipulate datasets (e.g., create new variables)
+* Use [**tidyr** functions](https://tidyr.tidyverse.org/) in R to organize and re-structure datasets
+
+### Before class: Lecture 
+
+* [Lecture 2](https://youtu.be/3oeb6sRvb6E){target="_blank"} 
+* [Lecture survey](https://forms.gle/RKGha2a6iH3ZHGYf6){target="_blank"}: Complete by Wednesday, September 10 at 8pm
+* [Slides (html)](slides/BTS510-25-2.qmd){target="_blank"}
+    
+### During class: Lab
+
+* [CSV file of `gapminder` data](lab/gapminder.csv){target="_blank"} (right/control click and "Save as...")
+* [SPSS file of `gapminder` data](lab/gapminder.sav){target="_blank"}
+* [Lab 2 (html with link to code)](lab/BTS510-25-lab2.qmd){target="_blank"}
+  * [Supplement to lab 2](lab/BTS510-25-lab2supp.qmd){target="_blank"}
+
+### After class: Assignment
+
+* [Homework 1](assignments/hw1.qmd){target="_blank"}
 
 :::
 
