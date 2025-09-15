@@ -11,7 +11,7 @@ website:
     collapse-level: 1                   
     contents:
       - index.qmd      
-      - syllabus.qmd                     
+      - syllabus.qmd                        
       - schedule.qmd        
       - materials.qmd
       - assignments.qmd  

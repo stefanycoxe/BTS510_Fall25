@@ -46,6 +46,7 @@ title: "Materials"
 ### During class: Lab
 
 * [Lab 1 (html with link to code)](lab/BTS510-25-lab1.qmd){target="_blank"}
+* [Completed lab 1 from class](labs_comp/Lab 1.qmd){target="_blank"}
 
 ### After class: Assignment 
 
@@ -54,7 +55,7 @@ title: "Materials"
 :::   
 
 
-::: {.callout-tip title="Week 2" collapse=false}
+::: {.callout-tip title="Week 2" collapse=true}
 
 ## Week 2: Data manipulation
 
@@ -76,6 +77,7 @@ title: "Materials"
 * [SPSS file of `gapminder` data](lab/gapminder.sav){target="_blank"}
 * [Lab 2 (html with link to code)](lab/BTS510-25-lab2.qmd){target="_blank"}
   * [Supplement to lab 2](lab/BTS510-25-lab2supp.qmd){target="_blank"}
+* [Completed lab 2 from class](labs_comp/Lab 2.qmd){target="_blank"}
 
 ### After class: Assignment
 
@@ -84,3 +86,29 @@ title: "Materials"
 :::
 
 
+::: {.callout-tip title="Week 3" collapse=false}
+
+## Week 3: Samples and sampling distributions
+
+### Learning objectives
+
+* Understand **probability** as a measure of **uncertainty**
+* Describe the difference between **population** and **sample**
+* Think about **uncertainty** in sampling
+* **Summarize** uncertainty in sampling: **Sampling distribution**
+
+### Before class: Lecture 
+
+* [Lecture 3](https://youtu.be/4Y5jtBJqR2A){target="_blank"} 
+* [Lecture survey](https://forms.gle/oFXpkFCXeQYqaRUw6){target="_blank"}: Complete by Wednesday, September 17 at 8pm
+* [Slides (html)](slides/BTS510-25-3.qmd){target="_blank"}
+    
+### During class: Lab
+
+* [Lab 3 (html with link to code)](lab/BTS510-25-lab3.qmd){target="_blank"}
+
+### After class: Assignment
+
+* **No homework this week**
+
+:::
