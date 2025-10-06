@@ -101,12 +101,12 @@ title: "Materials"
 
 * [Lecture 3](https://youtu.be/4Y5jtBJqR2A){target="_blank"} 
 * [Lecture survey](https://forms.gle/oFXpkFCXeQYqaRUw6){target="_blank"}: Complete by Wednesday, September 17 at 8pm
-* [Slides (html)](slides/BTS510-25-3.qmd){target="_blank"}
+* [Slides (html)](/slides/BTS510-25-3.qmd){target="_blank"}
     
 ### During class: Lab
 
-* [Lab 3 (html with link to code)](lab/BTS510-25-lab3.qmd){target="_blank"}
-* [Completed lab 3 from class](labs_comp/Lab 3.qmd){target="_blank"}
+* [Lab 3 (html with link to code)](/lab/BTS510-25-lab3.qmd){target="_blank"}
+* [Completed lab 3 from class](/labs_comp/Lab 3.qmd){target="_blank"}
 
 ### After class: Assignment
 
@@ -114,7 +114,7 @@ title: "Materials"
 
 :::
 
-::: {.callout-tip title="Week 4" collapse=false}
+::: {.callout-tip title="Week 4" collapse=true}
 
 ## Week 4: Plots and ggplot
 
@@ -133,7 +133,7 @@ title: "Materials"
 ### During class: Lab
 
 * [Lab 4 (html with link to code)](/lab/BTS510-25-lab4.qmd){target="_blank"}
-* [Completed lab 4 from class](labs_comp/Lab 4.qmd){target="_blank"}
+* [Completed lab 4 from class](/labs_comp/Lab 4.qmd){target="_blank"}
 
 ### After class: Assignment
 
@@ -141,3 +141,30 @@ title: "Materials"
 
 :::
 
+::: {.callout-tip title="Week 5" collapse=false}
+
+## Week 5: More plots
+
+### Learning objectives
+
+* Advanced plotting
+  * Color, size, opacity
+  * Annotations
+  * Changing themes, axis labels, re-ordering categories
+  * Complex and combined plots
+
+### Before class: Lecture 
+
+* [Lecture 5](https://youtu.be/kjAAat9x4gw){target="_blank"} 
+* [Lecture survey](https://forms.gle/3BthcvithxoekqD39){target="_blank"}: Complete by Wednesday, October 8 at 8pm
+* [Slides (html)](/slides/BTS510-25-5.qmd){target="_blank"}
+
+### During class: Lab
+
+* [Lab 5 (html with link to code)](lab/BTS510-25-lab5.qmd){target="_blank"}
+
+### After class: Assignment
+
+* [Homework 2](assignments/hw2.qmd){target="_blank"}
+
+:::

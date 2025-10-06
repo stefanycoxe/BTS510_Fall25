@@ -13,8 +13,8 @@ format:
     * [stefany.coxe@cshs.org](mailto:stefany.coxe@cshs.org)  
     * Office hours: By appointment (send me an email to schedule)
 * Yujie Cui, M.S.
-    * [yujie.cui@cshs.org](yujie.cui@cshs.org)
-    * Office hours: TBD
+    * [yujie.cui@cshs.org](mailto:yujie.cui@cshs.org)
+    * Office hours: Wednesday, 3pm to 4pm (email for Teams link)
 
 ## Course information
 
