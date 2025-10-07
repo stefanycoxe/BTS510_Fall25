@@ -1,5 +1,12 @@
 ---
 title: "Homework 2"
+format:
+  html:
+    embed-resources: true
+    self-contained: true
+    self-contained-math: true
+    html-math-method: katex
+    code-tools: true
 ---
 
 ## Plots and more plots

@@ -41,18 +41,18 @@ title: "Assignments"
 
 :::
 
-::: {.callout-tip title="Homework 1: Due September 14, 2025" collapse=false}
+::: {.callout-tip title="Homework 1: Due September 14, 2025" collapse=true}
 
 * [Homework 1](assignments/hw1.qmd){target="_blank"}
-    
+  
 :::   
 
 
-<!-- ::: {.callout-tip title="Homework 2" collapse=true} -->
+::: {.callout-tip title="Homework 2: Due October 12, 2025" collapse=false}
 
+* [Homework 2](assignments/hw2.qmd){target="_blank"}
 
-
-<!-- ::: -->
+:::
 
 <!-- ::: {.callout-tip title="Homework 3" collapse=true} -->
 
