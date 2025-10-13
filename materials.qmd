@@ -141,7 +141,7 @@ title: "Materials"
 
 :::
 
-::: {.callout-tip title="Week 5" collapse=false}
+::: {.callout-tip title="Week 5" collapse=true}
 
 ## Week 5: More plots
 
@@ -168,5 +168,33 @@ title: "Materials"
 ### After class: Assignment
 
 * [Homework 2](assignments/hw2.qmd){target="_blank"}
+
+:::
+
+::: {.callout-tip title="Week 6" collapse=false}
+
+## Week 6: Linear regression
+
+### Learning objectives
+
+* Describe the logic of **linear regression** 
+* Describe the **assumptions** of linear regression
+* Briefly **present results** of linear regression
+* Use a **regression equation** to summarize a model
+* Compare and contrast **observed**, **predicted**, and **residual** values
+
+### Before class: Lecture 
+
+* [Lecture 6](https://youtu.be/vpc5tPeeh9I){target="_blank"} 
+* [Lecture survey](https://forms.gle/95Q3NFnqLKSSQ22K8){target="_blank"}: Complete by Wednesday, October 15 at 8pm
+* [Slides (html)](/slides/BTS510-25-6.qmd){target="_blank"}
+
+### During class: Lab
+
+* [Lab 6 (html with link to code)](lab/BTS510-25-lab6.qmd){target="_blank"}
+
+### After class: Assignment
+
+* **No homework this week**
 
 :::
