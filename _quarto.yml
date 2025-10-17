@@ -14,7 +14,7 @@ website:
       - syllabus.qmd                        
       - schedule.qmd        
       - materials.qmd
-      - assignments.qmd        
+      - assignments.qmd         
       - refs.qmd       
 #      - section: "Complete labs"
 #        contents: 

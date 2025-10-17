@@ -192,6 +192,7 @@ title: "Materials"
 ### During class: Lab
 
 * [Lab 6 (html with link to code)](lab/BTS510-25-lab6.qmd){target="_blank"}
+* [Completed lab 6 from class](/labs_comp/Lab 6.qmd){target="_blank"}
 
 ### After class: Assignment
 

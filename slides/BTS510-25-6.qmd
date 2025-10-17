@@ -162,7 +162,7 @@ summary(pulse_vs_age)
   * `Pulse` for a person at `Age` = 0 is 96.048
 * Slope = Expected change in `Pulse` for a 1 unit difference in `Age`
   * $b_1$ = 0.049, $t(198)$ = 0.526, $p$ > .05
-  * For each 1 unit increase in `Age`, we expect `Pulse` to increase by 0.526 points (NS)
+  * For each 1 unit increase in `Age`, we expect `Pulse` to increase by ~~0.526~~ 0.049 points (NS)
 
 ## Example 2: `Pulse` vs `Emergency`
 
@@ -552,7 +552,7 @@ modelsummary(list(pulse_vs_age, pulse_vs_ER, pulse_age_ER))
 ## Example 1: Full results
 
 * The intercept ($b_0$) was 96.048, $t(198)$ = 16.594, $p$ < .0001. An individual who was 0 years old is expected to have a pulse rate of 96.048. 
-* The slope for age ($b_1$) was 0.049, $t(198)$ = 0.526, $p$ > .05. For each 1 year increase in age, the expected pulse rate increased by 0.048 points; this effect was not significant.
+* The slope for age ($b_1$) was 0.049, $t(198)$ = 0.526, $p$ > .05. For each 1 year increase in age, the expected pulse rate increased by 0.049 points; this effect was not significant.
 
 * The $R^2$ for this model was 0.0014, F(1, 198) = 0.2969, p > .05. Less than 1% of the variance in pulse rate was explained by age; this was not significant.
 

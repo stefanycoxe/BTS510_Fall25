@@ -1,0 +1,148 @@
+---
+title: "BTS 510 Lab 6"
+format:
+  html:
+    embed-resources: true
+    self-contained-math: true
+    html-math-method: katex
+    number-sections: true
+    toc: true
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+---
+
+```{r}
+#| label: setup
+set.seed(12345)
+library(tidyverse)
+library(Stat2Data)
+theme_set(theme_classic(base_size = 16))
+```
+
+## Learning objectives
+
+* Describe the logic of **linear regression** 
+* Describe the **assumptions** of linear regression
+* Briefly **present results** of linear regression
+* Use a **regression equation** to summarize a model
+* Compare and contrast **observed**, **predicted**, and **residual** values
+
+## Data 
+
+* `ICU` data from the **Stat2Data** package
+  * `ID`: Patient ID code
+  * `Survive`: 1 = patient survived to discharge or 0 = patient died
+  * `Age`: Age (in years)
+  * `AgeGroup`: 1 = young (under 50), 2 = middle (50-69), 3 = old (70+)
+  * `Sex`: 1 = female or 0 = male
+  * `Infection`: 1 = infection suspected or 0 = no infection
+  * `SysBP`: Systolic blood pressure (in mm of Hg)
+  * `Pulse`: Heart rate (beats per minute)
+  * `Emergency`: 1 = emergency admission or 0 = elective admission
+
+## Tasks
+
+1. **Does blood pressure differ between those with a suspected infection and those without?** *Fit a linear regression to answer this question.*
+
+```{r}
+library(Stat2Data)
+data(ICU)
+m1 <- lm(SysBP ~ Infection, data = ICU)
+summary(m1)
+```
+
+* Confidence intervals
+
+```{r}
+confint(m1)
+```
+
+
+2. Write up the **interpretation** of the model, including:
+  * Intercept value, test statistic, $p$-value
+  * Intercept interpretation (in words)
+  * Slope value, test statistic, $p$-value
+  * Slope interpretation (in words)
+  * $R^2$ value, test statistic, $p$-value
+  * $R^2$ interpretation (in words)
+  
+* Intercept ($b_0$) = 138.672, t(198) = 46.440, p<.0001
+  * The expected blood pressure for a patient **without suspected infection** (i.e., `Infection` = 0) is 138.672
+* Slope ($b_1$) = -15.220, t(198) = -3.303, p = .001134
+  * For each 1 unit increase in `Infection`, the expected blood pressure **decreases** by 15.220 points
+  * Patients **with suspected infection** (i.e., `Infection` = 1) have blood pressure that is 15.220 points **lower** than patients **without suspected infection** (i.e., `Infection` = 0)
+* $R^2$ = 0.05, F(1, 198) = 10.91, p = .001134
+  * This model accounts for about 5% of the variance in blood pressure
+  * This is significant (meaning that it is different from 0)
+
+3. What is the **predicted blood pressure** for someone *with a suspected infection*? What is the **predicted blood pressure** for someone *without a suspected infection*?
+
+$$\hat{SysBP} = 138.672 - 15.220 \times Infection$$
+
+```{r}
+infect_bp <- 138.672 - 15.220 * 1
+noinfect_bp <- 138.672 - 15.220 * 0
+infect_bp
+noinfect_bp
+```
+
+
+4. Calculate the **predicted** and **residual** values for each person and add them to the original dataset. **Does it looks like the assumptions are satisfied?** Make plots to help you decide:
+  * Residual vs predictor
+  * Q-Q plot of residuals
+  * Histogram of residuals (all together and separately for the two groups)
+
+```{r}
+ICU$pred <- fitted(m1)
+ICU$resi <- residuals(m1)
+head(ICU)
+```
+
+* Residual vs predictor: Want flat line, grey band even across values of X
+
+```{r}
+ggplot(data = ICU, 
+       aes(x = Infection, y = resi)) + 
+  geom_point(alpha = 0.3, 
+             size = 2) +
+  geom_smooth()
+```
+
+* Q-Q plot: Want dots to fall on line
+
+```{r}
+ggplot(data = ICU,
+       aes(sample = resi)) + 
+       stat_qq() +
+       stat_qq_line()
+```
+
+* Histogram: Want roughly normal (bell-shaped) distributions
+
+```{r}
+ggplot(data = ICU,
+       aes(x = resi)) +
+  geom_histogram()
+```
+
+```{r}
+ggplot(data = ICU,
+       aes(x = resi)) +
+  geom_histogram() +
+  facet_grid(cols = vars(Infection))
+```
+
+
+5. **Does blood pressure differ between those with a suspected infection and those without? How?** (Brief, simple words, no jargon, no statistics.) 
+
+Yes, blood pressure is different for patients with a suspected infection versus patients without a suspected infection. Patients **with a suspected infection** have **lower** blood pressure levels (on average) than patients **without a suspected infection**.
+
+**Bonus**. A linear regression with only 1 binary predictor (e.g., `Infection`) is **exactly equivalent** to a (independent samples) $t$-test. (Notice that the test for the coefficient / slope in the regression **is** a $t$-test -- this is not a coincidence.) You just get slightly different pieces of information from the two analyses. Run the $t$-test for this same analysis to see what is the same and what is different. This uses the `t.test()` function from the **stats** package (always loaded by default).
+
+`t.test(ICU$SysBP ~ ICU$Infection, alternative = "two.sided", var.equal = TRUE)`
+
+```{r}
+t.test(ICU$SysBP ~ ICU$Infection, alternative = "two.sided", var.equal = TRUE)
+```
+
