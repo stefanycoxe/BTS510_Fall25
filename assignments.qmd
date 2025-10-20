@@ -12,18 +12,17 @@ title: "Assignments"
   * Presentation
   * Final paper
   
-::: {.callout-note title="Part 1: Due September 28, 2025" collapse=false}
+::: {.callout-note title="Part 1: Due September 28, 2025" collapse=true}
 
 * [Dataset selection](assignments/data.qmd){target="_blank"}
 
 :::
 
-<!-- ::: {.callout-note collapse=true} -->
+::: {.callout-note title="Part 2: Due November 2, 2025" collapse=false}
 
-<!-- ## Proposal -->
+* [Proposal](assignments/proposal.qmd){target="_blank"}
 
-
-<!-- ::: -->
+:::
 
 <!-- ::: {.callout-note collapse=true} -->
 
@@ -48,17 +47,17 @@ title: "Assignments"
 :::   
 
 
-::: {.callout-tip title="Homework 2: Due October 12, 2025" collapse=false}
+::: {.callout-tip title="Homework 2: Due October 12, 2025" collapse=true}
 
 * [Homework 2](assignments/hw2.qmd){target="_blank"}
 
 :::
 
-<!-- ::: {.callout-tip title="Homework 3" collapse=true} -->
+::: {.callout-tip title="Homework 3: Due October 26, 2025" collapse=false}
 
+* [Homework 3](assignments/hw3.qmd){target="_blank"}
 
-
-<!-- ::: -->
+:::
 
 <!-- ::: {.callout-tip title="Homework 4" collapse=true} -->
 

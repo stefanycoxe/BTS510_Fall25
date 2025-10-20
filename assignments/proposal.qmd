@@ -1,0 +1,33 @@
+---
+title: "Final project: Part 2"
+format:
+  html:
+    embed-resources: true
+    self-contained: true
+    self-contained-math: true
+    html-math-method: katex
+    code-tools: true
+---
+
+## Proposal
+
+* **Email to Stefany by midnight on Sunday, November 2, 2025 **  
+
+* Submit a ~2 page proposal (similar to a thesis or dissertation proposal, only *much shorter* and without all the boring literature review parts) for your project. This should:
+  * Motivate the project
+    * Not a literature review, but tell me why what you're doing is interesting
+  * Describe your dataset in some detail
+    * Where the data came from
+    * Sample size
+    * Any interventions, etc. that happened
+    * Most importantly: **What variables you will be using**
+  * Describe several questions that you have that can be answered using linear (continuous outcome), logistic (binary outcome), and/or Poisson (count outcome) regression. For example:
+    * Does this predictor significantly predict the outcome? Which of these competing models produces the best fit?
+    * Explain how these models will answer your research questions. It's ok if the research questions are fairly basic, but try to be as specific as you can about how the model will answer your question.
+    * I want you to run at least **3 different models**, with some justification for each, and compare them. Some examples: 
+      * Multiple predictors that you test in a hierarchical manner (i.e., first predictor 1, then predictor 1 and 2, then both predictors and their interaction)
+      * One predictor that predicts several different outcomes (e.g., treatment / control variable predicts several outcomes)
+      * Homework 3 is a rough model for this. That is roughly the scope I'm looking for.
+* **Proposals are not contracts**: If you start working and realize that you can't do what you proposed, that's ok. Talk to me if you need some guidance on making changes or problems you encounter. I just want you to try to identify a dataset, variables, and questions early so you don't scramble at the end of the semester.
+
+
