@@ -1,0 +1,267 @@
+---
+title: "BTS 510 Lab 7"
+format:
+  html:
+    embed-resources: true
+    self-contained-math: true
+    html-math-method: katex
+    number-sections: true
+    toc: true
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+---
+
+```{r}
+#| label: setup
+set.seed(12345)
+library(tidyverse)
+library(Stat2Data)
+theme_set(theme_classic(base_size = 16))
+```
+
+## Learning objectives
+
+* **Add predictors** to a linear regression model
+* Interpret **partial regression coefficients**
+* **Re-code predictors** to answer your research questions
+* **Compare** different models using $R^2_{change}$
+
+## Data 
+
+* `ICU` data from the **Stat2Data** package
+  * `ID`: Patient ID code
+  * `Survive`: 1 = patient survived to discharge or 0 = patient died
+  * `Age`: Age (in years)
+  * `AgeGroup`: 1 = young (under 50), 2 = middle (50-69), 3 = old (70+)
+  * `Sex`: 1 = female or 0 = male
+  * `Infection`: 1 = infection suspected or 0 = no infection
+  * `SysBP`: Systolic blood pressure (in mm of Hg)
+  * `Pulse`: Heart rate (beats per minute)
+  * `Emergency`: 1 = emergency admission or 0 = elective admission
+
+```{r}
+library(Stat2Data)
+data(ICU)
+```
+
+## Research question
+
+**How do infection status (`Infection`) and admission type (`Emergency`) predict blood pressure?**
+
+## Tasks
+
+1. Conduct **three linear regression models** to address the above research questions.
+
+* Model 1: Infection status predicts blood pressure
+* Model 2: Admission type predicts blood pressure
+* Model 3: Infection status *and* admission type predict blood pressure
+
+```{r}
+m1 <- lm(data = ICU, SysBP ~ Infection)
+m2 <- lm(data = ICU, SysBP ~ Emergency)
+m3 <- lm(data = ICU, SysBP ~ Infection + Emergency)
+```
+
+
+2. **Which is the best model?** 
+
+* Use the $F$-test for $R^2_{change}$ and the AIC values to help you decide. Report the tests and values that you used to decide this. 
+
+```{r}
+anova(m1, m2)
+anova(m1, m3)
+anova(m2, m3)
+```
+
+* Note: Cannot use this to compare models with same number of predictors because degrees of freedom is the difference in number of predictors 
+  * Comparison of `m1` and `m2` is useless
+* Can compare `m3` (two predictors) to each of the 1 predictor models
+  * `m3` is better than `m1`, F(1, 197) = 4.6668, p<.05
+  * `m3` is better than `m2`, F(1, 197) = 8.5677, p<.01
+  * Basically, both predictors are better than either one alone
+
+
+```{r}
+AIC(m1)
+AIC(m2)
+AIC(m3)
+```
+* Lower is better for AIC and BIC
+  * `m3` has the lowest AIC
+
+3. Report the results of the **best** model, including:
+  * Intercept value, test statistic, $p$-value, interpretation (in words)
+  * Slope value(s), test statistic(s), $p$-value(s), interpretation(s) (in words)
+  * $R^2$ value, test statistic, $p$-value, interpretation (in words)
+
+```{r}
+summary(m3)
+```
+
+* Intercept
+  * $b_0$ = 146.194, t(197) = 31.995, p<.0001
+  * The predicted blood pressure for a person without an infection (`Infection` = 0) and without an emergency admission (`Emergency` = 0) is 146.194.
+* `Infection` effect
+  * $b_1$ = -13.553, t(197) = -2.927, p<.01
+  * Holding `Emergency` constant, for a 1 unit increase in `Infection` (i.e., going from no infection (0) to infection (1)), we expect the predicted blood pressure to **decrease** by 13.553 points.
+* `Emergency` effect
+  * $b_2$ = -11.186, t(197) = -2.160, p<.05
+  * Holding `Infection` constant, for a 1 unit increase in `Emergency` (i.e., going from regular admission (0) to emergency admission (1)), we expect the predicted blood pressure to **decrease** by 11.186 points.  
+* $R^2$ = 0.074, F(2, 197) = 7.89, p<.001
+  * The two predictors together account for 7.4% of the variance in blood pressure.
+
+
+4. Based on **model 3**, what are the predicted blood pressures for the 4 combinations of infection status and admission type? (i.e., infected non-emergency, non-infected non-emergency, infected emergency, non-infected emergency)
+
+* Method 1: Use R like a calculator
+  * Easy and straight-forward
+  * You have to keep track of things
+  * Not in a data frame to do other things with
+
+```{r}
+b0 <- 146.194
+b1 <- -13.553
+b2 <- -11.186
+p_00 <- b0 + b1*0 + b2*0
+p_10 <- b0 + b1*1 + b2*0
+p_01 <- b0 + b1*0 + b2*1
+p_11 <- b0 + b1*1 + b2*1
+
+# no infection, no emergency
+p_00
+# infection, no emergency
+p_10
+# no infection, emergency
+p_01
+# infection, emergency
+p_11
+```
+
+* Method 2: Use the `predict()` function
+  * Step 1. Create a new dataset with the predictor values you want
+    * Variables must have same names as in the model: `Infection` and `Emergency`
+    * Check the new dataset to make sure it looks like what you want
+  * Step 2. Use `predict()` function to add a new variable (`pred_BP`) to the new dataset
+    * `new_data$pred_BP` is a variable called `pred_BP` in the `new_data` dataset
+    * If this variable doesn't exist already (here, it doesn't), it will be created
+    
+```{r}
+# step 1
+new_data <- data.frame(Infection = c(0, 1, 0, 1), Emergency = c(0, 0, 1, 1))
+new_data
+```
+
+```{r}
+# step 2
+new_data$pred_BP <- predict(m3, newdata = new_data)
+new_data
+```
+
+* Use this dataset to make a plot
+  * And add some labels
+
+```{r}
+ggplot(data = new_data, aes(x = Infection, 
+                            y = pred_BP, 
+                            shape = as.factor(Emergency))) +
+  geom_point(size = 4) +
+  geom_line() +
+  geom_text(aes(label = round(pred_BP, 2)), 
+            nudge_x = 0.25,
+            nudge_y = 2) +
+  xlim(-0.5, 1.5) +
+  ylim(120, 160) +
+  labs(shape = "Emergency", 
+       y = "Predicted systolic blood pressure (mm/Hg)")
+```
+
+* Effect of `Infection`
+  * $b_1$ = `r round(b1, 2)`
+  * Effect of `Infection`, controlling for `Emergency` is the **slope** of the lines
+    * When `Emergency` = 0: 132.64 - 146.19 = `r round(b1,2)`
+    * When `Emergency` = 1: 121.45 - 135.01 = `r round(b1,2)`
+* Effect of `Emergency`
+  * $b_2$ = `r round(b2, 2)`
+  * Effect of `Emergency`, controlling for `Infection` is the **difference** between lines
+    * When `Infection` = 0: 135.01 - 146.19 = `r round(b2,2)`
+    * When `Infection` = 1: 121.45 - 132.64 = `r round(b2,2)`
+
+5. Using the **predicted** and **residual** values, assess whether the assumptions are met for **model 3**. Include the plots and describe your conclusions based on them. 
+
+```{r}
+ICU$pred1 <- fitted(m3)
+ICU$resi1 <- residuals(m3)
+```
+
+::: {.callout-note}
+* With **caution**, you can use the `warning: false` option to suppress all the warnings that the loess line (`geom_smooth()`) is giving
+* `#| warning: false` in the first line of the code chunk
+  * Note the `#|` at the start of the line
+  * Unfortunately doesn't show in output, so look at **code**
+  * I did this for these first couple of residuals plots because they give warnings because they are trying to calculate a running average at the edges 
+:::
+
+* Residuals vs predicted value ($\hat{Y}$)
+  * Want a flat line with roughly equal variance (vertical spread) across 
+
+```{r}
+#| warning: false
+ggplot(data = ICU, 
+       aes(x = pred1, y = resi1)) + 
+  geom_point(alpha = 0.3, 
+             size = 2) +
+  geom_smooth()
+```
+
+* Residuals vs `Infection`
+  * Want a flat line with roughly equal variance (vertical spread) across 
+
+```{r}
+#| warning: false
+ggplot(data = ICU, 
+       aes(x = Infection, y = resi1)) + 
+  geom_point(alpha = 0.3, 
+             size = 2) +
+  geom_smooth()
+```
+
+* Residuals vs `Emergency`
+  * Want a flat line with roughly equal variance (vertical spread) across 
+
+```{r}
+#| warning: false
+ggplot(data = ICU, 
+       aes(x = Emergency, y = resi1)) + 
+  geom_point(alpha = 0.3, 
+             size = 2) +
+  geom_smooth()
+```
+
+* Histogram of residuals, conditional on `Infection`
+  * Want roughly normal distributions for each
+
+```{r}
+ggplot(data = ICU,
+       aes(x = resi1)) +
+  geom_histogram() +
+  facet_grid(cols = vars(Infection))
+```
+
+* Histogram of residuals, conditional on `Emergency`
+  * Want roughly normal distributions for each
+
+```{r}
+ggplot(data = ICU,
+       aes(x = resi1)) +
+  geom_histogram() +
+  facet_grid(cols = vars(Emergency))
+```
+
+6. In plain language, answer the research question: **How do infection status and admission type predict blood pressure?** (This should not be lengthy -- just a couple sentences.)
+
+* Whether someone has an infection or not affects blood pressure
+  * Patients *with an infection* had **lower** blood pressure than patients *without an infection*
+* Whether someone was an emergency admission or not affects blood pressure
+  * Patients with *emergency* admissions had **lower** blood pressure than patients with *non-emergency* admissions
+* (Note that this model only includes simple **additive** effects, which leads to the parallel lines. What if it instead looked like, e.g., emergency admission doesn't affect blood pressure for people with infections, but it does for people without infections? **Non-parallel lines**)
