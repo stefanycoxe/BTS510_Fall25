@@ -111,6 +111,7 @@ title: "Materials"
 ### After class: Assignment
 
 * **No homework this week**
+* **Due next week**: [Data assignment](assignments/data.qmd){target="_blank"}
 
 :::
 
@@ -200,9 +201,7 @@ title: "Materials"
 
 :::
 
-
-
-::: {.callout-tip title="Week 7" collapse=false}
+::: {.callout-tip title="Week 7" collapse=true}
 
 ## Week 7: Linear regression
 
@@ -229,5 +228,30 @@ title: "Materials"
 ### After class: Assignment
 
 * [Homework 3](assignments/hw3.qmd){target="_blank"}
+
+:::
+
+::: {.callout-tip title="Week 8" collapse=false}
+
+## Week 8: Linear regression
+
+### Learning objectives
+
+* **Assess** models for **(multi)collinearity** among predictors
+* **Conduct** outlier analyses to determine extreme and/or problematic cases
+
+### Before class: Lecture 
+
+* [Lecture 8](https://youtu.be/Qf_NSblMUk8){target="_blank"} 
+* [Lecture survey](https://forms.gle/hXGTZp2HWpoT3Mhy7){target="_blank"}: Complete by Wednesday, October 29 at 8pm
+* [Slides (html)](/slides/BTS510-25-8.qmd){target="_blank"}
+
+### During class: Lab
+
+* [Lab 8 (html with link to code)](lab/BTS510-25-lab8.qmd){target="_blank"}
+
+### After class: Assignment
+
+* [Proposal](assignments/proposal.qmd){target="_blank"}
 
 :::
