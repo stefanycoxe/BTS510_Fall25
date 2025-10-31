@@ -1,0 +1,229 @@
+---
+title: "BTS 510 Lab 8"
+format:
+  html:
+    embed-resources: true
+    self-contained-math: true
+    html-math-method: katex
+    number-sections: true
+    toc: true
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+---
+
+```{r}
+#| label: setup
+set.seed(12345)
+library(tidyverse)
+library(Stat2Data)
+theme_set(theme_classic(base_size = 16))
+```
+
+## Learning objectives
+
+* **Assess** models for **(multi)collinearity** among predictors
+* **Conduct** outlier analyses to determine extreme and/or problematic cases
+
+## Data 
+
+* `FirstYearGPA` data from the **Stat2Data** package: $n$ = 219 subjects
+  * `GPA`: First-year college GPA on a 0.0 to 4.0 scale
+  * `HSGPA`: High school GPA on a 0.0 to 4.0 scale
+  * `SATV`: Verbal/critical reading SAT score
+  * `SATM`: Math SAT score
+  * `Male`: 1= male, 0= female
+  * `HU`: Number of credit hours earned in humanities courses in high school
+  * `SS`: Number of credit hours earned in social science courses in high school
+  * `FirstGen`: 1= student is the first in her or his family to attend college, 0=otherwise
+  * `White`: 1= white students, 0= others
+  * `CollegeBound`: 1=attended a high school where >=50% students intended to go on to college, 0=otherwise
+
+## Research question(s)
+
+* How do **all these variables** impact first year GPA (`GPA`)?
+  * Are there any problems with **collinearity** among the *predictors*?
+  * Are there **problematic cases** that are *influencing the results*?
+
+## Tasks
+
+### Model
+
+1. Run a **linear regression model** predicting `GPA` from *all other variables* in the dataset.
+
+```{r}
+library(tidyverse)
+library(Stat2Data)
+data(FirstYearGPA)
+m1 <- lm(data = FirstYearGPA, GPA ~ .)
+summary(m1)
+```
+
+### Correlations and VIFs
+
+2. Some of those variables seem like they could be **strongly related**, which could cause problems for the model. Check to see if **collinearity** is an issue for this model. To check this, look at:
+  * **Correlations among variables**
+  * **Variable inflation factors (VIFs)**
+  
+```{r}
+cor(FirstYearGPA)
+```
+
+1. Look at correlations of the outcome (`GPA`) with each predictor alone. This is the *first column* in this correlation matrix. `GPA` has a decent correlation with `HSGPA`, `SATV`, `SATM`, `HU`, `FirstGen`, and `White`. Not all of those variables were significant in the model. So...
+2. Look at the correlations of the non-significant predictors (i.e., `SATV`, `SATM`, `FirstGen`) with other predictors. Are they correlated with other predictors, so they're fighting to explain the outcome?
+
+* `SATV`: `HSGPA` = .21, `SATM` = .53, `Male` = .15, `FirstGen` = -.26, `White` = .37
+* `SATM`: `HSGPA` = .15, `SATV` = .53, `Male` = .37, `FirstGen` = -.18, `White` = .26
+* `FirstGen`: `SATV` = -.26, `SATM` = .18, `HU` = -.21, `White` = -.24
+* So yes, it looks like there are correlations between the predictors
+  * We might consider combining some variables, like `SATM` and `SATV`
+  * We might consider a single, more complicated demographic variable (but I don't know if I actually would do that)
+  * All of this requires you to use your **substantive** (i.e., subject area) knowledge of the variables
+
+```{r}
+library(car)
+vif(m1)
+```
+
+* None of the variables show pronounced variance inflation
+  * All VIFs < 5
+  * Even though the variables are correlated, they're not all correlated to a degree that they're affecting the variance (i.e., standard error)
+
+### Thoughts
+  
+3. Based on the **correlations between each predictor and the outcome** (above), are there predictors that you think **should** be significant but aren't? Why do you think they aren't? (This is a bit of a philosophical question.)
+
+* One thought is that the two SAT scores are too correlated with each other and might be significant if they were combined
+  * (But education research generally shows that they're not super predictive of college GPA after you account for other things like HS GPA and demographics. This is part of the argument for some schools dropping SAT requirements.)
+
+### Outliers
+
+4. Are there **extreme cases** that we might be concerned about? Check for extreme values in terms of:
+  * **Predictors**
+  * **Predicted values**
+  * **Changes to predicted values**
+
+#### Leverage (predictors)
+
+* Note that the cut-offs are 
+  * Larger samples: $\frac{2(k+1)}{n}$
+  * Smaller samples: $\frac{3(k+1)}{n}$
+  * where $k$ = number of predictors and $n$ = sample size
+* This dataset didn't have an ID variable, so I added on that's basically the row number
+  * `m1_aug <- m1_aug %>% mutate(ID = 1:nrow(m1_aug))`
+  * Add a variable called `ID` to the data frame `m1_aug`
+  * The new variable is just a sequential number that starts at 1 and ends at `nrow(m1_aug)` (the number of rows in the dataset)
+
+```{r}
+library(broom)
+m1_aug <- augment(m1)
+m1_aug
+
+ggplot(data = m1_aug,
+       aes(x = .hat)) +
+  geom_histogram()
+
+m1_aug <- m1_aug %>% mutate(ID = 1:nrow(m1_aug))
+ggplot(data = m1_aug,
+       aes(x = c(1:nrow(m1_aug)), 
+           y = .hat)) +
+  geom_point() +
+  geom_hline(yintercept = 3*(9+1)/219, 
+             color = "red",
+             linetype = "dashed") +
+  geom_hline(yintercept = 2*(9+1)/219,
+             color = "blue") +
+  geom_text(aes(label=ifelse((.hat > 2*(9+1)/219), 
+                             as.character(ID), 
+                             '')),
+            hjust = 0, nudge_x = 2)
+```
+
+#### Discrepancy (residuals)
+
+```{r}
+library(car)
+m1_stresid <- FirstYearGPA %>% mutate(esresid = rstudent(m1))
+head(m1_stresid)
+
+ggplot(data = m1_stresid,
+       aes(x = esresid)) +
+  geom_histogram()
+
+m1_stresid <- m1_stresid %>% mutate(ID = 1:nrow(m1_stresid))
+ggplot(data = m1_stresid,
+       aes(x = c(1:nrow(m1_stresid)), 
+           y = esresid)) +
+  geom_point() +
+  geom_hline(yintercept = 2, 
+             color = "blue",
+             linetype = "dashed") +
+  geom_hline(yintercept = -2,
+             color = "blue",
+             linetype = "dashed") +
+  geom_text(aes(label=ifelse((esresid > 2), 
+                             as.character(ID), 
+                             '')),
+            hjust = 0, nudge_x = 2) +
+  geom_text(aes(label=ifelse((esresid < -2), 
+                             as.character(ID), 
+                             '')),
+            hjust = 0, nudge_x = 2)
+```
+
+#### Influence (Cook's d -- change coefficients)
+
+```{r}
+ggplot(data = m1_aug,
+       aes(x = .cooksd)) +
+  geom_histogram()
+
+ggplot(data = m1_aug,
+       aes(x = c(1:nrow(m1_aug)), 
+           y = .cooksd)) +
+  geom_point() +
+  geom_hline(yintercept = 1, 
+             color = "red",
+             linetype = "dashed") +
+  geom_text(aes(label=ifelse((.cooksd > 1), 
+                             as.character(ID), 
+                             '')),
+            hjust = 0, nudge_x = 2)
+```
+
+#### Summary of outliers
+
+* Repeat offenders (influence)
+
+```{r}
+m1_aug %>% filter(.hat > 2*(9+1)/219) %>% select(ID)
+m1_aug %>% filter(.hat > 3*(9+1)/219) %>% select(ID)
+```
+  
+* Repeat offenders (discrepency)  
+
+```{r}
+m1_stresid %>% filter(esresid > 2) %>% select(ID)
+m1_stresid %>% filter(esresid < -2) %>% select(ID)
+```
+
+* Repeat offenders (influence)
+
+```{r}
+m1_aug %>% filter(.cooksd > 1) %>% select(ID)
+```
+
+### Summary
+  
+5. **Summarize** your findings about collinearity and outliers. *Use plain language.*
+
+* Collinearity
+  * Some of the predictors are moderately correlated, so we could consider combining or dropping some
+  * The correlations among predictors are not inflating the standard errors of the regression coefficient though, based on all VIFs < 5
+* Outliers
+  * Between 3 and 13 observations were extreme on the predictors (leverage), depending on the cut off used
+  * 7 observations had extreme (externally studentized) residuals (discrepancy), meaning that the predicted outcome value was very different from the observed outcome value
+  * No observations were changing the predicted values notably (influence)
+  * There was no overlap in the observations with high leverage and high discrepancy, and there were no observations with high influence, so there are no extreme observations of concern
+
+
