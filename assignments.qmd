@@ -18,7 +18,7 @@ title: "Assignments"
 
 :::
 
-::: {.callout-note title="Part 2: Due November 2, 2025" collapse=false}
+::: {.callout-note title="Part 2: Due November 2, 2025" collapse=true}
 
 * [Proposal](assignments/proposal.qmd){target="_blank"}
 
@@ -53,17 +53,17 @@ title: "Assignments"
 
 :::
 
-::: {.callout-tip title="Homework 3: Due October 26, 2025" collapse=false}
+::: {.callout-tip title="Homework 3: Due October 26, 2025" collapse=true}
 
 * [Homework 3](assignments/hw3.qmd){target="_blank"}
 
 :::
 
-<!-- ::: {.callout-tip title="Homework 4" collapse=true} -->
+::: {.callout-tip title="Homework 4: Due November 16, 2025" collapse=false}
 
+* [Homework 4](assignments/hw4.qmd){target="_blank"}
 
-
-<!-- ::: -->
+:::
 
 <!-- ::: {.callout-tip title="Homework 5" collapse=true} -->
 
