@@ -4909,18 +4909,24 @@ window.Quarto = {
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
+<pre><code>Warning: package &#39;purrr&#39; was built under R version 4.5.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package &#39;stringr&#39; was built under R version 4.5.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ✔ dplyr     1.1.4     ✔ readr     2.1.5
-✔ forcats   1.0.1     ✔ stringr   1.5.2
+✔ forcats   1.0.1     ✔ stringr   1.6.0
 ✔ ggplot2   4.0.0     ✔ tibble    3.3.0
 ✔ lubridate 1.9.4     ✔ tidyr     1.3.1
-✔ purrr     1.1.0     
+✔ purrr     1.2.0     
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
 ✖ dplyr::filter() masks stats::filter()
 ✖ dplyr::lag()    masks stats::lag()
 ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">16</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">16</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="learning-objectives" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">1</span> Learning objectives</h2>
@@ -4986,8 +4992,8 @@ Note
 <li>Install only <strong>once</strong>, load or library <strong>once per document</strong></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(infer)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(infer)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="standard-normal-population-population-sim-mathcaln0-1" class="level3" data-number="3.2">
@@ -5007,16 +5013,16 @@ Note
 </ul></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>norm_pop <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000000</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(norm_pop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>norm_pop <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000000</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(norm_pop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.0002941277</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(norm_pop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(norm_pop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1.001315</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(norm_pop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(norm_pop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1.002632</code></pre>
 </div>
@@ -5051,13 +5057,13 @@ Note
 </ul></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>norm_means10 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(norm_pop) <span class="sc">%&gt;%</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rep_sample_n</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">x_bar =</span> <span class="fu">mean</span>(norm_pop))</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> norm_means10, <span class="fu">aes</span>(<span class="at">x =</span> x_bar)) <span class="sc">+</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>) <span class="sc">+</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="sc">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>norm_means10 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(norm_pop) <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rep_sample_n</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">x_bar =</span> <span class="fu">mean</span>(norm_pop))</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> norm_means10, <span class="fu">aes</span>(<span class="at">x =</span> x_bar)) <span class="sc">+</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>) <span class="sc">+</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="sc">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 2 rows containing missing values or values outside the scale range
 (`geom_bar()`).</code></pre>
@@ -5074,13 +5080,13 @@ Note
 <li>Moderate sample: <span class="math inline">n</span> = 50</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>norm_means50 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(norm_pop) <span class="sc">%&gt;%</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rep_sample_n</span>(<span class="at">size =</span> <span class="dv">50</span>, <span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">x_bar =</span> <span class="fu">mean</span>(norm_pop))</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> norm_means50, <span class="fu">aes</span>(<span class="at">x =</span> x_bar)) <span class="sc">+</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>) <span class="sc">+</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="sc">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>norm_means50 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(norm_pop) <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rep_sample_n</span>(<span class="at">size =</span> <span class="dv">50</span>, <span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">x_bar =</span> <span class="fu">mean</span>(norm_pop))</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> norm_means50, <span class="fu">aes</span>(<span class="at">x =</span> x_bar)) <span class="sc">+</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>) <span class="sc">+</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="sc">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 2 rows containing missing values or values outside the scale range
 (`geom_bar()`).</code></pre>
@@ -5097,13 +5103,13 @@ Note
 <li>Large sample: <span class="math inline">n</span> = 100</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>norm_means100 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(norm_pop) <span class="sc">%&gt;%</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rep_sample_n</span>(<span class="at">size =</span> <span class="dv">100</span>, <span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">x_bar =</span> <span class="fu">mean</span>(norm_pop))</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> norm_means100, <span class="fu">aes</span>(<span class="at">x =</span> x_bar)) <span class="sc">+</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>) <span class="sc">+</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="sc">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>norm_means100 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(norm_pop) <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rep_sample_n</span>(<span class="at">size =</span> <span class="dv">100</span>, <span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">x_bar =</span> <span class="fu">mean</span>(norm_pop))</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> norm_means100, <span class="fu">aes</span>(<span class="at">x =</span> x_bar)) <span class="sc">+</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>) <span class="sc">+</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="sc">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 2 rows containing missing values or values outside the scale range
 (`geom_bar()`).</code></pre>
@@ -5123,15 +5129,15 @@ Note
 <li>Compare means for each sample size</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(norm_means10<span class="sc">$</span>x_bar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(norm_means10<span class="sc">$</span>x_bar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -0.003408017</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(norm_means50<span class="sc">$</span>x_bar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(norm_means50<span class="sc">$</span>x_bar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -0.0009473133</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(norm_means100<span class="sc">$</span>x_bar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(norm_means100<span class="sc">$</span>x_bar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.001145927</code></pre>
 </div>
@@ -5140,15 +5146,15 @@ Note
 <li>Compare standard deviations for each sample size</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(norm_means10<span class="sc">$</span>x_bar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(norm_means10<span class="sc">$</span>x_bar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.3131297</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(norm_means50<span class="sc">$</span>x_bar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(norm_means50<span class="sc">$</span>x_bar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.1416664</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(norm_means100<span class="sc">$</span>x_bar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(norm_means100<span class="sc">$</span>x_bar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.100464</code></pre>
 </div>
@@ -5157,15 +5163,15 @@ Note
 <li>Compare variances for each sample size</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(norm_means10<span class="sc">$</span>x_bar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(norm_means10<span class="sc">$</span>x_bar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.09805018</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(norm_means50<span class="sc">$</span>x_bar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(norm_means50<span class="sc">$</span>x_bar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.02006937</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(norm_means100<span class="sc">$</span>x_bar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(norm_means100<span class="sc">$</span>x_bar)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.01009301</code></pre>
 </div>
@@ -5195,16 +5201,16 @@ Note
 </ul></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>bern_pop <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1000000</span>, <span class="dv">1</span>, <span class="fl">0.3</span>)</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(bern_pop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>bern_pop <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1000000</span>, <span class="dv">1</span>, <span class="fl">0.3</span>)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(bern_pop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.300871</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(bern_pop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(bern_pop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.4586369</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(bern_pop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(bern_pop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.2103479</code></pre>
 </div>
@@ -5232,12 +5238,12 @@ Note
 <li>Small sample: <span class="math inline">n</span> = 10</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>bern_means10 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(bern_pop) <span class="sc">%&gt;%</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rep_sample_n</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">x_bar =</span> <span class="fu">mean</span>(bern_pop))</span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> bern_means10, <span class="fu">aes</span>(<span class="at">x =</span> x_bar)) <span class="sc">+</span></span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>bern_means10 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(bern_pop) <span class="sc">%&gt;%</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rep_sample_n</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">x_bar =</span> <span class="fu">mean</span>(bern_pop))</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> bern_means10, <span class="fu">aes</span>(<span class="at">x =</span> x_bar)) <span class="sc">+</span></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -5287,16 +5293,16 @@ Note
 </ul></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>pois_pop <span class="ot">&lt;-</span> <span class="fu">rpois</span>(<span class="dv">1000000</span>, <span class="fl">1.5</span>)</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(pois_pop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>pois_pop <span class="ot">&lt;-</span> <span class="fu">rpois</span>(<span class="dv">1000000</span>, <span class="fl">1.5</span>)</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(pois_pop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1.500474</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(pois_pop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(pois_pop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1.224257</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(pois_pop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(pois_pop)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1.498805</code></pre>
 </div>
@@ -5324,12 +5330,12 @@ Note
 <li>Small sample: <span class="math inline">n</span> = 10</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>pois_means10 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(pois_pop) <span class="sc">%&gt;%</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rep_sample_n</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">x_bar =</span> <span class="fu">mean</span>(pois_pop))</span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pois_means10, <span class="fu">aes</span>(<span class="at">x =</span> x_bar)) <span class="sc">+</span></span>
-<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>pois_means10 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(pois_pop) <span class="sc">%&gt;%</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rep_sample_n</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">x_bar =</span> <span class="fu">mean</span>(pois_pop))</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pois_means10, <span class="fu">aes</span>(<span class="at">x =</span> x_bar)) <span class="sc">+</span></span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -5854,313 +5860,313 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class>
-<div class="sourceCode" id="cb49" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;BTS 510 Lab 3&quot;</span></span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="co">    embed-resources: true</span></span>
-<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a><span class="co">    self-contained-math: true</span></span>
-<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a><span class="co">    html-math-method: katex</span></span>
-<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
-<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-bg: true</span></span>
-<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-border-left: &quot;#31BAE9&quot;</span></span>
-<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-17"><a href="#cb49-17" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb49-18"><a href="#cb49-18" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
-<span id="cb49-19"><a href="#cb49-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb49-20"><a href="#cb49-20" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">16</span>))</span>
-<span id="cb49-21"><a href="#cb49-21" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb49-22"><a href="#cb49-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-23"><a href="#cb49-23" aria-hidden="true" tabindex="-1"></a><span class="fu">## Learning objectives</span></span>
-<span id="cb49-24"><a href="#cb49-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-25"><a href="#cb49-25" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Understand **probability** as a measure of **uncertainty**</span>
-<span id="cb49-26"><a href="#cb49-26" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Summarize** probabilities with *probability distributions* </span>
-<span id="cb49-27"><a href="#cb49-27" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Think about **uncertainty** in sampling</span>
-<span id="cb49-28"><a href="#cb49-28" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Summarize** uncertainty in sampling: **Sampling distribution**</span>
-<span id="cb49-29"><a href="#cb49-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-30"><a href="#cb49-30" aria-hidden="true" tabindex="-1"></a><span class="fu">## Mathematically-derived sampling distribution</span></span>
-<span id="cb49-31"><a href="#cb49-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-32"><a href="#cb49-32" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Many combinations of **population distribution** and **test statistic** have *mathematically-derived* sampling distributions</span>
-<span id="cb49-33"><a href="#cb49-33" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>For example, with a **normally distributed** population ($\mathcal{N}(\mu, \sigma^2)$), the sampling distribution of the **mean** is $\bar{X} \sim \mathcal{N}(\mu, \frac{\sigma^2}{n})$</span>
-<span id="cb49-34"><a href="#cb49-34" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>In this case, the *population* distribution and *sampling* distribution are the **same distribution**: Normal</span>
-<span id="cb49-35"><a href="#cb49-35" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>The variance (or standard deviation) of the sampling distribution **decreases** as $n$ increases: A *larger sample* leads to a smaller, *more precise standard error*</span>
-<span id="cb49-36"><a href="#cb49-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-37"><a href="#cb49-37" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
-<span id="cb49-38"><a href="#cb49-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-39"><a href="#cb49-39" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>There is not a mathematically-derived sampling distribution for every population distribution and test statistic</span>
-<span id="cb49-40"><a href="#cb49-40" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>If you&#39;re dealing with *unknown or unusual distributions or test statistics*, your only option may be *computational methods*</span>
-<span id="cb49-41"><a href="#cb49-41" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb49-42"><a href="#cb49-42" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb49-43"><a href="#cb49-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-44"><a href="#cb49-44" aria-hidden="true" tabindex="-1"></a><span class="fu">## Computationally-derived sampling distribution</span></span>
-<span id="cb49-45"><a href="#cb49-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-46"><a href="#cb49-46" aria-hidden="true" tabindex="-1"></a><span class="fu">### Getting started</span></span>
-<span id="cb49-47"><a href="#cb49-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-48"><a href="#cb49-48" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Set a **random number seed**</span>
-<span id="cb49-49"><a href="#cb49-49" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>If you don&#39;t do this, every time you run the code, you&#39;ll get different numbers</span>
-<span id="cb49-50"><a href="#cb49-50" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Setting a random seed makes your simulation *replicable*</span>
-<span id="cb49-51"><a href="#cb49-51" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>(I normally set a seed at the start of each document, but I moved it down here because it&#39;s very important in this lab.)</span>
-<span id="cb49-52"><a href="#cb49-52" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Load (and install, if needed) the <span class="co">[</span><span class="ot">**infer** package</span><span class="co">](https://infer.tidymodels.org/)</span></span>
-<span id="cb49-53"><a href="#cb49-53" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>**infer** has a function that we&#39;ll use to *repeatedly sample* </span>
-<span id="cb49-54"><a href="#cb49-54" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>There are other ways to do this, but this is very simple and works well</span>
-<span id="cb49-55"><a href="#cb49-55" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>You can install a new package a few different ways</span>
-<span id="cb49-56"><a href="#cb49-56" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Via the Console: <span class="in">`install.packages(&quot;infer&quot;)`</span> </span>
-<span id="cb49-57"><a href="#cb49-57" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Via the &quot;Packages&quot; pane (bottom right): Click &quot;Install&quot; button, type in the package name, and click &quot;Install&quot;</span>
-<span id="cb49-58"><a href="#cb49-58" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Install only **once**, load or library **once per document**</span>
-<span id="cb49-59"><a href="#cb49-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-62"><a href="#cb49-62" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb49-63"><a href="#cb49-63" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
-<span id="cb49-64"><a href="#cb49-64" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(infer)</span>
-<span id="cb49-65"><a href="#cb49-65" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb49-66"><a href="#cb49-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-67"><a href="#cb49-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-68"><a href="#cb49-68" aria-hidden="true" tabindex="-1"></a><span class="fu">### Standard Normal population: $population \sim \mathcal{N}(0, 1)$</span></span>
-<span id="cb49-69"><a href="#cb49-69" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-70"><a href="#cb49-70" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Create a population</span></span>
-<span id="cb49-71"><a href="#cb49-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-72"><a href="#cb49-72" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="in">`rnorm()`</span> creates a random variable that follows a **normal** distribution </span>
-<span id="cb49-73"><a href="#cb49-73" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>First argument = Number of observations (population size)</span>
-<span id="cb49-74"><a href="#cb49-74" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Second argument = $\mu$</span>
-<span id="cb49-75"><a href="#cb49-75" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Third argument = $\sigma$ (not $\sigma^2$)</span>
-<span id="cb49-76"><a href="#cb49-76" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Create a very large population (N = 1,000,000) with a specified mean and variance</span>
-<span id="cb49-77"><a href="#cb49-77" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Confirm that the mean and SD are what you think they should be</span>
-<span id="cb49-78"><a href="#cb49-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-81"><a href="#cb49-81" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb49-82"><a href="#cb49-82" aria-hidden="true" tabindex="-1"></a>norm_pop <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000000</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
-<span id="cb49-83"><a href="#cb49-83" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(norm_pop)</span>
-<span id="cb49-84"><a href="#cb49-84" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(norm_pop)</span>
-<span id="cb49-85"><a href="#cb49-85" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(norm_pop)</span>
-<span id="cb49-86"><a href="#cb49-86" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb49-87"><a href="#cb49-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-88"><a href="#cb49-88" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Sample from the population</span></span>
-<span id="cb49-89"><a href="#cb49-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-90"><a href="#cb49-90" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Small sample: $n$ = 10</span>
-<span id="cb49-91"><a href="#cb49-91" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`rep_sample_n()`</span> repeatedly samples from the dataset</span>
-<span id="cb49-92"><a href="#cb49-92" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Piped (<span class="in">`%&gt;%`</span>) from the <span class="in">`norm_pop`</span> dataset, so it resamples from that</span>
-<span id="cb49-93"><a href="#cb49-93" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span><span class="in">`size = 10`</span>: Sample size for each sample</span>
-<span id="cb49-94"><a href="#cb49-94" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span><span class="in">`reps = 10000`</span>: Number of repeated samples (could be larger but this is good enough to show how things work and doesn&#39;t take too long to run)</span>
-<span id="cb49-95"><a href="#cb49-95" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span><span class="in">`replace = TRUE`</span>: Sample with replacement, so observations go back in after each sample and can be sampled again in the next sample</span>
-<span id="cb49-96"><a href="#cb49-96" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`summarise(x_bar = mean(norm_pop))`</span>: Create a data frame with **each of the means** from **each sample**</span>
-<span id="cb49-97"><a href="#cb49-97" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>There are 10,000 samples, so there will be 10,000 means in this</span>
-<span id="cb49-98"><a href="#cb49-98" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>The <span class="in">`ggplot()`</span> code creates a histogram from the data</span>
-<span id="cb49-99"><a href="#cb49-99" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Modification: <span class="in">`bins = 50`</span> increases the bins to make it a little smoother</span>
-<span id="cb49-100"><a href="#cb49-100" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Modification: <span class="in">`xlim(-1.5, 1.5)`</span> sets limits on the x-axis to make the plots more comparable</span>
-<span id="cb49-101"><a href="#cb49-101" aria-hidden="true" tabindex="-1"></a><span class="ss">      * </span>I had to run the plots first without this to see how far I needed to let the X axis go. So for later plots here, run without, look at it, then add this with appropriate numbers to put them all on the same scale</span>
-<span id="cb49-102"><a href="#cb49-102" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Make similar modifications in your own plots later in this document</span>
-<span id="cb49-103"><a href="#cb49-103" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>We&#39;ll spend the next 2 weeks on <span class="in">`ggplot()`</span> so you&#39;ll learn all of this (and more!)</span>
-<span id="cb49-104"><a href="#cb49-104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-107"><a href="#cb49-107" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb49-108"><a href="#cb49-108" aria-hidden="true" tabindex="-1"></a>norm_means10 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(norm_pop) <span class="sc">%&gt;%</span></span>
-<span id="cb49-109"><a href="#cb49-109" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rep_sample_n</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb49-110"><a href="#cb49-110" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">x_bar =</span> <span class="fu">mean</span>(norm_pop))</span>
-<span id="cb49-111"><a href="#cb49-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-112"><a href="#cb49-112" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> norm_means10, <span class="fu">aes</span>(<span class="at">x =</span> x_bar)) <span class="sc">+</span></span>
-<span id="cb49-113"><a href="#cb49-113" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>) <span class="sc">+</span></span>
-<span id="cb49-114"><a href="#cb49-114" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="sc">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>)</span>
-<span id="cb49-115"><a href="#cb49-115" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb49-116"><a href="#cb49-116" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-117"><a href="#cb49-117" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Moderate sample: $n$ = 50</span>
-<span id="cb49-118"><a href="#cb49-118" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-121"><a href="#cb49-121" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb49-122"><a href="#cb49-122" aria-hidden="true" tabindex="-1"></a>norm_means50 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(norm_pop) <span class="sc">%&gt;%</span></span>
-<span id="cb49-123"><a href="#cb49-123" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rep_sample_n</span>(<span class="at">size =</span> <span class="dv">50</span>, <span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb49-124"><a href="#cb49-124" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">x_bar =</span> <span class="fu">mean</span>(norm_pop))</span>
-<span id="cb49-125"><a href="#cb49-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-126"><a href="#cb49-126" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> norm_means50, <span class="fu">aes</span>(<span class="at">x =</span> x_bar)) <span class="sc">+</span></span>
-<span id="cb49-127"><a href="#cb49-127" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>) <span class="sc">+</span></span>
-<span id="cb49-128"><a href="#cb49-128" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="sc">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>) </span>
-<span id="cb49-129"><a href="#cb49-129" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb49-130"><a href="#cb49-130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-131"><a href="#cb49-131" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Large sample: $n$ = 100</span>
-<span id="cb49-132"><a href="#cb49-132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-135"><a href="#cb49-135" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb49-136"><a href="#cb49-136" aria-hidden="true" tabindex="-1"></a>norm_means100 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(norm_pop) <span class="sc">%&gt;%</span></span>
-<span id="cb49-137"><a href="#cb49-137" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rep_sample_n</span>(<span class="at">size =</span> <span class="dv">100</span>, <span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb49-138"><a href="#cb49-138" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">x_bar =</span> <span class="fu">mean</span>(norm_pop))</span>
-<span id="cb49-139"><a href="#cb49-139" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-140"><a href="#cb49-140" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> norm_means100, <span class="fu">aes</span>(<span class="at">x =</span> x_bar)) <span class="sc">+</span></span>
-<span id="cb49-141"><a href="#cb49-141" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>) <span class="sc">+</span></span>
-<span id="cb49-142"><a href="#cb49-142" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="sc">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>)</span>
-<span id="cb49-143"><a href="#cb49-143" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb49-144"><a href="#cb49-144" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-145"><a href="#cb49-145" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Compare estimates</span></span>
-<span id="cb49-146"><a href="#cb49-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-147"><a href="#cb49-147" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Compare means for each sample size</span>
-<span id="cb49-148"><a href="#cb49-148" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-151"><a href="#cb49-151" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb49-152"><a href="#cb49-152" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(norm_means10<span class="sc">$</span>x_bar)</span>
-<span id="cb49-153"><a href="#cb49-153" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(norm_means50<span class="sc">$</span>x_bar)</span>
-<span id="cb49-154"><a href="#cb49-154" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(norm_means100<span class="sc">$</span>x_bar)</span>
-<span id="cb49-155"><a href="#cb49-155" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb49-156"><a href="#cb49-156" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-157"><a href="#cb49-157" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Compare standard deviations for each sample size</span>
-<span id="cb49-158"><a href="#cb49-158" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-161"><a href="#cb49-161" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb49-162"><a href="#cb49-162" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(norm_means10<span class="sc">$</span>x_bar)</span>
-<span id="cb49-163"><a href="#cb49-163" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(norm_means50<span class="sc">$</span>x_bar)</span>
-<span id="cb49-164"><a href="#cb49-164" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(norm_means100<span class="sc">$</span>x_bar)</span>
-<span id="cb49-165"><a href="#cb49-165" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb49-166"><a href="#cb49-166" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-167"><a href="#cb49-167" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Compare variances for each sample size</span>
-<span id="cb49-168"><a href="#cb49-168" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-171"><a href="#cb49-171" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb49-172"><a href="#cb49-172" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(norm_means10<span class="sc">$</span>x_bar)</span>
-<span id="cb49-173"><a href="#cb49-173" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(norm_means50<span class="sc">$</span>x_bar)</span>
-<span id="cb49-174"><a href="#cb49-174" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(norm_means100<span class="sc">$</span>x_bar)</span>
-<span id="cb49-175"><a href="#cb49-175" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb49-176"><a href="#cb49-176" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-177"><a href="#cb49-177" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>How does each value correspond to what you&#39;d expect based on the mathematically-derived sampling distribution?</span>
-<span id="cb49-178"><a href="#cb49-178" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>$\bar{X} \sim \mathcal{N}(\mu, \frac{\sigma^2}{n})$</span>
-<span id="cb49-179"><a href="#cb49-179" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-180"><a href="#cb49-180" aria-hidden="true" tabindex="-1"></a><span class="fu">### Bernoulli population: $population \sim B(0.3)$</span></span>
-<span id="cb49-181"><a href="#cb49-181" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-182"><a href="#cb49-182" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Create a population</span></span>
-<span id="cb49-183"><a href="#cb49-183" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-184"><a href="#cb49-184" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="in">`rbinom()`</span> creates a random variable that follows a **binomial** distribution </span>
-<span id="cb49-185"><a href="#cb49-185" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>First argument = Number of observations (population size)</span>
-<span id="cb49-186"><a href="#cb49-186" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Second argument = number of trials (here, just 1 for a **Bernoulli** trial)</span>
-<span id="cb49-187"><a href="#cb49-187" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Third argument = $p$ (probability of success)</span>
-<span id="cb49-188"><a href="#cb49-188" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Create a very large population (N = 1,000,000) with a specified mean and variance</span>
-<span id="cb49-189"><a href="#cb49-189" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Confirm that the mean and SD are what you think they should be</span>
-<span id="cb49-190"><a href="#cb49-190" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-193"><a href="#cb49-193" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb49-194"><a href="#cb49-194" aria-hidden="true" tabindex="-1"></a>bern_pop <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1000000</span>, <span class="dv">1</span>, <span class="fl">0.3</span>)</span>
-<span id="cb49-195"><a href="#cb49-195" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(bern_pop)</span>
-<span id="cb49-196"><a href="#cb49-196" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(bern_pop)</span>
-<span id="cb49-197"><a href="#cb49-197" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(bern_pop)</span>
-<span id="cb49-198"><a href="#cb49-198" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb49-199"><a href="#cb49-199" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-200"><a href="#cb49-200" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Sample from the population</span></span>
-<span id="cb49-201"><a href="#cb49-201" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-202"><a href="#cb49-202" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
-<span id="cb49-203"><a href="#cb49-203" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-204"><a href="#cb49-204" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Remember to adjust the X axis using <span class="in">`xlim()`</span> (as in the Normal section) to have the same range for each plot.</span>
-<span id="cb49-205"><a href="#cb49-205" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>You&#39;ll need to make each plot, see what they look like, and then adjust the X axis accordingly.</span>
-<span id="cb49-206"><a href="#cb49-206" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-207"><a href="#cb49-207" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb49-208"><a href="#cb49-208" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-209"><a href="#cb49-209" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Small sample: $n$ = 10</span>
-<span id="cb49-210"><a href="#cb49-210" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-213"><a href="#cb49-213" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb49-214"><a href="#cb49-214" aria-hidden="true" tabindex="-1"></a>bern_means10 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(bern_pop) <span class="sc">%&gt;%</span></span>
-<span id="cb49-215"><a href="#cb49-215" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rep_sample_n</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb49-216"><a href="#cb49-216" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">x_bar =</span> <span class="fu">mean</span>(bern_pop))</span>
-<span id="cb49-217"><a href="#cb49-217" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-218"><a href="#cb49-218" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> bern_means10, <span class="fu">aes</span>(<span class="at">x =</span> x_bar)) <span class="sc">+</span></span>
-<span id="cb49-219"><a href="#cb49-219" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>)</span>
-<span id="cb49-220"><a href="#cb49-220" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb49-221"><a href="#cb49-221" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-222"><a href="#cb49-222" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Moderate sample: $n$ = 50</span>
-<span id="cb49-223"><a href="#cb49-223" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-226"><a href="#cb49-226" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb49-227"><a href="#cb49-227" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb49-228"><a href="#cb49-228" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-229"><a href="#cb49-229" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Large sample: $n$ = 100</span>
-<span id="cb49-230"><a href="#cb49-230" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-233"><a href="#cb49-233" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb49-234"><a href="#cb49-234" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb49-235"><a href="#cb49-235" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-236"><a href="#cb49-236" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Compare estimates</span></span>
-<span id="cb49-237"><a href="#cb49-237" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-238"><a href="#cb49-238" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Compare means for each sample size</span>
-<span id="cb49-239"><a href="#cb49-239" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-242"><a href="#cb49-242" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb49-243"><a href="#cb49-243" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb49-244"><a href="#cb49-244" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-245"><a href="#cb49-245" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Compare standard deviations for each sample size</span>
-<span id="cb49-246"><a href="#cb49-246" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-249"><a href="#cb49-249" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb49-250"><a href="#cb49-250" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb49-251"><a href="#cb49-251" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-252"><a href="#cb49-252" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Compare variances for each sample size</span>
-<span id="cb49-253"><a href="#cb49-253" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-256"><a href="#cb49-256" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb49-257"><a href="#cb49-257" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb49-258"><a href="#cb49-258" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-259"><a href="#cb49-259" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>How does each value correspond to what you&#39;d expect based on the mathematically-derived sampling distribution **for a normally distributed population**?</span>
-<span id="cb49-260"><a href="#cb49-260" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>$\bar{X} \sim \mathcal{N}(\mu, \frac{\sigma^2}{n})$</span>
-<span id="cb49-261"><a href="#cb49-261" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-262"><a href="#cb49-262" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-263"><a href="#cb49-263" aria-hidden="true" tabindex="-1"></a><span class="fu">### Poisson population: $population \sim Poisson(1.5)$</span></span>
-<span id="cb49-264"><a href="#cb49-264" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-265"><a href="#cb49-265" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Create a population</span></span>
-<span id="cb49-266"><a href="#cb49-266" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-267"><a href="#cb49-267" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="in">`rpois()`</span> creates a random variable that follows a **Poisson** distribution </span>
-<span id="cb49-268"><a href="#cb49-268" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>First argument = Number of observations (population size)</span>
-<span id="cb49-269"><a href="#cb49-269" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Second argument = $\lambda$ (mean and variance)</span>
-<span id="cb49-270"><a href="#cb49-270" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Remember that $\lambda$ is the variance, but we&#39;re going to look at the **standard deviation** which is the *square root* of the variance</span>
-<span id="cb49-271"><a href="#cb49-271" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-274"><a href="#cb49-274" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb49-275"><a href="#cb49-275" aria-hidden="true" tabindex="-1"></a>pois_pop <span class="ot">&lt;-</span> <span class="fu">rpois</span>(<span class="dv">1000000</span>, <span class="fl">1.5</span>)</span>
-<span id="cb49-276"><a href="#cb49-276" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(pois_pop)</span>
-<span id="cb49-277"><a href="#cb49-277" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(pois_pop)</span>
-<span id="cb49-278"><a href="#cb49-278" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(pois_pop)</span>
-<span id="cb49-279"><a href="#cb49-279" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb49-280"><a href="#cb49-280" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-281"><a href="#cb49-281" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Sample from the population</span></span>
-<span id="cb49-282"><a href="#cb49-282" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-283"><a href="#cb49-283" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
-<span id="cb49-284"><a href="#cb49-284" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-285"><a href="#cb49-285" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Remember to adjust the X axis using <span class="in">`xlim()`</span> (as in the Normal section) to have the same range for each plot.</span>
-<span id="cb49-286"><a href="#cb49-286" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>You&#39;ll need to make each plot, see what they look like, and then adjust the X axis accordingly.</span>
-<span id="cb49-287"><a href="#cb49-287" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-288"><a href="#cb49-288" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb49-289"><a href="#cb49-289" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-290"><a href="#cb49-290" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Small sample: $n$ = 10</span>
-<span id="cb49-291"><a href="#cb49-291" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-294"><a href="#cb49-294" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb49-295"><a href="#cb49-295" aria-hidden="true" tabindex="-1"></a>pois_means10 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(pois_pop) <span class="sc">%&gt;%</span></span>
-<span id="cb49-296"><a href="#cb49-296" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rep_sample_n</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb49-297"><a href="#cb49-297" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">x_bar =</span> <span class="fu">mean</span>(pois_pop))</span>
-<span id="cb49-298"><a href="#cb49-298" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-299"><a href="#cb49-299" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pois_means10, <span class="fu">aes</span>(<span class="at">x =</span> x_bar)) <span class="sc">+</span></span>
-<span id="cb49-300"><a href="#cb49-300" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>)</span>
-<span id="cb49-301"><a href="#cb49-301" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb49-302"><a href="#cb49-302" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-303"><a href="#cb49-303" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Moderate sample: $n$ = 50</span>
-<span id="cb49-304"><a href="#cb49-304" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-307"><a href="#cb49-307" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb49-308"><a href="#cb49-308" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb49-309"><a href="#cb49-309" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-310"><a href="#cb49-310" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Large sample: $n$ = 100</span>
-<span id="cb49-311"><a href="#cb49-311" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-314"><a href="#cb49-314" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb49-315"><a href="#cb49-315" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb49-316"><a href="#cb49-316" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-317"><a href="#cb49-317" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Compare estimates</span></span>
-<span id="cb49-318"><a href="#cb49-318" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-319"><a href="#cb49-319" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Compare means for each sample size</span>
-<span id="cb49-320"><a href="#cb49-320" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-323"><a href="#cb49-323" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb49-324"><a href="#cb49-324" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb49-325"><a href="#cb49-325" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-326"><a href="#cb49-326" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Compare standard deviations for each sample size</span>
-<span id="cb49-327"><a href="#cb49-327" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-330"><a href="#cb49-330" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb49-331"><a href="#cb49-331" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb49-332"><a href="#cb49-332" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-333"><a href="#cb49-333" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Compare variances for each sample size</span>
-<span id="cb49-334"><a href="#cb49-334" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-337"><a href="#cb49-337" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb49-338"><a href="#cb49-338" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb49-339"><a href="#cb49-339" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-340"><a href="#cb49-340" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>How does each value correspond to what you&#39;d expect based on the mathematically-derived sampling distribution **for a normally distributed population**?</span>
-<span id="cb49-341"><a href="#cb49-341" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>$\bar{X} \sim \mathcal{N}(\mu, \frac{\sigma^2}{n})$</span>
-<span id="cb49-342"><a href="#cb49-342" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-343"><a href="#cb49-343" aria-hidden="true" tabindex="-1"></a><span class="fu">## Summarize results</span></span>
-<span id="cb49-344"><a href="#cb49-344" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-345"><a href="#cb49-345" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>In general, how does **sample size** impact the **standard error**?</span>
-<span id="cb49-346"><a href="#cb49-346" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>i.e., the standard deviation of the sampling distribution?</span>
-<span id="cb49-347"><a href="#cb49-347" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Do larger samples lead to smaller or larger standard errors?</span>
-<span id="cb49-348"><a href="#cb49-348" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>In general, how does the **population distribution** impact the **sampling distribution**?</span>
-<span id="cb49-349"><a href="#cb49-349" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Based on: Visual inspection of the distribution</span>
-<span id="cb49-350"><a href="#cb49-350" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Based on: Estimates of standard error</span>
-<span id="cb49-351"><a href="#cb49-351" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb49-352"><a href="#cb49-352" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb49-353"><a href="#cb49-353" aria-hidden="true" tabindex="-1"></a>  </span>
+<div class="sourceCode" id="cb51" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;BTS 510 Lab 3&quot;</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a><span class="co">    embed-resources: true</span></span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a><span class="co">    self-contained-math: true</span></span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a><span class="co">    html-math-method: katex</span></span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-bg: true</span></span>
+<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-border-left: &quot;#31BAE9&quot;</span></span>
+<span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb51-14"><a href="#cb51-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-17"><a href="#cb51-17" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb51-18"><a href="#cb51-18" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb51-19"><a href="#cb51-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb51-20"><a href="#cb51-20" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">16</span>))</span>
+<span id="cb51-21"><a href="#cb51-21" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb51-22"><a href="#cb51-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-23"><a href="#cb51-23" aria-hidden="true" tabindex="-1"></a><span class="fu">## Learning objectives</span></span>
+<span id="cb51-24"><a href="#cb51-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-25"><a href="#cb51-25" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Understand **probability** as a measure of **uncertainty**</span>
+<span id="cb51-26"><a href="#cb51-26" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Summarize** probabilities with *probability distributions* </span>
+<span id="cb51-27"><a href="#cb51-27" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Think about **uncertainty** in sampling</span>
+<span id="cb51-28"><a href="#cb51-28" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Summarize** uncertainty in sampling: **Sampling distribution**</span>
+<span id="cb51-29"><a href="#cb51-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-30"><a href="#cb51-30" aria-hidden="true" tabindex="-1"></a><span class="fu">## Mathematically-derived sampling distribution</span></span>
+<span id="cb51-31"><a href="#cb51-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-32"><a href="#cb51-32" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Many combinations of **population distribution** and **test statistic** have *mathematically-derived* sampling distributions</span>
+<span id="cb51-33"><a href="#cb51-33" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>For example, with a **normally distributed** population ($\mathcal{N}(\mu, \sigma^2)$), the sampling distribution of the **mean** is $\bar{X} \sim \mathcal{N}(\mu, \frac{\sigma^2}{n})$</span>
+<span id="cb51-34"><a href="#cb51-34" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>In this case, the *population* distribution and *sampling* distribution are the **same distribution**: Normal</span>
+<span id="cb51-35"><a href="#cb51-35" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>The variance (or standard deviation) of the sampling distribution **decreases** as $n$ increases: A *larger sample* leads to a smaller, *more precise standard error*</span>
+<span id="cb51-36"><a href="#cb51-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-37"><a href="#cb51-37" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb51-38"><a href="#cb51-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-39"><a href="#cb51-39" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>There is not a mathematically-derived sampling distribution for every population distribution and test statistic</span>
+<span id="cb51-40"><a href="#cb51-40" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>If you&#39;re dealing with *unknown or unusual distributions or test statistics*, your only option may be *computational methods*</span>
+<span id="cb51-41"><a href="#cb51-41" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb51-42"><a href="#cb51-42" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb51-43"><a href="#cb51-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-44"><a href="#cb51-44" aria-hidden="true" tabindex="-1"></a><span class="fu">## Computationally-derived sampling distribution</span></span>
+<span id="cb51-45"><a href="#cb51-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-46"><a href="#cb51-46" aria-hidden="true" tabindex="-1"></a><span class="fu">### Getting started</span></span>
+<span id="cb51-47"><a href="#cb51-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-48"><a href="#cb51-48" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Set a **random number seed**</span>
+<span id="cb51-49"><a href="#cb51-49" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>If you don&#39;t do this, every time you run the code, you&#39;ll get different numbers</span>
+<span id="cb51-50"><a href="#cb51-50" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Setting a random seed makes your simulation *replicable*</span>
+<span id="cb51-51"><a href="#cb51-51" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>(I normally set a seed at the start of each document, but I moved it down here because it&#39;s very important in this lab.)</span>
+<span id="cb51-52"><a href="#cb51-52" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Load (and install, if needed) the <span class="co">[</span><span class="ot">**infer** package</span><span class="co">](https://infer.tidymodels.org/)</span></span>
+<span id="cb51-53"><a href="#cb51-53" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>**infer** has a function that we&#39;ll use to *repeatedly sample* </span>
+<span id="cb51-54"><a href="#cb51-54" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>There are other ways to do this, but this is very simple and works well</span>
+<span id="cb51-55"><a href="#cb51-55" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>You can install a new package a few different ways</span>
+<span id="cb51-56"><a href="#cb51-56" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Via the Console: <span class="in">`install.packages(&quot;infer&quot;)`</span> </span>
+<span id="cb51-57"><a href="#cb51-57" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Via the &quot;Packages&quot; pane (bottom right): Click &quot;Install&quot; button, type in the package name, and click &quot;Install&quot;</span>
+<span id="cb51-58"><a href="#cb51-58" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Install only **once**, load or library **once per document**</span>
+<span id="cb51-59"><a href="#cb51-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-62"><a href="#cb51-62" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb51-63"><a href="#cb51-63" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
+<span id="cb51-64"><a href="#cb51-64" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(infer)</span>
+<span id="cb51-65"><a href="#cb51-65" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb51-66"><a href="#cb51-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-67"><a href="#cb51-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-68"><a href="#cb51-68" aria-hidden="true" tabindex="-1"></a><span class="fu">### Standard Normal population: $population \sim \mathcal{N}(0, 1)$</span></span>
+<span id="cb51-69"><a href="#cb51-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-70"><a href="#cb51-70" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Create a population</span></span>
+<span id="cb51-71"><a href="#cb51-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-72"><a href="#cb51-72" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="in">`rnorm()`</span> creates a random variable that follows a **normal** distribution </span>
+<span id="cb51-73"><a href="#cb51-73" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>First argument = Number of observations (population size)</span>
+<span id="cb51-74"><a href="#cb51-74" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Second argument = $\mu$</span>
+<span id="cb51-75"><a href="#cb51-75" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Third argument = $\sigma$ (not $\sigma^2$)</span>
+<span id="cb51-76"><a href="#cb51-76" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Create a very large population (N = 1,000,000) with a specified mean and variance</span>
+<span id="cb51-77"><a href="#cb51-77" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Confirm that the mean and SD are what you think they should be</span>
+<span id="cb51-78"><a href="#cb51-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-81"><a href="#cb51-81" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb51-82"><a href="#cb51-82" aria-hidden="true" tabindex="-1"></a>norm_pop <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000000</span>, <span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb51-83"><a href="#cb51-83" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(norm_pop)</span>
+<span id="cb51-84"><a href="#cb51-84" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(norm_pop)</span>
+<span id="cb51-85"><a href="#cb51-85" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(norm_pop)</span>
+<span id="cb51-86"><a href="#cb51-86" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb51-87"><a href="#cb51-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-88"><a href="#cb51-88" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Sample from the population</span></span>
+<span id="cb51-89"><a href="#cb51-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-90"><a href="#cb51-90" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Small sample: $n$ = 10</span>
+<span id="cb51-91"><a href="#cb51-91" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`rep_sample_n()`</span> repeatedly samples from the dataset</span>
+<span id="cb51-92"><a href="#cb51-92" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Piped (<span class="in">`%&gt;%`</span>) from the <span class="in">`norm_pop`</span> dataset, so it resamples from that</span>
+<span id="cb51-93"><a href="#cb51-93" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span><span class="in">`size = 10`</span>: Sample size for each sample</span>
+<span id="cb51-94"><a href="#cb51-94" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span><span class="in">`reps = 10000`</span>: Number of repeated samples (could be larger but this is good enough to show how things work and doesn&#39;t take too long to run)</span>
+<span id="cb51-95"><a href="#cb51-95" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span><span class="in">`replace = TRUE`</span>: Sample with replacement, so observations go back in after each sample and can be sampled again in the next sample</span>
+<span id="cb51-96"><a href="#cb51-96" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`summarise(x_bar = mean(norm_pop))`</span>: Create a data frame with **each of the means** from **each sample**</span>
+<span id="cb51-97"><a href="#cb51-97" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>There are 10,000 samples, so there will be 10,000 means in this</span>
+<span id="cb51-98"><a href="#cb51-98" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>The <span class="in">`ggplot()`</span> code creates a histogram from the data</span>
+<span id="cb51-99"><a href="#cb51-99" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Modification: <span class="in">`bins = 50`</span> increases the bins to make it a little smoother</span>
+<span id="cb51-100"><a href="#cb51-100" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Modification: <span class="in">`xlim(-1.5, 1.5)`</span> sets limits on the x-axis to make the plots more comparable</span>
+<span id="cb51-101"><a href="#cb51-101" aria-hidden="true" tabindex="-1"></a><span class="ss">      * </span>I had to run the plots first without this to see how far I needed to let the X axis go. So for later plots here, run without, look at it, then add this with appropriate numbers to put them all on the same scale</span>
+<span id="cb51-102"><a href="#cb51-102" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Make similar modifications in your own plots later in this document</span>
+<span id="cb51-103"><a href="#cb51-103" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>We&#39;ll spend the next 2 weeks on <span class="in">`ggplot()`</span> so you&#39;ll learn all of this (and more!)</span>
+<span id="cb51-104"><a href="#cb51-104" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-107"><a href="#cb51-107" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb51-108"><a href="#cb51-108" aria-hidden="true" tabindex="-1"></a>norm_means10 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(norm_pop) <span class="sc">%&gt;%</span></span>
+<span id="cb51-109"><a href="#cb51-109" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rep_sample_n</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb51-110"><a href="#cb51-110" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">x_bar =</span> <span class="fu">mean</span>(norm_pop))</span>
+<span id="cb51-111"><a href="#cb51-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-112"><a href="#cb51-112" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> norm_means10, <span class="fu">aes</span>(<span class="at">x =</span> x_bar)) <span class="sc">+</span></span>
+<span id="cb51-113"><a href="#cb51-113" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>) <span class="sc">+</span></span>
+<span id="cb51-114"><a href="#cb51-114" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="sc">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>)</span>
+<span id="cb51-115"><a href="#cb51-115" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb51-116"><a href="#cb51-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-117"><a href="#cb51-117" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Moderate sample: $n$ = 50</span>
+<span id="cb51-118"><a href="#cb51-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-121"><a href="#cb51-121" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb51-122"><a href="#cb51-122" aria-hidden="true" tabindex="-1"></a>norm_means50 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(norm_pop) <span class="sc">%&gt;%</span></span>
+<span id="cb51-123"><a href="#cb51-123" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rep_sample_n</span>(<span class="at">size =</span> <span class="dv">50</span>, <span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb51-124"><a href="#cb51-124" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">x_bar =</span> <span class="fu">mean</span>(norm_pop))</span>
+<span id="cb51-125"><a href="#cb51-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-126"><a href="#cb51-126" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> norm_means50, <span class="fu">aes</span>(<span class="at">x =</span> x_bar)) <span class="sc">+</span></span>
+<span id="cb51-127"><a href="#cb51-127" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>) <span class="sc">+</span></span>
+<span id="cb51-128"><a href="#cb51-128" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="sc">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>) </span>
+<span id="cb51-129"><a href="#cb51-129" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb51-130"><a href="#cb51-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-131"><a href="#cb51-131" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Large sample: $n$ = 100</span>
+<span id="cb51-132"><a href="#cb51-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-135"><a href="#cb51-135" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb51-136"><a href="#cb51-136" aria-hidden="true" tabindex="-1"></a>norm_means100 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(norm_pop) <span class="sc">%&gt;%</span></span>
+<span id="cb51-137"><a href="#cb51-137" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rep_sample_n</span>(<span class="at">size =</span> <span class="dv">100</span>, <span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb51-138"><a href="#cb51-138" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">x_bar =</span> <span class="fu">mean</span>(norm_pop))</span>
+<span id="cb51-139"><a href="#cb51-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-140"><a href="#cb51-140" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> norm_means100, <span class="fu">aes</span>(<span class="at">x =</span> x_bar)) <span class="sc">+</span></span>
+<span id="cb51-141"><a href="#cb51-141" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>) <span class="sc">+</span></span>
+<span id="cb51-142"><a href="#cb51-142" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="sc">-</span><span class="fl">1.5</span>, <span class="fl">1.5</span>)</span>
+<span id="cb51-143"><a href="#cb51-143" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb51-144"><a href="#cb51-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-145"><a href="#cb51-145" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Compare estimates</span></span>
+<span id="cb51-146"><a href="#cb51-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-147"><a href="#cb51-147" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Compare means for each sample size</span>
+<span id="cb51-148"><a href="#cb51-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-151"><a href="#cb51-151" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb51-152"><a href="#cb51-152" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(norm_means10<span class="sc">$</span>x_bar)</span>
+<span id="cb51-153"><a href="#cb51-153" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(norm_means50<span class="sc">$</span>x_bar)</span>
+<span id="cb51-154"><a href="#cb51-154" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(norm_means100<span class="sc">$</span>x_bar)</span>
+<span id="cb51-155"><a href="#cb51-155" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb51-156"><a href="#cb51-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-157"><a href="#cb51-157" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Compare standard deviations for each sample size</span>
+<span id="cb51-158"><a href="#cb51-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-161"><a href="#cb51-161" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb51-162"><a href="#cb51-162" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(norm_means10<span class="sc">$</span>x_bar)</span>
+<span id="cb51-163"><a href="#cb51-163" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(norm_means50<span class="sc">$</span>x_bar)</span>
+<span id="cb51-164"><a href="#cb51-164" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(norm_means100<span class="sc">$</span>x_bar)</span>
+<span id="cb51-165"><a href="#cb51-165" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb51-166"><a href="#cb51-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-167"><a href="#cb51-167" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Compare variances for each sample size</span>
+<span id="cb51-168"><a href="#cb51-168" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-171"><a href="#cb51-171" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb51-172"><a href="#cb51-172" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(norm_means10<span class="sc">$</span>x_bar)</span>
+<span id="cb51-173"><a href="#cb51-173" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(norm_means50<span class="sc">$</span>x_bar)</span>
+<span id="cb51-174"><a href="#cb51-174" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(norm_means100<span class="sc">$</span>x_bar)</span>
+<span id="cb51-175"><a href="#cb51-175" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb51-176"><a href="#cb51-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-177"><a href="#cb51-177" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>How does each value correspond to what you&#39;d expect based on the mathematically-derived sampling distribution?</span>
+<span id="cb51-178"><a href="#cb51-178" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>$\bar{X} \sim \mathcal{N}(\mu, \frac{\sigma^2}{n})$</span>
+<span id="cb51-179"><a href="#cb51-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-180"><a href="#cb51-180" aria-hidden="true" tabindex="-1"></a><span class="fu">### Bernoulli population: $population \sim B(0.3)$</span></span>
+<span id="cb51-181"><a href="#cb51-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-182"><a href="#cb51-182" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Create a population</span></span>
+<span id="cb51-183"><a href="#cb51-183" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-184"><a href="#cb51-184" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="in">`rbinom()`</span> creates a random variable that follows a **binomial** distribution </span>
+<span id="cb51-185"><a href="#cb51-185" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>First argument = Number of observations (population size)</span>
+<span id="cb51-186"><a href="#cb51-186" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Second argument = number of trials (here, just 1 for a **Bernoulli** trial)</span>
+<span id="cb51-187"><a href="#cb51-187" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Third argument = $p$ (probability of success)</span>
+<span id="cb51-188"><a href="#cb51-188" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Create a very large population (N = 1,000,000) with a specified mean and variance</span>
+<span id="cb51-189"><a href="#cb51-189" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Confirm that the mean and SD are what you think they should be</span>
+<span id="cb51-190"><a href="#cb51-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-193"><a href="#cb51-193" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb51-194"><a href="#cb51-194" aria-hidden="true" tabindex="-1"></a>bern_pop <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1000000</span>, <span class="dv">1</span>, <span class="fl">0.3</span>)</span>
+<span id="cb51-195"><a href="#cb51-195" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(bern_pop)</span>
+<span id="cb51-196"><a href="#cb51-196" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(bern_pop)</span>
+<span id="cb51-197"><a href="#cb51-197" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(bern_pop)</span>
+<span id="cb51-198"><a href="#cb51-198" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb51-199"><a href="#cb51-199" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-200"><a href="#cb51-200" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Sample from the population</span></span>
+<span id="cb51-201"><a href="#cb51-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-202"><a href="#cb51-202" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb51-203"><a href="#cb51-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-204"><a href="#cb51-204" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Remember to adjust the X axis using <span class="in">`xlim()`</span> (as in the Normal section) to have the same range for each plot.</span>
+<span id="cb51-205"><a href="#cb51-205" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>You&#39;ll need to make each plot, see what they look like, and then adjust the X axis accordingly.</span>
+<span id="cb51-206"><a href="#cb51-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-207"><a href="#cb51-207" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb51-208"><a href="#cb51-208" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-209"><a href="#cb51-209" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Small sample: $n$ = 10</span>
+<span id="cb51-210"><a href="#cb51-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-213"><a href="#cb51-213" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb51-214"><a href="#cb51-214" aria-hidden="true" tabindex="-1"></a>bern_means10 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(bern_pop) <span class="sc">%&gt;%</span></span>
+<span id="cb51-215"><a href="#cb51-215" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rep_sample_n</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb51-216"><a href="#cb51-216" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">x_bar =</span> <span class="fu">mean</span>(bern_pop))</span>
+<span id="cb51-217"><a href="#cb51-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-218"><a href="#cb51-218" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> bern_means10, <span class="fu">aes</span>(<span class="at">x =</span> x_bar)) <span class="sc">+</span></span>
+<span id="cb51-219"><a href="#cb51-219" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>)</span>
+<span id="cb51-220"><a href="#cb51-220" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb51-221"><a href="#cb51-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-222"><a href="#cb51-222" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Moderate sample: $n$ = 50</span>
+<span id="cb51-223"><a href="#cb51-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-226"><a href="#cb51-226" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb51-227"><a href="#cb51-227" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb51-228"><a href="#cb51-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-229"><a href="#cb51-229" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Large sample: $n$ = 100</span>
+<span id="cb51-230"><a href="#cb51-230" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-233"><a href="#cb51-233" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb51-234"><a href="#cb51-234" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb51-235"><a href="#cb51-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-236"><a href="#cb51-236" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Compare estimates</span></span>
+<span id="cb51-237"><a href="#cb51-237" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-238"><a href="#cb51-238" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Compare means for each sample size</span>
+<span id="cb51-239"><a href="#cb51-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-242"><a href="#cb51-242" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb51-243"><a href="#cb51-243" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb51-244"><a href="#cb51-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-245"><a href="#cb51-245" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Compare standard deviations for each sample size</span>
+<span id="cb51-246"><a href="#cb51-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-249"><a href="#cb51-249" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb51-250"><a href="#cb51-250" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb51-251"><a href="#cb51-251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-252"><a href="#cb51-252" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Compare variances for each sample size</span>
+<span id="cb51-253"><a href="#cb51-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-256"><a href="#cb51-256" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb51-257"><a href="#cb51-257" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb51-258"><a href="#cb51-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-259"><a href="#cb51-259" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>How does each value correspond to what you&#39;d expect based on the mathematically-derived sampling distribution **for a normally distributed population**?</span>
+<span id="cb51-260"><a href="#cb51-260" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>$\bar{X} \sim \mathcal{N}(\mu, \frac{\sigma^2}{n})$</span>
+<span id="cb51-261"><a href="#cb51-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-262"><a href="#cb51-262" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-263"><a href="#cb51-263" aria-hidden="true" tabindex="-1"></a><span class="fu">### Poisson population: $population \sim Poisson(1.5)$</span></span>
+<span id="cb51-264"><a href="#cb51-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-265"><a href="#cb51-265" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Create a population</span></span>
+<span id="cb51-266"><a href="#cb51-266" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-267"><a href="#cb51-267" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="in">`rpois()`</span> creates a random variable that follows a **Poisson** distribution </span>
+<span id="cb51-268"><a href="#cb51-268" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>First argument = Number of observations (population size)</span>
+<span id="cb51-269"><a href="#cb51-269" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Second argument = $\lambda$ (mean and variance)</span>
+<span id="cb51-270"><a href="#cb51-270" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Remember that $\lambda$ is the variance, but we&#39;re going to look at the **standard deviation** which is the *square root* of the variance</span>
+<span id="cb51-271"><a href="#cb51-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-274"><a href="#cb51-274" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb51-275"><a href="#cb51-275" aria-hidden="true" tabindex="-1"></a>pois_pop <span class="ot">&lt;-</span> <span class="fu">rpois</span>(<span class="dv">1000000</span>, <span class="fl">1.5</span>)</span>
+<span id="cb51-276"><a href="#cb51-276" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(pois_pop)</span>
+<span id="cb51-277"><a href="#cb51-277" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(pois_pop)</span>
+<span id="cb51-278"><a href="#cb51-278" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(pois_pop)</span>
+<span id="cb51-279"><a href="#cb51-279" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb51-280"><a href="#cb51-280" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-281"><a href="#cb51-281" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Sample from the population</span></span>
+<span id="cb51-282"><a href="#cb51-282" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-283"><a href="#cb51-283" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb51-284"><a href="#cb51-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-285"><a href="#cb51-285" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Remember to adjust the X axis using <span class="in">`xlim()`</span> (as in the Normal section) to have the same range for each plot.</span>
+<span id="cb51-286"><a href="#cb51-286" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>You&#39;ll need to make each plot, see what they look like, and then adjust the X axis accordingly.</span>
+<span id="cb51-287"><a href="#cb51-287" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-288"><a href="#cb51-288" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb51-289"><a href="#cb51-289" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-290"><a href="#cb51-290" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Small sample: $n$ = 10</span>
+<span id="cb51-291"><a href="#cb51-291" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-294"><a href="#cb51-294" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb51-295"><a href="#cb51-295" aria-hidden="true" tabindex="-1"></a>pois_means10 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(pois_pop) <span class="sc">%&gt;%</span></span>
+<span id="cb51-296"><a href="#cb51-296" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rep_sample_n</span>(<span class="at">size =</span> <span class="dv">10</span>, <span class="at">reps =</span> <span class="dv">10000</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb51-297"><a href="#cb51-297" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">x_bar =</span> <span class="fu">mean</span>(pois_pop))</span>
+<span id="cb51-298"><a href="#cb51-298" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-299"><a href="#cb51-299" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pois_means10, <span class="fu">aes</span>(<span class="at">x =</span> x_bar)) <span class="sc">+</span></span>
+<span id="cb51-300"><a href="#cb51-300" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">50</span>)</span>
+<span id="cb51-301"><a href="#cb51-301" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb51-302"><a href="#cb51-302" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-303"><a href="#cb51-303" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Moderate sample: $n$ = 50</span>
+<span id="cb51-304"><a href="#cb51-304" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-307"><a href="#cb51-307" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb51-308"><a href="#cb51-308" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb51-309"><a href="#cb51-309" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-310"><a href="#cb51-310" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Large sample: $n$ = 100</span>
+<span id="cb51-311"><a href="#cb51-311" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-314"><a href="#cb51-314" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb51-315"><a href="#cb51-315" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb51-316"><a href="#cb51-316" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-317"><a href="#cb51-317" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Compare estimates</span></span>
+<span id="cb51-318"><a href="#cb51-318" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-319"><a href="#cb51-319" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Compare means for each sample size</span>
+<span id="cb51-320"><a href="#cb51-320" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-323"><a href="#cb51-323" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb51-324"><a href="#cb51-324" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb51-325"><a href="#cb51-325" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-326"><a href="#cb51-326" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Compare standard deviations for each sample size</span>
+<span id="cb51-327"><a href="#cb51-327" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-330"><a href="#cb51-330" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb51-331"><a href="#cb51-331" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb51-332"><a href="#cb51-332" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-333"><a href="#cb51-333" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Compare variances for each sample size</span>
+<span id="cb51-334"><a href="#cb51-334" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-337"><a href="#cb51-337" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb51-338"><a href="#cb51-338" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb51-339"><a href="#cb51-339" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-340"><a href="#cb51-340" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>How does each value correspond to what you&#39;d expect based on the mathematically-derived sampling distribution **for a normally distributed population**?</span>
+<span id="cb51-341"><a href="#cb51-341" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>$\bar{X} \sim \mathcal{N}(\mu, \frac{\sigma^2}{n})$</span>
+<span id="cb51-342"><a href="#cb51-342" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-343"><a href="#cb51-343" aria-hidden="true" tabindex="-1"></a><span class="fu">## Summarize results</span></span>
+<span id="cb51-344"><a href="#cb51-344" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-345"><a href="#cb51-345" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>In general, how does **sample size** impact the **standard error**?</span>
+<span id="cb51-346"><a href="#cb51-346" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>i.e., the standard deviation of the sampling distribution?</span>
+<span id="cb51-347"><a href="#cb51-347" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Do larger samples lead to smaller or larger standard errors?</span>
+<span id="cb51-348"><a href="#cb51-348" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>In general, how does the **population distribution** impact the **sampling distribution**?</span>
+<span id="cb51-349"><a href="#cb51-349" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Based on: Visual inspection of the distribution</span>
+<span id="cb51-350"><a href="#cb51-350" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Based on: Estimates of standard error</span>
+<span id="cb51-351"><a href="#cb51-351" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb51-352"><a href="#cb51-352" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb51-353"><a href="#cb51-353" aria-hidden="true" tabindex="-1"></a>  </span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

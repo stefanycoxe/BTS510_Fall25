@@ -1,0 +1,292 @@
+---
+title: "BTS 510 Lab 10"
+format:
+  html:
+    embed-resources: true
+    self-contained-math: true
+    html-math-method: katex
+    number-sections: true
+    toc: true
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+---
+
+```{r}
+#| label: setup
+set.seed(12345)
+library(tidyverse)
+library(Stat2Data)
+theme_set(theme_classic(base_size = 16))
+```
+
+## Learning objectives
+
+* **Run models** with interaction effects to assess conditional effects of predictors
+* **Probe** interaction models to fully understand all effects
+
+## Data 
+
+* `ICU` data from the **Stat2Data** package: $n$ = 200
+  * `ID`: Patient ID code
+  * `Survive`: 1 = patient survived to discharge or 0 = patient died
+  * `Age`: Age (in years)
+  * `AgeGroup`: 1 = young (under 50), 2 = middle (50-69), 3 = old (70+)
+  * `Sex`: 1 = female or 0 = male
+  * `Infection`: 1 = infection suspected or 0 = no infection
+  * `SysBP`: Systolic blood pressure (in mm of Hg)
+  * `Pulse`: Heart rate (beats per minute)
+  * `Emergency`: 1 = emergency admission or 0 = elective admission
+
+## Analysis
+
+* Replicate and extend the analysis from the lecture
+  * `Age`, `Emergency`, and their interaction predict `Pulse`
+  * Be sure to mean center `Age` for interpretability.
+
+## Tasks
+
+* Model 1: `Pulse ~ Age + Emergency`
+* Model 2: `Pulse ~ Age + Emergency + Age*Emergency`
+
+```{r}
+library(Stat2Data)
+data(ICU)
+ICU$AgeC <- ICU$Age - mean(ICU$Age, na.rm = TRUE)
+m1 <- lm(data = ICU, Pulse ~ AgeC + Emergency)
+m2 <- lm(data = ICU, Pulse ~ AgeC + Emergency + AgeC*Emergency)
+```
+
+1. Conduct a likelihood ratio test to compare the models. Report the results. Which model is preferred?
+
+```{r}
+anova(m1, m2, test = "LRT")
+logLik(m1)
+logLik(m2)
+-2*(logLik(m1) - logLik(m2))
+```
+
+* A likelihood ratio tests shows that model 2 with both predictors and their interaction was a better model than model 1 with only both predictors, $\chi^2(1) = 8.98, p<.01$
+
+2. Plot the simple slopes with the data points. What is the general pattern of results? 
+
+* Just using **ggplot**
+
+```{r}
+ggplot(data = ICU,
+       aes(x = AgeC, 
+           y = Pulse, 
+           group = Emergency)) +
+  geom_point(aes(color = as.factor(Emergency)), 
+             alpha = 0.4, 
+             size = 2) +
+  geom_smooth(method = "lm", 
+              se = FALSE,
+              aes(color = as.factor(Emergency))) +
+  labs(color = "Emergency")
+```
+
+* **interactions** plot
+
+```{r}
+library(interactions)
+interact_plot(m2, 
+              pred = AgeC, 
+              modx = Emergency, 
+              plot.points = TRUE)
+```
+
+* Broadly: There appears to be a **positive** relationship between age and pulse rate for **emergency** admissions (i.e., older people have higher pulse rates) and a **negative** relationship between age and pulse for **non-emergency** admissions (i.e., older people have lower pulse rates).
+
+3. Conduct simple slopes analysis and the Johnson-Neyman procedure. Report the findings, including test statistics, degrees of freedom, and $p$-values.
+
+* Simple slopes analysis
+
+```{r}
+sim_slopes(m2, 
+           pred = AgeC, 
+           modx = Emergency, 
+           johnson_neyman = FALSE)
+```
+
+* For non-emergency admission patients (`Emergency` = 0), the slope for age predicting pulse rate is **significant** and **negative**: $b = -0.54, t(196) = -2.33, p<.05$
+* For emergency admission patients (`Emergency` = 1), the slope for age predicting pulse rate is **significant** and **positive**: $b = 0.22, t(196) = 2.16, p<.05$
+
+------
+
+* Johnson-Neyman procedure
+  * Probably not the direction you want to talk about effects
+
+```{r}
+johnson_neyman(m2, 
+               pred = AgeC, 
+               modx = Emergency, 
+               alpha = .05)
+```
+
+* The slope for age predicting pulse rate is **significant** and **positive** for emergency admission patients (`Emergency` = 1)
+  * Blue section in upper right of plot
+* The slope for age predicting pulse rate is **significant** and **negative** for non-emergency admission patients (`Emergency` = 0)
+  * Blue section in lower left of plot
+
+--------
+
+* Johnson-Neyman procedure 
+  * Usually talk about effects in this direction
+
+```{r}
+johnson_neyman(m2, 
+               pred = Emergency, 
+               modx = AgeC, 
+               alpha = .05)
+```
+
+* When age is lower than 41.55 years **below** the mean or higher than 1.06 years **above** the mean, there are significant differences between the emergency and non-emergency patients on pulse rate 
+  * Note that there are no observations for the lower values (i.e., thick black bar showing observations doesn't extend into the blue section), so only interpretable differences are for older patients (see below)
+
+------
+
+* Is the slope with respect to age significant for each group?
+  * Yes, the slope is **significantly positive** for emergency admissions (`Emergency` = 1) and **significantly negative** for non-emergency admissions (`Emergency` = 0)
+  * Pulse increases with age for emergency patients and decreases with age for non-emergency patients
+* For which values of age are the emergency groups different in pulse rate?
+  * "When AgeC is OUTSIDE the interval [-44.31, 1.06], the slope of Emergency is
+p < .05."
+  * For people **younger than 44.31 years below the mean of age** and people **older than 1.06 years above the mean of age**, `Pulse` differs between emergency and non-emergency admissions
+  * Mean of age = `r round(mean(ICU$Age), 3)`
+    * Below `r round(mean(ICU$Age) - 44.31, 3)`
+    * Above `r round(mean(ICU$Age) + 1.06, 3)`
+    * Patients range in age from 18 to 85
+    * For people older than `r round(mean(ICU$Age) + 1.06, 3)` years, emergency admission patients have higher pulse rates than non-emergency admission patients
+
+4. Conduct outlier analysis for the model. Are there observations with extreme values on the predictors or predicted values? Are there observations that change the findings? Briefly report your findings.
+
+* I'm also going to look at residuals assumptions to compare to the lecture model with no interactions -- where the residuals showed that the model wasn't quite right
+  * Looking better here
+
+```{r}
+library(broom)
+ICU_aug <- augment(m2)
+ICU_aug <- ICU_aug %>% mutate(new_ID = 1:nrow(ICU_aug))
+
+ggplot(data = ICU_aug,
+       aes(x = .fitted, 
+           y = .std.resid)) +
+  geom_point() +
+  geom_smooth()
+
+ggplot(data = ICU_aug,
+       aes(x = .fitted, 
+           y = .std.resid, 
+           color = as.factor(Emergency))) +
+  geom_point() +
+  geom_smooth() +
+  labs(color = "Emergency")
+```
+
+* Leverage
+
+```{r}
+ggplot(data = ICU_aug,
+       aes(x = .hat)) +
+  geom_histogram()
+
+ggplot(data = ICU_aug,
+       aes(x = c(1:nrow(ICU_aug)), 
+           y = .hat)) +
+  geom_point() +
+  geom_hline(yintercept = 3*(3+1)/200, 
+             color = "red",
+             linetype = "dashed") +
+  geom_hline(yintercept = 2*(3+1)/200,
+             color = "blue") +
+  geom_text(aes(label=ifelse((.hat > 2*(3+1)/200), 
+                             as.character(new_ID), 
+                             '')),
+            hjust = 0, nudge_x = 2)
+```
+
+* Discrepancy
+
+```{r}
+ICU_aug <- ICU_aug %>% mutate(esresid = rstudent(m2))
+
+ggplot(data = ICU_aug,
+       aes(x = esresid)) +
+  geom_histogram()
+
+ggplot(data = ICU_aug,
+       aes(x = c(1:nrow(ICU_aug)), 
+           y = esresid)) +
+  geom_point() +
+  geom_hline(yintercept = 2, 
+             color = "blue",
+             linetype = "dashed") +
+  geom_hline(yintercept = -2,
+             color = "blue",
+             linetype = "dashed") +
+  geom_text(aes(label=ifelse((esresid > 2), 
+                             as.character(new_ID), 
+                             '')),
+            hjust = 0, nudge_x = 2) +
+  geom_text(aes(label=ifelse((esresid < -2), 
+                             as.character(new_ID), 
+                             '')),
+            hjust = 0, nudge_x = 2)
+```
+
+* Influence
+
+```{r}
+ggplot(data = ICU_aug,
+       aes(x = .cooksd)) +
+  geom_histogram()
+
+ggplot(data = ICU_aug,
+       aes(x = c(1:nrow(ICU_aug)), 
+           y = .cooksd)) +
+  geom_point() +
+  geom_hline(yintercept = 1, 
+             color = "red",
+             linetype = "dashed") +
+  geom_text(aes(label=ifelse((.cooksd > 1), 
+                             as.character(new_ID), 
+                             '')),
+            hjust = 0, nudge_x = 2)
+```
+
+------
+
+* Repeat offenders
+
+* Leverage
+
+```{r}
+ICU_aug %>% filter(.hat > 2*(3+1)/200) %>% select(new_ID)
+```
+
+* Discrepancy
+
+```{r}
+ICU_aug %>% filter(esresid > 2) %>% select(new_ID)
+ICU_aug %>% filter(esresid < -2) %>% select(new_ID)
+```
+
+* Influence
+
+```{r}
+ICU_aug %>% filter(.cooksd > 1) %>% select(new_ID)
+```
+
+* There were no observations that showed up as outliers across multiple metrics
+* No observations had high influence, so no observations were outliers that were changing results
+
+5. Describe the overall findings for this model, including the analyses to probe the interaction. Be statistically accurate but avoid jargon and technical terms as much as you can. Be sure to use the names of the variables studied (i.e., pulse, age, emergency admission) rather than X and Y.
+
+* When there is a significant interaction, all lower order effects are **conditional**
+  * You can't talk about **just** the effect of age -- it's conditional on admission type
+  * You can't talk about **just** the effect of admission type -- it's conditional on age
+* The **effect of age on pulse rate** depended on admission type
+  * Older emergency admission patients had higher pulse rate than younger emergency admission patients, but the opposite was observed for non-emergency admission patients: Older non-emergency admission patients had lower pulse rate than younger non-emergency admission patients
+* The **effect of admission type on pulse rate** depended on age
+  * Emergency admission patients had higher pulse rate than non-emergency admission patients, but only for patients who were at least 58.6 year old
