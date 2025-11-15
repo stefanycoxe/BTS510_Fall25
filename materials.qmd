@@ -284,7 +284,7 @@ title: "Materials"
 
 :::
 
-::: {.callout-tip title="Week 10" collapse=false}
+::: {.callout-tip title="Week 10" collapse=true}
 
 ## Week 10: Linear regression
 
@@ -308,4 +308,30 @@ title: "Materials"
 ### After class: Assignment
 
 * [Homework 4](assignments/hw4.qmd){target="_blank"}
+
+:::
+
+::: {.callout-tip title="Week 11" collapse=false}
+
+## Week 11: Logistic regression
+
+### Learning objectives
+
+* **Conduct** logistic regression for *binary outcomes*
+* **Interpret** results in terms of *probability*, *odds*, and *log-odds*
+
+### Before class: Lecture 
+
+* [Lecture 11](https://youtu.be/E5sa61W9fd0){target="_blank"} 
+* [Lecture survey](https://forms.gle/WdsDKN4jYmZcVGYi9){target="_blank"}: Complete by Wednesday, November 19 at 8pm
+* [Slides (html)](/slides/BTS510-25-11.qmd){target="_blank"}
+
+### During class: Lab
+
+* [Lab 11 (html with link to code)](lab/BTS510-25-lab11.qmd){target="_blank"}
+
+### After class: Assignment
+
+* **No homework this week**
+
 :::
