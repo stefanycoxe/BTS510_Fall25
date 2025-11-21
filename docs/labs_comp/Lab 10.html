@@ -4904,6 +4904,12 @@ window.Quarto = {
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
+<pre><code>Warning: package &#39;ggplot2&#39; was built under R version 4.5.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package &#39;readr&#39; was built under R version 4.5.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
 <pre><code>Warning: package &#39;purrr&#39; was built under R version 4.5.2</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
@@ -4911,9 +4917,9 @@ window.Quarto = {
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ dplyr     1.1.4     ✔ readr     2.1.6
 ✔ forcats   1.0.1     ✔ stringr   1.6.0
-✔ ggplot2   4.0.0     ✔ tibble    3.3.0
+✔ ggplot2   4.0.1     ✔ tibble    3.3.0
 ✔ lubridate 1.9.4     ✔ tidyr     1.3.1
 ✔ purrr     1.2.0     
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
@@ -4921,8 +4927,8 @@ window.Quarto = {
 ✖ dplyr::lag()    masks stats::lag()
 ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Stat2Data)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">16</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Stat2Data)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">16</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="learning-objectives" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">1</span> Learning objectives</h2>
@@ -4965,17 +4971,17 @@ window.Quarto = {
 <li>Model 2: <code>Pulse ~ Age + Emergency + Age*Emergency</code></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Stat2Data)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(ICU)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>ICU<span class="sc">$</span>AgeC <span class="ot">&lt;-</span> ICU<span class="sc">$</span>Age <span class="sc">-</span> <span class="fu">mean</span>(ICU<span class="sc">$</span>Age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> ICU, Pulse <span class="sc">~</span> AgeC <span class="sc">+</span> Emergency)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> ICU, Pulse <span class="sc">~</span> AgeC <span class="sc">+</span> Emergency <span class="sc">+</span> AgeC<span class="sc">*</span>Emergency)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Stat2Data)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(ICU)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>ICU<span class="sc">$</span>AgeC <span class="ot">&lt;-</span> ICU<span class="sc">$</span>Age <span class="sc">-</span> <span class="fu">mean</span>(ICU<span class="sc">$</span>Age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> ICU, Pulse <span class="sc">~</span> AgeC <span class="sc">+</span> Emergency)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> ICU, Pulse <span class="sc">~</span> AgeC <span class="sc">+</span> Emergency <span class="sc">+</span> AgeC<span class="sc">*</span>Emergency)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol type="1">
 <li>Conduct a likelihood ratio test to compare the models. Report the results. Which model is preferred?</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m1, m2, <span class="at">test =</span> <span class="st">&quot;LRT&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m1, m2, <span class="at">test =</span> <span class="st">&quot;LRT&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Analysis of Variance Table
 
@@ -4987,15 +4993,15 @@ Model 2: Pulse ~ AgeC + Emergency + AgeC * Emergency
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">logLik</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">logLik</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&#39;log Lik.&#39; -937.5404 (df=4)</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">logLik</span>(m2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">logLik</span>(m2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&#39;log Lik.&#39; -933.0483 (df=5)</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="dv">2</span><span class="sc">*</span>(<span class="fu">logLik</span>(m1) <span class="sc">-</span> <span class="fu">logLik</span>(m2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="dv">2</span><span class="sc">*</span>(<span class="fu">logLik</span>(m1) <span class="sc">-</span> <span class="fu">logLik</span>(m2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>&#39;log Lik.&#39; 8.984209 (df=4)</code></pre>
 </div>
@@ -5010,17 +5016,17 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <li>Just using <strong>ggplot</strong></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU,</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> AgeC, </span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> Pulse, </span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">group =</span> Emergency)) <span class="sc">+</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">as.factor</span>(Emergency)), </span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.4</span>, </span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, </span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>              <span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">as.factor</span>(Emergency))) <span class="sc">+</span></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">&quot;Emergency&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU,</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> AgeC, </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> Pulse, </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">group =</span> Emergency)) <span class="sc">+</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">as.factor</span>(Emergency)), </span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.4</span>, </span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, </span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>              <span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">as.factor</span>(Emergency))) <span class="sc">+</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">&quot;Emergency&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
 </div>
@@ -5036,11 +5042,11 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <li><strong>interactions</strong> plot</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(interactions)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">interact_plot</span>(m2, </span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">pred =</span> AgeC, </span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">modx =</span> Emergency, </span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">plot.points =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(interactions)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">interact_plot</span>(m2, </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">pred =</span> AgeC, </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">modx =</span> Emergency, </span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">plot.points =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -5059,10 +5065,10 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <li>Simple slopes analysis</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sim_slopes</span>(m2, </span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">pred =</span> AgeC, </span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">modx =</span> Emergency, </span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">johnson_neyman =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sim_slopes</span>(m2, </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">pred =</span> AgeC, </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">modx =</span> Emergency, </span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">johnson_neyman =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>SIMPLE SLOPES ANALYSIS
 
@@ -5091,10 +5097,10 @@ Slope of AgeC when Emergency = 1.00 (1):
 </ul></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">johnson_neyman</span>(m2, </span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">pred =</span> AgeC, </span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">modx =</span> Emergency, </span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">alpha =</span> .<span class="dv">05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">johnson_neyman</span>(m2, </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">pred =</span> AgeC, </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">modx =</span> Emergency, </span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">alpha =</span> .<span class="dv">05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>JOHNSON-NEYMAN INTERVAL
 
@@ -5129,10 +5135,10 @@ Note: The range of observed values of Emergency is [0.00, 1.00]</code></pre>
 </ul></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">johnson_neyman</span>(m2, </span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">pred =</span> Emergency, </span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">modx =</span> AgeC, </span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">alpha =</span> .<span class="dv">05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">johnson_neyman</span>(m2, </span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">pred =</span> Emergency, </span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">modx =</span> AgeC, </span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">alpha =</span> .<span class="dv">05</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>JOHNSON-NEYMAN INTERVAL
 
@@ -5185,15 +5191,15 @@ Note: The range of observed values of AgeC is [-41.55, 34.45]</code></pre>
 </ul></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>ICU_aug <span class="ot">&lt;-</span> <span class="fu">augment</span>(m2)</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>ICU_aug <span class="ot">&lt;-</span> ICU_aug <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">new_ID =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(ICU_aug))</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU_aug,</span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> .fitted, </span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> .std.resid)) <span class="sc">+</span></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>ICU_aug <span class="ot">&lt;-</span> <span class="fu">augment</span>(m2)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>ICU_aug <span class="ot">&lt;-</span> ICU_aug <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">new_ID =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(ICU_aug))</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU_aug,</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> .fitted, </span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> .std.resid)) <span class="sc">+</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using method = &#39;loess&#39; and formula = &#39;y ~ x&#39;</code></pre>
 </div>
@@ -5204,13 +5210,13 @@ Note: The range of observed values of AgeC is [-41.55, 34.45]</code></pre>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU_aug,</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> .fitted, </span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> .std.resid, </span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">color =</span> <span class="fu">as.factor</span>(Emergency))) <span class="sc">+</span></span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">&quot;Emergency&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU_aug,</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> .fitted, </span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> .std.resid, </span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">color =</span> <span class="fu">as.factor</span>(Emergency))) <span class="sc">+</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">&quot;Emergency&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using method = &#39;loess&#39; and formula = &#39;y ~ x&#39;</code></pre>
 </div>
@@ -5226,9 +5232,9 @@ Note: The range of observed values of AgeC is [-41.55, 34.45]</code></pre>
 <li>Leverage</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU_aug,</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> .hat)) <span class="sc">+</span></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU_aug,</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> .hat)) <span class="sc">+</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`stat_bin()` using `bins = 30`. Pick better value `binwidth`.</code></pre>
 </div>
@@ -5239,19 +5245,19 @@ Note: The range of observed values of AgeC is [-41.55, 34.45]</code></pre>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU_aug,</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(ICU_aug)), </span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> .hat)) <span class="sc">+</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">3</span><span class="sc">*</span>(<span class="dv">3</span><span class="sc">+</span><span class="dv">1</span>)<span class="sc">/</span><span class="dv">200</span>, </span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&quot;red&quot;</span>,</span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">2</span><span class="sc">*</span>(<span class="dv">3</span><span class="sc">+</span><span class="dv">1</span>)<span class="sc">/</span><span class="dv">200</span>,</span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
-<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span><span class="fu">ifelse</span>((.hat <span class="sc">&gt;</span> <span class="dv">2</span><span class="sc">*</span>(<span class="dv">3</span><span class="sc">+</span><span class="dv">1</span>)<span class="sc">/</span><span class="dv">200</span>), </span>
-<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">as.character</span>(new_ID), </span>
-<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>                             <span class="st">&#39;&#39;</span>)),</span>
-<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">nudge_x =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU_aug,</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(ICU_aug)), </span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> .hat)) <span class="sc">+</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">3</span><span class="sc">*</span>(<span class="dv">3</span><span class="sc">+</span><span class="dv">1</span>)<span class="sc">/</span><span class="dv">200</span>, </span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&quot;red&quot;</span>,</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">2</span><span class="sc">*</span>(<span class="dv">3</span><span class="sc">+</span><span class="dv">1</span>)<span class="sc">/</span><span class="dv">200</span>,</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span><span class="fu">ifelse</span>((.hat <span class="sc">&gt;</span> <span class="dv">2</span><span class="sc">*</span>(<span class="dv">3</span><span class="sc">+</span><span class="dv">1</span>)<span class="sc">/</span><span class="dv">200</span>), </span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">as.character</span>(new_ID), </span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>                             <span class="st">&#39;&#39;</span>)),</span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">nudge_x =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -5264,11 +5270,11 @@ Note: The range of observed values of AgeC is [-41.55, 34.45]</code></pre>
 <li>Discrepancy</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>ICU_aug <span class="ot">&lt;-</span> ICU_aug <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">esresid =</span> <span class="fu">rstudent</span>(m2))</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU_aug,</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> esresid)) <span class="sc">+</span></span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>ICU_aug <span class="ot">&lt;-</span> ICU_aug <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">esresid =</span> <span class="fu">rstudent</span>(m2))</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU_aug,</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> esresid)) <span class="sc">+</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`stat_bin()` using `bins = 30`. Pick better value `binwidth`.</code></pre>
 </div>
@@ -5279,24 +5285,24 @@ Note: The range of observed values of AgeC is [-41.55, 34.45]</code></pre>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU_aug,</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(ICU_aug)), </span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> esresid)) <span class="sc">+</span></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">2</span>, </span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>,</span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="sc">-</span><span class="dv">2</span>,</span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>,</span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
-<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span><span class="fu">ifelse</span>((esresid <span class="sc">&gt;</span> <span class="dv">2</span>), </span>
-<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">as.character</span>(new_ID), </span>
-<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>                             <span class="st">&#39;&#39;</span>)),</span>
-<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">nudge_x =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span><span class="fu">ifelse</span>((esresid <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">2</span>), </span>
-<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">as.character</span>(new_ID), </span>
-<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a>                             <span class="st">&#39;&#39;</span>)),</span>
-<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>            <span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">nudge_x =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU_aug,</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(ICU_aug)), </span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> esresid)) <span class="sc">+</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">2</span>, </span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>,</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="sc">-</span><span class="dv">2</span>,</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>,</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span><span class="fu">ifelse</span>((esresid <span class="sc">&gt;</span> <span class="dv">2</span>), </span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">as.character</span>(new_ID), </span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>                             <span class="st">&#39;&#39;</span>)),</span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>            <span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">nudge_x =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span><span class="fu">ifelse</span>((esresid <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">2</span>), </span>
+<span id="cb35-16"><a href="#cb35-16" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">as.character</span>(new_ID), </span>
+<span id="cb35-17"><a href="#cb35-17" aria-hidden="true" tabindex="-1"></a>                             <span class="st">&#39;&#39;</span>)),</span>
+<span id="cb35-18"><a href="#cb35-18" aria-hidden="true" tabindex="-1"></a>            <span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">nudge_x =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -5309,9 +5315,9 @@ Note: The range of observed values of AgeC is [-41.55, 34.45]</code></pre>
 <li>Influence</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU_aug,</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> .cooksd)) <span class="sc">+</span></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU_aug,</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> .cooksd)) <span class="sc">+</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`stat_bin()` using `bins = 30`. Pick better value `binwidth`.</code></pre>
 </div>
@@ -5322,17 +5328,17 @@ Note: The range of observed values of AgeC is [-41.55, 34.45]</code></pre>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU_aug,</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(ICU_aug)), </span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> .cooksd)) <span class="sc">+</span></span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">1</span>, </span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&quot;red&quot;</span>,</span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
-<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span><span class="fu">ifelse</span>((.cooksd <span class="sc">&gt;</span> <span class="dv">1</span>), </span>
-<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">as.character</span>(new_ID), </span>
-<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>                             <span class="st">&#39;&#39;</span>)),</span>
-<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>            <span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">nudge_x =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU_aug,</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(ICU_aug)), </span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> .cooksd)) <span class="sc">+</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">1</span>, </span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&quot;red&quot;</span>,</span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span><span class="fu">ifelse</span>((.cooksd <span class="sc">&gt;</span> <span class="dv">1</span>), </span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">as.character</span>(new_ID), </span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>                             <span class="st">&#39;&#39;</span>)),</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>            <span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">nudge_x =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -5347,7 +5353,7 @@ Note: The range of observed values of AgeC is [-41.55, 34.45]</code></pre>
 <li><p>Leverage</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>ICU_aug <span class="sc">%&gt;%</span> <span class="fu">filter</span>(.hat <span class="sc">&gt;</span> <span class="dv">2</span><span class="sc">*</span>(<span class="dv">3</span><span class="sc">+</span><span class="dv">1</span>)<span class="sc">/</span><span class="dv">200</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(new_ID)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>ICU_aug <span class="sc">%&gt;%</span> <span class="fu">filter</span>(.hat <span class="sc">&gt;</span> <span class="dv">2</span><span class="sc">*</span>(<span class="dv">3</span><span class="sc">+</span><span class="dv">1</span>)<span class="sc">/</span><span class="dv">200</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(new_ID)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 8 × 1
   new_ID
@@ -5366,7 +5372,7 @@ Note: The range of observed values of AgeC is [-41.55, 34.45]</code></pre>
 <li>Discrepancy</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>ICU_aug <span class="sc">%&gt;%</span> <span class="fu">filter</span>(esresid <span class="sc">&gt;</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(new_ID)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>ICU_aug <span class="sc">%&gt;%</span> <span class="fu">filter</span>(esresid <span class="sc">&gt;</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(new_ID)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 7 × 1
   new_ID
@@ -5379,7 +5385,7 @@ Note: The range of observed values of AgeC is [-41.55, 34.45]</code></pre>
 6    159
 7    160</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>ICU_aug <span class="sc">%&gt;%</span> <span class="fu">filter</span>(esresid <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">2</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(new_ID)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>ICU_aug <span class="sc">%&gt;%</span> <span class="fu">filter</span>(esresid <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">2</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(new_ID)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 1
   new_ID
@@ -5392,7 +5398,7 @@ Note: The range of observed values of AgeC is [-41.55, 34.45]</code></pre>
 <li>Influence</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>ICU_aug <span class="sc">%&gt;%</span> <span class="fu">filter</span>(.cooksd <span class="sc">&gt;</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(new_ID)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>ICU_aug <span class="sc">%&gt;%</span> <span class="fu">filter</span>(.cooksd <span class="sc">&gt;</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(new_ID)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 0 × 1
 # ℹ 1 variable: new_ID &lt;int&gt;</code></pre>
@@ -5895,298 +5901,298 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class>
-<div class="sourceCode" id="cb45" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;BTS 510 Lab 10&quot;</span></span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="co">    embed-resources: true</span></span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="co">    self-contained-math: true</span></span>
-<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="co">    html-math-method: katex</span></span>
-<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
-<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-bg: true</span></span>
-<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-border-left: &quot;#31BAE9&quot;</span></span>
-<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-17"><a href="#cb45-17" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb45-18"><a href="#cb45-18" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
-<span id="cb45-19"><a href="#cb45-19" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
-<span id="cb45-20"><a href="#cb45-20" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb45-21"><a href="#cb45-21" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Stat2Data)</span>
-<span id="cb45-22"><a href="#cb45-22" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">16</span>))</span>
-<span id="cb45-23"><a href="#cb45-23" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb45-24"><a href="#cb45-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-25"><a href="#cb45-25" aria-hidden="true" tabindex="-1"></a><span class="fu">## Learning objectives</span></span>
-<span id="cb45-26"><a href="#cb45-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-27"><a href="#cb45-27" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Run models** with interaction effects to assess conditional effects of predictors</span>
-<span id="cb45-28"><a href="#cb45-28" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Probe** interaction models to fully understand all effects</span>
-<span id="cb45-29"><a href="#cb45-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-30"><a href="#cb45-30" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data </span></span>
-<span id="cb45-31"><a href="#cb45-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-32"><a href="#cb45-32" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="in">`ICU`</span> data from the **Stat2Data** package: $n$ = 200</span>
-<span id="cb45-33"><a href="#cb45-33" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`ID`</span>: Patient ID code</span>
-<span id="cb45-34"><a href="#cb45-34" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`Survive`</span>: 1 = patient survived to discharge or 0 = patient died</span>
-<span id="cb45-35"><a href="#cb45-35" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`Age`</span>: Age (in years)</span>
-<span id="cb45-36"><a href="#cb45-36" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`AgeGroup`</span>: 1 = young (under 50), 2 = middle (50-69), 3 = old (70+)</span>
-<span id="cb45-37"><a href="#cb45-37" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`Sex`</span>: 1 = female or 0 = male</span>
-<span id="cb45-38"><a href="#cb45-38" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`Infection`</span>: 1 = infection suspected or 0 = no infection</span>
-<span id="cb45-39"><a href="#cb45-39" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`SysBP`</span>: Systolic blood pressure (in mm of Hg)</span>
-<span id="cb45-40"><a href="#cb45-40" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`Pulse`</span>: Heart rate (beats per minute)</span>
-<span id="cb45-41"><a href="#cb45-41" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`Emergency`</span>: 1 = emergency admission or 0 = elective admission</span>
-<span id="cb45-42"><a href="#cb45-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-43"><a href="#cb45-43" aria-hidden="true" tabindex="-1"></a><span class="fu">## Analysis</span></span>
-<span id="cb45-44"><a href="#cb45-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-45"><a href="#cb45-45" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Replicate and extend the analysis from the lecture</span>
-<span id="cb45-46"><a href="#cb45-46" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`Age`</span>, <span class="in">`Emergency`</span>, and their interaction predict <span class="in">`Pulse`</span></span>
-<span id="cb45-47"><a href="#cb45-47" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Be sure to mean center <span class="in">`Age`</span> for interpretability.</span>
-<span id="cb45-48"><a href="#cb45-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-49"><a href="#cb45-49" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tasks</span></span>
-<span id="cb45-50"><a href="#cb45-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-51"><a href="#cb45-51" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Model 1: <span class="in">`Pulse ~ Age + Emergency`</span></span>
-<span id="cb45-52"><a href="#cb45-52" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Model 2: <span class="in">`Pulse ~ Age + Emergency + Age*Emergency`</span></span>
-<span id="cb45-53"><a href="#cb45-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-56"><a href="#cb45-56" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb45-57"><a href="#cb45-57" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Stat2Data)</span>
-<span id="cb45-58"><a href="#cb45-58" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(ICU)</span>
-<span id="cb45-59"><a href="#cb45-59" aria-hidden="true" tabindex="-1"></a>ICU<span class="sc">$</span>AgeC <span class="ot">&lt;-</span> ICU<span class="sc">$</span>Age <span class="sc">-</span> <span class="fu">mean</span>(ICU<span class="sc">$</span>Age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb45-60"><a href="#cb45-60" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> ICU, Pulse <span class="sc">~</span> AgeC <span class="sc">+</span> Emergency)</span>
-<span id="cb45-61"><a href="#cb45-61" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> ICU, Pulse <span class="sc">~</span> AgeC <span class="sc">+</span> Emergency <span class="sc">+</span> AgeC<span class="sc">*</span>Emergency)</span>
-<span id="cb45-62"><a href="#cb45-62" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb45-63"><a href="#cb45-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-64"><a href="#cb45-64" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Conduct a likelihood ratio test to compare the models. Report the results. Which model is preferred?</span>
-<span id="cb45-65"><a href="#cb45-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-68"><a href="#cb45-68" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb45-69"><a href="#cb45-69" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m1, m2, <span class="at">test =</span> <span class="st">&quot;LRT&quot;</span>)</span>
-<span id="cb45-70"><a href="#cb45-70" aria-hidden="true" tabindex="-1"></a><span class="fu">logLik</span>(m1)</span>
-<span id="cb45-71"><a href="#cb45-71" aria-hidden="true" tabindex="-1"></a><span class="fu">logLik</span>(m2)</span>
-<span id="cb45-72"><a href="#cb45-72" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="dv">2</span><span class="sc">*</span>(<span class="fu">logLik</span>(m1) <span class="sc">-</span> <span class="fu">logLik</span>(m2))</span>
-<span id="cb45-73"><a href="#cb45-73" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb45-74"><a href="#cb45-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-75"><a href="#cb45-75" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>A likelihood ratio tests shows that model 2 with both predictors and their interaction was a better model than model 1 with only both predictors, $\chi^2(1) = 8.98, p&lt;.01$</span>
-<span id="cb45-76"><a href="#cb45-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-77"><a href="#cb45-77" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Plot the simple slopes with the data points. What is the general pattern of results? </span>
-<span id="cb45-78"><a href="#cb45-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-79"><a href="#cb45-79" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Just using **ggplot**</span>
-<span id="cb45-80"><a href="#cb45-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-83"><a href="#cb45-83" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb45-84"><a href="#cb45-84" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU,</span>
-<span id="cb45-85"><a href="#cb45-85" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> AgeC, </span>
-<span id="cb45-86"><a href="#cb45-86" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> Pulse, </span>
-<span id="cb45-87"><a href="#cb45-87" aria-hidden="true" tabindex="-1"></a>           <span class="at">group =</span> Emergency)) <span class="sc">+</span></span>
-<span id="cb45-88"><a href="#cb45-88" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">as.factor</span>(Emergency)), </span>
-<span id="cb45-89"><a href="#cb45-89" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.4</span>, </span>
-<span id="cb45-90"><a href="#cb45-90" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb45-91"><a href="#cb45-91" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, </span>
-<span id="cb45-92"><a href="#cb45-92" aria-hidden="true" tabindex="-1"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb45-93"><a href="#cb45-93" aria-hidden="true" tabindex="-1"></a>              <span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">as.factor</span>(Emergency))) <span class="sc">+</span></span>
-<span id="cb45-94"><a href="#cb45-94" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">&quot;Emergency&quot;</span>)</span>
-<span id="cb45-95"><a href="#cb45-95" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb45-96"><a href="#cb45-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-97"><a href="#cb45-97" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**interactions** plot</span>
-<span id="cb45-98"><a href="#cb45-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-101"><a href="#cb45-101" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb45-102"><a href="#cb45-102" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(interactions)</span>
-<span id="cb45-103"><a href="#cb45-103" aria-hidden="true" tabindex="-1"></a><span class="fu">interact_plot</span>(m2, </span>
-<span id="cb45-104"><a href="#cb45-104" aria-hidden="true" tabindex="-1"></a>              <span class="at">pred =</span> AgeC, </span>
-<span id="cb45-105"><a href="#cb45-105" aria-hidden="true" tabindex="-1"></a>              <span class="at">modx =</span> Emergency, </span>
-<span id="cb45-106"><a href="#cb45-106" aria-hidden="true" tabindex="-1"></a>              <span class="at">plot.points =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb45-107"><a href="#cb45-107" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb45-108"><a href="#cb45-108" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-109"><a href="#cb45-109" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Broadly: There appears to be a **positive** relationship between age and pulse rate for **emergency** admissions (i.e., older people have higher pulse rates) and a **negative** relationship between age and pulse for **non-emergency** admissions (i.e., older people have lower pulse rates).</span>
-<span id="cb45-110"><a href="#cb45-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-111"><a href="#cb45-111" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Conduct simple slopes analysis and the Johnson-Neyman procedure. Report the findings, including test statistics, degrees of freedom, and $p$-values.</span>
-<span id="cb45-112"><a href="#cb45-112" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-113"><a href="#cb45-113" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Simple slopes analysis</span>
-<span id="cb45-114"><a href="#cb45-114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-117"><a href="#cb45-117" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb45-118"><a href="#cb45-118" aria-hidden="true" tabindex="-1"></a><span class="fu">sim_slopes</span>(m2, </span>
-<span id="cb45-119"><a href="#cb45-119" aria-hidden="true" tabindex="-1"></a>           <span class="at">pred =</span> AgeC, </span>
-<span id="cb45-120"><a href="#cb45-120" aria-hidden="true" tabindex="-1"></a>           <span class="at">modx =</span> Emergency, </span>
-<span id="cb45-121"><a href="#cb45-121" aria-hidden="true" tabindex="-1"></a>           <span class="at">johnson_neyman =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb45-122"><a href="#cb45-122" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb45-123"><a href="#cb45-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-124"><a href="#cb45-124" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>For non-emergency admission patients (<span class="in">`Emergency`</span> = 0), the slope for age predicting pulse rate is **significant** and **negative**: $b = -0.54, t(196) = -2.33, p&lt;.05$</span>
-<span id="cb45-125"><a href="#cb45-125" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>For emergency admission patients (<span class="in">`Emergency`</span> = 1), the slope for age predicting pulse rate is **significant** and **positive**: $b = 0.22, t(196) = 2.16, p&lt;.05$</span>
-<span id="cb45-126"><a href="#cb45-126" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-127"><a href="#cb45-127" aria-hidden="true" tabindex="-1"></a>------</span>
-<span id="cb45-128"><a href="#cb45-128" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-129"><a href="#cb45-129" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Johnson-Neyman procedure</span>
-<span id="cb45-130"><a href="#cb45-130" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Probably not the direction you want to talk about effects</span>
-<span id="cb45-131"><a href="#cb45-131" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-134"><a href="#cb45-134" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb45-135"><a href="#cb45-135" aria-hidden="true" tabindex="-1"></a><span class="fu">johnson_neyman</span>(m2, </span>
-<span id="cb45-136"><a href="#cb45-136" aria-hidden="true" tabindex="-1"></a>               <span class="at">pred =</span> AgeC, </span>
-<span id="cb45-137"><a href="#cb45-137" aria-hidden="true" tabindex="-1"></a>               <span class="at">modx =</span> Emergency, </span>
-<span id="cb45-138"><a href="#cb45-138" aria-hidden="true" tabindex="-1"></a>               <span class="at">alpha =</span> .<span class="dv">05</span>)</span>
-<span id="cb45-139"><a href="#cb45-139" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb45-140"><a href="#cb45-140" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-141"><a href="#cb45-141" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>The slope for age predicting pulse rate is **significant** and **positive** for emergency admission patients (<span class="in">`Emergency`</span> = 1)</span>
-<span id="cb45-142"><a href="#cb45-142" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Blue section in upper right of plot</span>
-<span id="cb45-143"><a href="#cb45-143" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>The slope for age predicting pulse rate is **significant** and **negative** for non-emergency admission patients (<span class="in">`Emergency`</span> = 0)</span>
-<span id="cb45-144"><a href="#cb45-144" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Blue section in lower left of plot</span>
-<span id="cb45-145"><a href="#cb45-145" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-146"><a href="#cb45-146" aria-hidden="true" tabindex="-1"></a>--------</span>
-<span id="cb45-147"><a href="#cb45-147" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-148"><a href="#cb45-148" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Johnson-Neyman procedure </span>
-<span id="cb45-149"><a href="#cb45-149" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Usually talk about effects in this direction</span>
-<span id="cb45-150"><a href="#cb45-150" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-153"><a href="#cb45-153" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb45-154"><a href="#cb45-154" aria-hidden="true" tabindex="-1"></a><span class="fu">johnson_neyman</span>(m2, </span>
-<span id="cb45-155"><a href="#cb45-155" aria-hidden="true" tabindex="-1"></a>               <span class="at">pred =</span> Emergency, </span>
-<span id="cb45-156"><a href="#cb45-156" aria-hidden="true" tabindex="-1"></a>               <span class="at">modx =</span> AgeC, </span>
-<span id="cb45-157"><a href="#cb45-157" aria-hidden="true" tabindex="-1"></a>               <span class="at">alpha =</span> .<span class="dv">05</span>)</span>
-<span id="cb45-158"><a href="#cb45-158" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb45-159"><a href="#cb45-159" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-160"><a href="#cb45-160" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>When age is lower than 41.55 years **below** the mean or higher than 1.06 years **above** the mean, there are significant differences between the emergency and non-emergency patients on pulse rate </span>
-<span id="cb45-161"><a href="#cb45-161" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Note that there are no observations for the lower values (i.e., thick black bar showing observations doesn&#39;t extend into the blue section), so only interpretable differences are for older patients (see below)</span>
-<span id="cb45-162"><a href="#cb45-162" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-163"><a href="#cb45-163" aria-hidden="true" tabindex="-1"></a>------</span>
-<span id="cb45-164"><a href="#cb45-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-165"><a href="#cb45-165" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Is the slope with respect to age significant for each group?</span>
-<span id="cb45-166"><a href="#cb45-166" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Yes, the slope is **significantly positive** for emergency admissions (`Emergency` = 1) and **significantly negative** for non-emergency admissions (<span class="in">`Emergency`</span> = 0)</span>
-<span id="cb45-167"><a href="#cb45-167" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Pulse increases with age for emergency patients and decreases with age for non-emergency patients</span>
-<span id="cb45-168"><a href="#cb45-168" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>For which values of age are the emergency groups different in pulse rate?</span>
-<span id="cb45-169"><a href="#cb45-169" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>&quot;When AgeC is OUTSIDE the interval <span class="co">[</span><span class="ot">-44.31, 1.06</span><span class="co">]</span>, the slope of Emergency is</span>
-<span id="cb45-170"><a href="#cb45-170" aria-hidden="true" tabindex="-1"></a>p &lt; .05.&quot;</span>
-<span id="cb45-171"><a href="#cb45-171" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>For people **younger than 44.31 years below the mean of age** and people **older than 1.06 years above the mean of age**, <span class="in">`Pulse`</span> differs between emergency and non-emergency admissions</span>
-<span id="cb45-172"><a href="#cb45-172" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Mean of age = <span class="in">`r round(mean(ICU$Age), 3)`</span></span>
-<span id="cb45-173"><a href="#cb45-173" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Below <span class="in">`r round(mean(ICU$Age) - 44.31, 3)`</span></span>
-<span id="cb45-174"><a href="#cb45-174" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Above <span class="in">`r round(mean(ICU$Age) + 1.06, 3)`</span></span>
-<span id="cb45-175"><a href="#cb45-175" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Patients range in age from 18 to 85</span>
-<span id="cb45-176"><a href="#cb45-176" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>For people older than <span class="in">`r round(mean(ICU$Age) + 1.06, 3)`</span> years, emergency admission patients have higher pulse rates than non-emergency admission patients</span>
-<span id="cb45-177"><a href="#cb45-177" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-178"><a href="#cb45-178" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Conduct outlier analysis for the model. Are there observations with extreme values on the predictors or predicted values? Are there observations that change the findings? Briefly report your findings.</span>
-<span id="cb45-179"><a href="#cb45-179" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-180"><a href="#cb45-180" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>I&#39;m also going to look at residuals assumptions to compare to the lecture model with no interactions -- where the residuals showed that the model wasn&#39;t quite right</span>
-<span id="cb45-181"><a href="#cb45-181" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Looking better here</span>
-<span id="cb45-182"><a href="#cb45-182" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-185"><a href="#cb45-185" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb45-186"><a href="#cb45-186" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
-<span id="cb45-187"><a href="#cb45-187" aria-hidden="true" tabindex="-1"></a>ICU_aug <span class="ot">&lt;-</span> <span class="fu">augment</span>(m2)</span>
-<span id="cb45-188"><a href="#cb45-188" aria-hidden="true" tabindex="-1"></a>ICU_aug <span class="ot">&lt;-</span> ICU_aug <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">new_ID =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(ICU_aug))</span>
-<span id="cb45-189"><a href="#cb45-189" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-190"><a href="#cb45-190" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU_aug,</span>
-<span id="cb45-191"><a href="#cb45-191" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> .fitted, </span>
-<span id="cb45-192"><a href="#cb45-192" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> .std.resid)) <span class="sc">+</span></span>
-<span id="cb45-193"><a href="#cb45-193" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb45-194"><a href="#cb45-194" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span>
-<span id="cb45-195"><a href="#cb45-195" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-196"><a href="#cb45-196" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU_aug,</span>
-<span id="cb45-197"><a href="#cb45-197" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> .fitted, </span>
-<span id="cb45-198"><a href="#cb45-198" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> .std.resid, </span>
-<span id="cb45-199"><a href="#cb45-199" aria-hidden="true" tabindex="-1"></a>           <span class="at">color =</span> <span class="fu">as.factor</span>(Emergency))) <span class="sc">+</span></span>
-<span id="cb45-200"><a href="#cb45-200" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb45-201"><a href="#cb45-201" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
-<span id="cb45-202"><a href="#cb45-202" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">&quot;Emergency&quot;</span>)</span>
-<span id="cb45-203"><a href="#cb45-203" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb45-204"><a href="#cb45-204" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-205"><a href="#cb45-205" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Leverage</span>
-<span id="cb45-206"><a href="#cb45-206" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-209"><a href="#cb45-209" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb45-210"><a href="#cb45-210" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU_aug,</span>
-<span id="cb45-211"><a href="#cb45-211" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> .hat)) <span class="sc">+</span></span>
-<span id="cb45-212"><a href="#cb45-212" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span>
-<span id="cb45-213"><a href="#cb45-213" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-214"><a href="#cb45-214" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU_aug,</span>
-<span id="cb45-215"><a href="#cb45-215" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(ICU_aug)), </span>
-<span id="cb45-216"><a href="#cb45-216" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> .hat)) <span class="sc">+</span></span>
-<span id="cb45-217"><a href="#cb45-217" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb45-218"><a href="#cb45-218" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">3</span><span class="sc">*</span>(<span class="dv">3</span><span class="sc">+</span><span class="dv">1</span>)<span class="sc">/</span><span class="dv">200</span>, </span>
-<span id="cb45-219"><a href="#cb45-219" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&quot;red&quot;</span>,</span>
-<span id="cb45-220"><a href="#cb45-220" aria-hidden="true" tabindex="-1"></a>             <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
-<span id="cb45-221"><a href="#cb45-221" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">2</span><span class="sc">*</span>(<span class="dv">3</span><span class="sc">+</span><span class="dv">1</span>)<span class="sc">/</span><span class="dv">200</span>,</span>
-<span id="cb45-222"><a href="#cb45-222" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
-<span id="cb45-223"><a href="#cb45-223" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span><span class="fu">ifelse</span>((.hat <span class="sc">&gt;</span> <span class="dv">2</span><span class="sc">*</span>(<span class="dv">3</span><span class="sc">+</span><span class="dv">1</span>)<span class="sc">/</span><span class="dv">200</span>), </span>
-<span id="cb45-224"><a href="#cb45-224" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">as.character</span>(new_ID), </span>
-<span id="cb45-225"><a href="#cb45-225" aria-hidden="true" tabindex="-1"></a>                             <span class="st">&#39;&#39;</span>)),</span>
-<span id="cb45-226"><a href="#cb45-226" aria-hidden="true" tabindex="-1"></a>            <span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">nudge_x =</span> <span class="dv">2</span>)</span>
-<span id="cb45-227"><a href="#cb45-227" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb45-228"><a href="#cb45-228" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-229"><a href="#cb45-229" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Discrepancy</span>
-<span id="cb45-230"><a href="#cb45-230" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-233"><a href="#cb45-233" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb45-234"><a href="#cb45-234" aria-hidden="true" tabindex="-1"></a>ICU_aug <span class="ot">&lt;-</span> ICU_aug <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">esresid =</span> <span class="fu">rstudent</span>(m2))</span>
-<span id="cb45-235"><a href="#cb45-235" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-236"><a href="#cb45-236" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU_aug,</span>
-<span id="cb45-237"><a href="#cb45-237" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> esresid)) <span class="sc">+</span></span>
-<span id="cb45-238"><a href="#cb45-238" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span>
-<span id="cb45-239"><a href="#cb45-239" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-240"><a href="#cb45-240" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU_aug,</span>
-<span id="cb45-241"><a href="#cb45-241" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(ICU_aug)), </span>
-<span id="cb45-242"><a href="#cb45-242" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> esresid)) <span class="sc">+</span></span>
-<span id="cb45-243"><a href="#cb45-243" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb45-244"><a href="#cb45-244" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">2</span>, </span>
-<span id="cb45-245"><a href="#cb45-245" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>,</span>
-<span id="cb45-246"><a href="#cb45-246" aria-hidden="true" tabindex="-1"></a>             <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
-<span id="cb45-247"><a href="#cb45-247" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="sc">-</span><span class="dv">2</span>,</span>
-<span id="cb45-248"><a href="#cb45-248" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>,</span>
-<span id="cb45-249"><a href="#cb45-249" aria-hidden="true" tabindex="-1"></a>             <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
-<span id="cb45-250"><a href="#cb45-250" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span><span class="fu">ifelse</span>((esresid <span class="sc">&gt;</span> <span class="dv">2</span>), </span>
-<span id="cb45-251"><a href="#cb45-251" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">as.character</span>(new_ID), </span>
-<span id="cb45-252"><a href="#cb45-252" aria-hidden="true" tabindex="-1"></a>                             <span class="st">&#39;&#39;</span>)),</span>
-<span id="cb45-253"><a href="#cb45-253" aria-hidden="true" tabindex="-1"></a>            <span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">nudge_x =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb45-254"><a href="#cb45-254" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span><span class="fu">ifelse</span>((esresid <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">2</span>), </span>
-<span id="cb45-255"><a href="#cb45-255" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">as.character</span>(new_ID), </span>
-<span id="cb45-256"><a href="#cb45-256" aria-hidden="true" tabindex="-1"></a>                             <span class="st">&#39;&#39;</span>)),</span>
-<span id="cb45-257"><a href="#cb45-257" aria-hidden="true" tabindex="-1"></a>            <span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">nudge_x =</span> <span class="dv">2</span>)</span>
-<span id="cb45-258"><a href="#cb45-258" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb45-259"><a href="#cb45-259" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-260"><a href="#cb45-260" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Influence</span>
-<span id="cb45-261"><a href="#cb45-261" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-264"><a href="#cb45-264" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb45-265"><a href="#cb45-265" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU_aug,</span>
-<span id="cb45-266"><a href="#cb45-266" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> .cooksd)) <span class="sc">+</span></span>
-<span id="cb45-267"><a href="#cb45-267" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span>
-<span id="cb45-268"><a href="#cb45-268" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-269"><a href="#cb45-269" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU_aug,</span>
-<span id="cb45-270"><a href="#cb45-270" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(ICU_aug)), </span>
-<span id="cb45-271"><a href="#cb45-271" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> .cooksd)) <span class="sc">+</span></span>
-<span id="cb45-272"><a href="#cb45-272" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb45-273"><a href="#cb45-273" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">1</span>, </span>
-<span id="cb45-274"><a href="#cb45-274" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&quot;red&quot;</span>,</span>
-<span id="cb45-275"><a href="#cb45-275" aria-hidden="true" tabindex="-1"></a>             <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
-<span id="cb45-276"><a href="#cb45-276" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span><span class="fu">ifelse</span>((.cooksd <span class="sc">&gt;</span> <span class="dv">1</span>), </span>
-<span id="cb45-277"><a href="#cb45-277" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">as.character</span>(new_ID), </span>
-<span id="cb45-278"><a href="#cb45-278" aria-hidden="true" tabindex="-1"></a>                             <span class="st">&#39;&#39;</span>)),</span>
-<span id="cb45-279"><a href="#cb45-279" aria-hidden="true" tabindex="-1"></a>            <span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">nudge_x =</span> <span class="dv">2</span>)</span>
-<span id="cb45-280"><a href="#cb45-280" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb45-281"><a href="#cb45-281" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-282"><a href="#cb45-282" aria-hidden="true" tabindex="-1"></a>------</span>
-<span id="cb45-283"><a href="#cb45-283" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-284"><a href="#cb45-284" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Repeat offenders</span>
-<span id="cb45-285"><a href="#cb45-285" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-286"><a href="#cb45-286" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Leverage</span>
-<span id="cb45-287"><a href="#cb45-287" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-290"><a href="#cb45-290" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb45-291"><a href="#cb45-291" aria-hidden="true" tabindex="-1"></a>ICU_aug <span class="sc">%&gt;%</span> <span class="fu">filter</span>(.hat <span class="sc">&gt;</span> <span class="dv">2</span><span class="sc">*</span>(<span class="dv">3</span><span class="sc">+</span><span class="dv">1</span>)<span class="sc">/</span><span class="dv">200</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(new_ID)</span>
-<span id="cb45-292"><a href="#cb45-292" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb45-293"><a href="#cb45-293" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-294"><a href="#cb45-294" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Discrepancy</span>
-<span id="cb45-295"><a href="#cb45-295" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-298"><a href="#cb45-298" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb45-299"><a href="#cb45-299" aria-hidden="true" tabindex="-1"></a>ICU_aug <span class="sc">%&gt;%</span> <span class="fu">filter</span>(esresid <span class="sc">&gt;</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(new_ID)</span>
-<span id="cb45-300"><a href="#cb45-300" aria-hidden="true" tabindex="-1"></a>ICU_aug <span class="sc">%&gt;%</span> <span class="fu">filter</span>(esresid <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">2</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(new_ID)</span>
-<span id="cb45-301"><a href="#cb45-301" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb45-302"><a href="#cb45-302" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-303"><a href="#cb45-303" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Influence</span>
-<span id="cb45-304"><a href="#cb45-304" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-307"><a href="#cb45-307" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb45-308"><a href="#cb45-308" aria-hidden="true" tabindex="-1"></a>ICU_aug <span class="sc">%&gt;%</span> <span class="fu">filter</span>(.cooksd <span class="sc">&gt;</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(new_ID)</span>
-<span id="cb45-309"><a href="#cb45-309" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb45-310"><a href="#cb45-310" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-311"><a href="#cb45-311" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>There were no observations that showed up as outliers across multiple metrics</span>
-<span id="cb45-312"><a href="#cb45-312" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>No observations had high influence, so no observations were outliers that were changing results</span>
-<span id="cb45-313"><a href="#cb45-313" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-314"><a href="#cb45-314" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Describe the overall findings for this model, including the analyses to probe the interaction. Be statistically accurate but avoid jargon and technical terms as much as you can. Be sure to use the names of the variables studied (i.e., pulse, age, emergency admission) rather than X and Y.</span>
-<span id="cb45-315"><a href="#cb45-315" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-316"><a href="#cb45-316" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>When there is a significant interaction, all lower order effects are **conditional**</span>
-<span id="cb45-317"><a href="#cb45-317" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>You can&#39;t talk about **just** the effect of age -- it&#39;s conditional on admission type</span>
-<span id="cb45-318"><a href="#cb45-318" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>You can&#39;t talk about **just** the effect of admission type -- it&#39;s conditional on age</span>
-<span id="cb45-319"><a href="#cb45-319" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>The **effect of age on pulse rate** depended on admission type</span>
-<span id="cb45-320"><a href="#cb45-320" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Older emergency admission patients had higher pulse rate than younger emergency admission patients, but the opposite was observed for non-emergency admission patients: Older non-emergency admission patients had lower pulse rate than younger non-emergency admission patients</span>
-<span id="cb45-321"><a href="#cb45-321" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>The **effect of admission type on pulse rate** depended on age</span>
-<span id="cb45-322"><a href="#cb45-322" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Emergency admission patients had higher pulse rate than non-emergency admission patients, but only for patients who were at least 58.6 year old</span>
+<div class="sourceCode" id="cb47" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;BTS 510 Lab 10&quot;</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="co">    embed-resources: true</span></span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a><span class="co">    self-contained-math: true</span></span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a><span class="co">    html-math-method: katex</span></span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-bg: true</span></span>
+<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-border-left: &quot;#31BAE9&quot;</span></span>
+<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-17"><a href="#cb47-17" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb47-18"><a href="#cb47-18" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb47-19"><a href="#cb47-19" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
+<span id="cb47-20"><a href="#cb47-20" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb47-21"><a href="#cb47-21" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Stat2Data)</span>
+<span id="cb47-22"><a href="#cb47-22" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">16</span>))</span>
+<span id="cb47-23"><a href="#cb47-23" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb47-24"><a href="#cb47-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-25"><a href="#cb47-25" aria-hidden="true" tabindex="-1"></a><span class="fu">## Learning objectives</span></span>
+<span id="cb47-26"><a href="#cb47-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-27"><a href="#cb47-27" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Run models** with interaction effects to assess conditional effects of predictors</span>
+<span id="cb47-28"><a href="#cb47-28" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Probe** interaction models to fully understand all effects</span>
+<span id="cb47-29"><a href="#cb47-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-30"><a href="#cb47-30" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data </span></span>
+<span id="cb47-31"><a href="#cb47-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-32"><a href="#cb47-32" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="in">`ICU`</span> data from the **Stat2Data** package: $n$ = 200</span>
+<span id="cb47-33"><a href="#cb47-33" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`ID`</span>: Patient ID code</span>
+<span id="cb47-34"><a href="#cb47-34" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`Survive`</span>: 1 = patient survived to discharge or 0 = patient died</span>
+<span id="cb47-35"><a href="#cb47-35" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`Age`</span>: Age (in years)</span>
+<span id="cb47-36"><a href="#cb47-36" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`AgeGroup`</span>: 1 = young (under 50), 2 = middle (50-69), 3 = old (70+)</span>
+<span id="cb47-37"><a href="#cb47-37" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`Sex`</span>: 1 = female or 0 = male</span>
+<span id="cb47-38"><a href="#cb47-38" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`Infection`</span>: 1 = infection suspected or 0 = no infection</span>
+<span id="cb47-39"><a href="#cb47-39" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`SysBP`</span>: Systolic blood pressure (in mm of Hg)</span>
+<span id="cb47-40"><a href="#cb47-40" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`Pulse`</span>: Heart rate (beats per minute)</span>
+<span id="cb47-41"><a href="#cb47-41" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`Emergency`</span>: 1 = emergency admission or 0 = elective admission</span>
+<span id="cb47-42"><a href="#cb47-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-43"><a href="#cb47-43" aria-hidden="true" tabindex="-1"></a><span class="fu">## Analysis</span></span>
+<span id="cb47-44"><a href="#cb47-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-45"><a href="#cb47-45" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Replicate and extend the analysis from the lecture</span>
+<span id="cb47-46"><a href="#cb47-46" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`Age`</span>, <span class="in">`Emergency`</span>, and their interaction predict <span class="in">`Pulse`</span></span>
+<span id="cb47-47"><a href="#cb47-47" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Be sure to mean center <span class="in">`Age`</span> for interpretability.</span>
+<span id="cb47-48"><a href="#cb47-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-49"><a href="#cb47-49" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tasks</span></span>
+<span id="cb47-50"><a href="#cb47-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-51"><a href="#cb47-51" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Model 1: <span class="in">`Pulse ~ Age + Emergency`</span></span>
+<span id="cb47-52"><a href="#cb47-52" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Model 2: <span class="in">`Pulse ~ Age + Emergency + Age*Emergency`</span></span>
+<span id="cb47-53"><a href="#cb47-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-56"><a href="#cb47-56" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb47-57"><a href="#cb47-57" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Stat2Data)</span>
+<span id="cb47-58"><a href="#cb47-58" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(ICU)</span>
+<span id="cb47-59"><a href="#cb47-59" aria-hidden="true" tabindex="-1"></a>ICU<span class="sc">$</span>AgeC <span class="ot">&lt;-</span> ICU<span class="sc">$</span>Age <span class="sc">-</span> <span class="fu">mean</span>(ICU<span class="sc">$</span>Age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb47-60"><a href="#cb47-60" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> ICU, Pulse <span class="sc">~</span> AgeC <span class="sc">+</span> Emergency)</span>
+<span id="cb47-61"><a href="#cb47-61" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> ICU, Pulse <span class="sc">~</span> AgeC <span class="sc">+</span> Emergency <span class="sc">+</span> AgeC<span class="sc">*</span>Emergency)</span>
+<span id="cb47-62"><a href="#cb47-62" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb47-63"><a href="#cb47-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-64"><a href="#cb47-64" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Conduct a likelihood ratio test to compare the models. Report the results. Which model is preferred?</span>
+<span id="cb47-65"><a href="#cb47-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-68"><a href="#cb47-68" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb47-69"><a href="#cb47-69" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m1, m2, <span class="at">test =</span> <span class="st">&quot;LRT&quot;</span>)</span>
+<span id="cb47-70"><a href="#cb47-70" aria-hidden="true" tabindex="-1"></a><span class="fu">logLik</span>(m1)</span>
+<span id="cb47-71"><a href="#cb47-71" aria-hidden="true" tabindex="-1"></a><span class="fu">logLik</span>(m2)</span>
+<span id="cb47-72"><a href="#cb47-72" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="dv">2</span><span class="sc">*</span>(<span class="fu">logLik</span>(m1) <span class="sc">-</span> <span class="fu">logLik</span>(m2))</span>
+<span id="cb47-73"><a href="#cb47-73" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb47-74"><a href="#cb47-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-75"><a href="#cb47-75" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>A likelihood ratio tests shows that model 2 with both predictors and their interaction was a better model than model 1 with only both predictors, $\chi^2(1) = 8.98, p&lt;.01$</span>
+<span id="cb47-76"><a href="#cb47-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-77"><a href="#cb47-77" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Plot the simple slopes with the data points. What is the general pattern of results? </span>
+<span id="cb47-78"><a href="#cb47-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-79"><a href="#cb47-79" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Just using **ggplot**</span>
+<span id="cb47-80"><a href="#cb47-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-83"><a href="#cb47-83" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb47-84"><a href="#cb47-84" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU,</span>
+<span id="cb47-85"><a href="#cb47-85" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> AgeC, </span>
+<span id="cb47-86"><a href="#cb47-86" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> Pulse, </span>
+<span id="cb47-87"><a href="#cb47-87" aria-hidden="true" tabindex="-1"></a>           <span class="at">group =</span> Emergency)) <span class="sc">+</span></span>
+<span id="cb47-88"><a href="#cb47-88" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">as.factor</span>(Emergency)), </span>
+<span id="cb47-89"><a href="#cb47-89" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha =</span> <span class="fl">0.4</span>, </span>
+<span id="cb47-90"><a href="#cb47-90" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb47-91"><a href="#cb47-91" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, </span>
+<span id="cb47-92"><a href="#cb47-92" aria-hidden="true" tabindex="-1"></a>              <span class="at">se =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb47-93"><a href="#cb47-93" aria-hidden="true" tabindex="-1"></a>              <span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">as.factor</span>(Emergency))) <span class="sc">+</span></span>
+<span id="cb47-94"><a href="#cb47-94" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">&quot;Emergency&quot;</span>)</span>
+<span id="cb47-95"><a href="#cb47-95" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb47-96"><a href="#cb47-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-97"><a href="#cb47-97" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**interactions** plot</span>
+<span id="cb47-98"><a href="#cb47-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-101"><a href="#cb47-101" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb47-102"><a href="#cb47-102" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(interactions)</span>
+<span id="cb47-103"><a href="#cb47-103" aria-hidden="true" tabindex="-1"></a><span class="fu">interact_plot</span>(m2, </span>
+<span id="cb47-104"><a href="#cb47-104" aria-hidden="true" tabindex="-1"></a>              <span class="at">pred =</span> AgeC, </span>
+<span id="cb47-105"><a href="#cb47-105" aria-hidden="true" tabindex="-1"></a>              <span class="at">modx =</span> Emergency, </span>
+<span id="cb47-106"><a href="#cb47-106" aria-hidden="true" tabindex="-1"></a>              <span class="at">plot.points =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb47-107"><a href="#cb47-107" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb47-108"><a href="#cb47-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-109"><a href="#cb47-109" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Broadly: There appears to be a **positive** relationship between age and pulse rate for **emergency** admissions (i.e., older people have higher pulse rates) and a **negative** relationship between age and pulse for **non-emergency** admissions (i.e., older people have lower pulse rates).</span>
+<span id="cb47-110"><a href="#cb47-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-111"><a href="#cb47-111" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Conduct simple slopes analysis and the Johnson-Neyman procedure. Report the findings, including test statistics, degrees of freedom, and $p$-values.</span>
+<span id="cb47-112"><a href="#cb47-112" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-113"><a href="#cb47-113" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Simple slopes analysis</span>
+<span id="cb47-114"><a href="#cb47-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-117"><a href="#cb47-117" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb47-118"><a href="#cb47-118" aria-hidden="true" tabindex="-1"></a><span class="fu">sim_slopes</span>(m2, </span>
+<span id="cb47-119"><a href="#cb47-119" aria-hidden="true" tabindex="-1"></a>           <span class="at">pred =</span> AgeC, </span>
+<span id="cb47-120"><a href="#cb47-120" aria-hidden="true" tabindex="-1"></a>           <span class="at">modx =</span> Emergency, </span>
+<span id="cb47-121"><a href="#cb47-121" aria-hidden="true" tabindex="-1"></a>           <span class="at">johnson_neyman =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb47-122"><a href="#cb47-122" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb47-123"><a href="#cb47-123" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-124"><a href="#cb47-124" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>For non-emergency admission patients (<span class="in">`Emergency`</span> = 0), the slope for age predicting pulse rate is **significant** and **negative**: $b = -0.54, t(196) = -2.33, p&lt;.05$</span>
+<span id="cb47-125"><a href="#cb47-125" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>For emergency admission patients (<span class="in">`Emergency`</span> = 1), the slope for age predicting pulse rate is **significant** and **positive**: $b = 0.22, t(196) = 2.16, p&lt;.05$</span>
+<span id="cb47-126"><a href="#cb47-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-127"><a href="#cb47-127" aria-hidden="true" tabindex="-1"></a>------</span>
+<span id="cb47-128"><a href="#cb47-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-129"><a href="#cb47-129" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Johnson-Neyman procedure</span>
+<span id="cb47-130"><a href="#cb47-130" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Probably not the direction you want to talk about effects</span>
+<span id="cb47-131"><a href="#cb47-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-134"><a href="#cb47-134" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb47-135"><a href="#cb47-135" aria-hidden="true" tabindex="-1"></a><span class="fu">johnson_neyman</span>(m2, </span>
+<span id="cb47-136"><a href="#cb47-136" aria-hidden="true" tabindex="-1"></a>               <span class="at">pred =</span> AgeC, </span>
+<span id="cb47-137"><a href="#cb47-137" aria-hidden="true" tabindex="-1"></a>               <span class="at">modx =</span> Emergency, </span>
+<span id="cb47-138"><a href="#cb47-138" aria-hidden="true" tabindex="-1"></a>               <span class="at">alpha =</span> .<span class="dv">05</span>)</span>
+<span id="cb47-139"><a href="#cb47-139" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb47-140"><a href="#cb47-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-141"><a href="#cb47-141" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>The slope for age predicting pulse rate is **significant** and **positive** for emergency admission patients (<span class="in">`Emergency`</span> = 1)</span>
+<span id="cb47-142"><a href="#cb47-142" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Blue section in upper right of plot</span>
+<span id="cb47-143"><a href="#cb47-143" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>The slope for age predicting pulse rate is **significant** and **negative** for non-emergency admission patients (<span class="in">`Emergency`</span> = 0)</span>
+<span id="cb47-144"><a href="#cb47-144" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Blue section in lower left of plot</span>
+<span id="cb47-145"><a href="#cb47-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-146"><a href="#cb47-146" aria-hidden="true" tabindex="-1"></a>--------</span>
+<span id="cb47-147"><a href="#cb47-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-148"><a href="#cb47-148" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Johnson-Neyman procedure </span>
+<span id="cb47-149"><a href="#cb47-149" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Usually talk about effects in this direction</span>
+<span id="cb47-150"><a href="#cb47-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-153"><a href="#cb47-153" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb47-154"><a href="#cb47-154" aria-hidden="true" tabindex="-1"></a><span class="fu">johnson_neyman</span>(m2, </span>
+<span id="cb47-155"><a href="#cb47-155" aria-hidden="true" tabindex="-1"></a>               <span class="at">pred =</span> Emergency, </span>
+<span id="cb47-156"><a href="#cb47-156" aria-hidden="true" tabindex="-1"></a>               <span class="at">modx =</span> AgeC, </span>
+<span id="cb47-157"><a href="#cb47-157" aria-hidden="true" tabindex="-1"></a>               <span class="at">alpha =</span> .<span class="dv">05</span>)</span>
+<span id="cb47-158"><a href="#cb47-158" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb47-159"><a href="#cb47-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-160"><a href="#cb47-160" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>When age is lower than 41.55 years **below** the mean or higher than 1.06 years **above** the mean, there are significant differences between the emergency and non-emergency patients on pulse rate </span>
+<span id="cb47-161"><a href="#cb47-161" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Note that there are no observations for the lower values (i.e., thick black bar showing observations doesn&#39;t extend into the blue section), so only interpretable differences are for older patients (see below)</span>
+<span id="cb47-162"><a href="#cb47-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-163"><a href="#cb47-163" aria-hidden="true" tabindex="-1"></a>------</span>
+<span id="cb47-164"><a href="#cb47-164" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-165"><a href="#cb47-165" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Is the slope with respect to age significant for each group?</span>
+<span id="cb47-166"><a href="#cb47-166" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Yes, the slope is **significantly positive** for emergency admissions (`Emergency` = 1) and **significantly negative** for non-emergency admissions (<span class="in">`Emergency`</span> = 0)</span>
+<span id="cb47-167"><a href="#cb47-167" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Pulse increases with age for emergency patients and decreases with age for non-emergency patients</span>
+<span id="cb47-168"><a href="#cb47-168" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>For which values of age are the emergency groups different in pulse rate?</span>
+<span id="cb47-169"><a href="#cb47-169" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>&quot;When AgeC is OUTSIDE the interval <span class="co">[</span><span class="ot">-44.31, 1.06</span><span class="co">]</span>, the slope of Emergency is</span>
+<span id="cb47-170"><a href="#cb47-170" aria-hidden="true" tabindex="-1"></a>p &lt; .05.&quot;</span>
+<span id="cb47-171"><a href="#cb47-171" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>For people **younger than 44.31 years below the mean of age** and people **older than 1.06 years above the mean of age**, <span class="in">`Pulse`</span> differs between emergency and non-emergency admissions</span>
+<span id="cb47-172"><a href="#cb47-172" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Mean of age = <span class="in">`r round(mean(ICU$Age), 3)`</span></span>
+<span id="cb47-173"><a href="#cb47-173" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Below <span class="in">`r round(mean(ICU$Age) - 44.31, 3)`</span></span>
+<span id="cb47-174"><a href="#cb47-174" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Above <span class="in">`r round(mean(ICU$Age) + 1.06, 3)`</span></span>
+<span id="cb47-175"><a href="#cb47-175" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Patients range in age from 18 to 85</span>
+<span id="cb47-176"><a href="#cb47-176" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>For people older than <span class="in">`r round(mean(ICU$Age) + 1.06, 3)`</span> years, emergency admission patients have higher pulse rates than non-emergency admission patients</span>
+<span id="cb47-177"><a href="#cb47-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-178"><a href="#cb47-178" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Conduct outlier analysis for the model. Are there observations with extreme values on the predictors or predicted values? Are there observations that change the findings? Briefly report your findings.</span>
+<span id="cb47-179"><a href="#cb47-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-180"><a href="#cb47-180" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>I&#39;m also going to look at residuals assumptions to compare to the lecture model with no interactions -- where the residuals showed that the model wasn&#39;t quite right</span>
+<span id="cb47-181"><a href="#cb47-181" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Looking better here</span>
+<span id="cb47-182"><a href="#cb47-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-185"><a href="#cb47-185" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb47-186"><a href="#cb47-186" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span>
+<span id="cb47-187"><a href="#cb47-187" aria-hidden="true" tabindex="-1"></a>ICU_aug <span class="ot">&lt;-</span> <span class="fu">augment</span>(m2)</span>
+<span id="cb47-188"><a href="#cb47-188" aria-hidden="true" tabindex="-1"></a>ICU_aug <span class="ot">&lt;-</span> ICU_aug <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">new_ID =</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(ICU_aug))</span>
+<span id="cb47-189"><a href="#cb47-189" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-190"><a href="#cb47-190" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU_aug,</span>
+<span id="cb47-191"><a href="#cb47-191" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> .fitted, </span>
+<span id="cb47-192"><a href="#cb47-192" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> .std.resid)) <span class="sc">+</span></span>
+<span id="cb47-193"><a href="#cb47-193" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb47-194"><a href="#cb47-194" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span>
+<span id="cb47-195"><a href="#cb47-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-196"><a href="#cb47-196" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU_aug,</span>
+<span id="cb47-197"><a href="#cb47-197" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> .fitted, </span>
+<span id="cb47-198"><a href="#cb47-198" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> .std.resid, </span>
+<span id="cb47-199"><a href="#cb47-199" aria-hidden="true" tabindex="-1"></a>           <span class="at">color =</span> <span class="fu">as.factor</span>(Emergency))) <span class="sc">+</span></span>
+<span id="cb47-200"><a href="#cb47-200" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb47-201"><a href="#cb47-201" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>() <span class="sc">+</span></span>
+<span id="cb47-202"><a href="#cb47-202" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">&quot;Emergency&quot;</span>)</span>
+<span id="cb47-203"><a href="#cb47-203" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb47-204"><a href="#cb47-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-205"><a href="#cb47-205" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Leverage</span>
+<span id="cb47-206"><a href="#cb47-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-209"><a href="#cb47-209" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb47-210"><a href="#cb47-210" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU_aug,</span>
+<span id="cb47-211"><a href="#cb47-211" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> .hat)) <span class="sc">+</span></span>
+<span id="cb47-212"><a href="#cb47-212" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span>
+<span id="cb47-213"><a href="#cb47-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-214"><a href="#cb47-214" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU_aug,</span>
+<span id="cb47-215"><a href="#cb47-215" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(ICU_aug)), </span>
+<span id="cb47-216"><a href="#cb47-216" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> .hat)) <span class="sc">+</span></span>
+<span id="cb47-217"><a href="#cb47-217" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb47-218"><a href="#cb47-218" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">3</span><span class="sc">*</span>(<span class="dv">3</span><span class="sc">+</span><span class="dv">1</span>)<span class="sc">/</span><span class="dv">200</span>, </span>
+<span id="cb47-219"><a href="#cb47-219" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&quot;red&quot;</span>,</span>
+<span id="cb47-220"><a href="#cb47-220" aria-hidden="true" tabindex="-1"></a>             <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
+<span id="cb47-221"><a href="#cb47-221" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">2</span><span class="sc">*</span>(<span class="dv">3</span><span class="sc">+</span><span class="dv">1</span>)<span class="sc">/</span><span class="dv">200</span>,</span>
+<span id="cb47-222"><a href="#cb47-222" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb47-223"><a href="#cb47-223" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span><span class="fu">ifelse</span>((.hat <span class="sc">&gt;</span> <span class="dv">2</span><span class="sc">*</span>(<span class="dv">3</span><span class="sc">+</span><span class="dv">1</span>)<span class="sc">/</span><span class="dv">200</span>), </span>
+<span id="cb47-224"><a href="#cb47-224" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">as.character</span>(new_ID), </span>
+<span id="cb47-225"><a href="#cb47-225" aria-hidden="true" tabindex="-1"></a>                             <span class="st">&#39;&#39;</span>)),</span>
+<span id="cb47-226"><a href="#cb47-226" aria-hidden="true" tabindex="-1"></a>            <span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">nudge_x =</span> <span class="dv">2</span>)</span>
+<span id="cb47-227"><a href="#cb47-227" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb47-228"><a href="#cb47-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-229"><a href="#cb47-229" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Discrepancy</span>
+<span id="cb47-230"><a href="#cb47-230" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-233"><a href="#cb47-233" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb47-234"><a href="#cb47-234" aria-hidden="true" tabindex="-1"></a>ICU_aug <span class="ot">&lt;-</span> ICU_aug <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">esresid =</span> <span class="fu">rstudent</span>(m2))</span>
+<span id="cb47-235"><a href="#cb47-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-236"><a href="#cb47-236" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU_aug,</span>
+<span id="cb47-237"><a href="#cb47-237" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> esresid)) <span class="sc">+</span></span>
+<span id="cb47-238"><a href="#cb47-238" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span>
+<span id="cb47-239"><a href="#cb47-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-240"><a href="#cb47-240" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU_aug,</span>
+<span id="cb47-241"><a href="#cb47-241" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(ICU_aug)), </span>
+<span id="cb47-242"><a href="#cb47-242" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> esresid)) <span class="sc">+</span></span>
+<span id="cb47-243"><a href="#cb47-243" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb47-244"><a href="#cb47-244" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">2</span>, </span>
+<span id="cb47-245"><a href="#cb47-245" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>,</span>
+<span id="cb47-246"><a href="#cb47-246" aria-hidden="true" tabindex="-1"></a>             <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
+<span id="cb47-247"><a href="#cb47-247" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="sc">-</span><span class="dv">2</span>,</span>
+<span id="cb47-248"><a href="#cb47-248" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>,</span>
+<span id="cb47-249"><a href="#cb47-249" aria-hidden="true" tabindex="-1"></a>             <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
+<span id="cb47-250"><a href="#cb47-250" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span><span class="fu">ifelse</span>((esresid <span class="sc">&gt;</span> <span class="dv">2</span>), </span>
+<span id="cb47-251"><a href="#cb47-251" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">as.character</span>(new_ID), </span>
+<span id="cb47-252"><a href="#cb47-252" aria-hidden="true" tabindex="-1"></a>                             <span class="st">&#39;&#39;</span>)),</span>
+<span id="cb47-253"><a href="#cb47-253" aria-hidden="true" tabindex="-1"></a>            <span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">nudge_x =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb47-254"><a href="#cb47-254" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span><span class="fu">ifelse</span>((esresid <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">2</span>), </span>
+<span id="cb47-255"><a href="#cb47-255" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">as.character</span>(new_ID), </span>
+<span id="cb47-256"><a href="#cb47-256" aria-hidden="true" tabindex="-1"></a>                             <span class="st">&#39;&#39;</span>)),</span>
+<span id="cb47-257"><a href="#cb47-257" aria-hidden="true" tabindex="-1"></a>            <span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">nudge_x =</span> <span class="dv">2</span>)</span>
+<span id="cb47-258"><a href="#cb47-258" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb47-259"><a href="#cb47-259" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-260"><a href="#cb47-260" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Influence</span>
+<span id="cb47-261"><a href="#cb47-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-264"><a href="#cb47-264" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb47-265"><a href="#cb47-265" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU_aug,</span>
+<span id="cb47-266"><a href="#cb47-266" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> .cooksd)) <span class="sc">+</span></span>
+<span id="cb47-267"><a href="#cb47-267" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>()</span>
+<span id="cb47-268"><a href="#cb47-268" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-269"><a href="#cb47-269" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU_aug,</span>
+<span id="cb47-270"><a href="#cb47-270" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(ICU_aug)), </span>
+<span id="cb47-271"><a href="#cb47-271" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> .cooksd)) <span class="sc">+</span></span>
+<span id="cb47-272"><a href="#cb47-272" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb47-273"><a href="#cb47-273" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">1</span>, </span>
+<span id="cb47-274"><a href="#cb47-274" aria-hidden="true" tabindex="-1"></a>             <span class="at">color =</span> <span class="st">&quot;red&quot;</span>,</span>
+<span id="cb47-275"><a href="#cb47-275" aria-hidden="true" tabindex="-1"></a>             <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>) <span class="sc">+</span></span>
+<span id="cb47-276"><a href="#cb47-276" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label=</span><span class="fu">ifelse</span>((.cooksd <span class="sc">&gt;</span> <span class="dv">1</span>), </span>
+<span id="cb47-277"><a href="#cb47-277" aria-hidden="true" tabindex="-1"></a>                             <span class="fu">as.character</span>(new_ID), </span>
+<span id="cb47-278"><a href="#cb47-278" aria-hidden="true" tabindex="-1"></a>                             <span class="st">&#39;&#39;</span>)),</span>
+<span id="cb47-279"><a href="#cb47-279" aria-hidden="true" tabindex="-1"></a>            <span class="at">hjust =</span> <span class="dv">0</span>, <span class="at">nudge_x =</span> <span class="dv">2</span>)</span>
+<span id="cb47-280"><a href="#cb47-280" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb47-281"><a href="#cb47-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-282"><a href="#cb47-282" aria-hidden="true" tabindex="-1"></a>------</span>
+<span id="cb47-283"><a href="#cb47-283" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-284"><a href="#cb47-284" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Repeat offenders</span>
+<span id="cb47-285"><a href="#cb47-285" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-286"><a href="#cb47-286" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Leverage</span>
+<span id="cb47-287"><a href="#cb47-287" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-290"><a href="#cb47-290" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb47-291"><a href="#cb47-291" aria-hidden="true" tabindex="-1"></a>ICU_aug <span class="sc">%&gt;%</span> <span class="fu">filter</span>(.hat <span class="sc">&gt;</span> <span class="dv">2</span><span class="sc">*</span>(<span class="dv">3</span><span class="sc">+</span><span class="dv">1</span>)<span class="sc">/</span><span class="dv">200</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(new_ID)</span>
+<span id="cb47-292"><a href="#cb47-292" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb47-293"><a href="#cb47-293" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-294"><a href="#cb47-294" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Discrepancy</span>
+<span id="cb47-295"><a href="#cb47-295" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-298"><a href="#cb47-298" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb47-299"><a href="#cb47-299" aria-hidden="true" tabindex="-1"></a>ICU_aug <span class="sc">%&gt;%</span> <span class="fu">filter</span>(esresid <span class="sc">&gt;</span> <span class="dv">2</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(new_ID)</span>
+<span id="cb47-300"><a href="#cb47-300" aria-hidden="true" tabindex="-1"></a>ICU_aug <span class="sc">%&gt;%</span> <span class="fu">filter</span>(esresid <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">2</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(new_ID)</span>
+<span id="cb47-301"><a href="#cb47-301" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb47-302"><a href="#cb47-302" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-303"><a href="#cb47-303" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Influence</span>
+<span id="cb47-304"><a href="#cb47-304" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-307"><a href="#cb47-307" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb47-308"><a href="#cb47-308" aria-hidden="true" tabindex="-1"></a>ICU_aug <span class="sc">%&gt;%</span> <span class="fu">filter</span>(.cooksd <span class="sc">&gt;</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span> <span class="fu">select</span>(new_ID)</span>
+<span id="cb47-309"><a href="#cb47-309" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb47-310"><a href="#cb47-310" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-311"><a href="#cb47-311" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>There were no observations that showed up as outliers across multiple metrics</span>
+<span id="cb47-312"><a href="#cb47-312" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>No observations had high influence, so no observations were outliers that were changing results</span>
+<span id="cb47-313"><a href="#cb47-313" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-314"><a href="#cb47-314" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Describe the overall findings for this model, including the analyses to probe the interaction. Be statistically accurate but avoid jargon and technical terms as much as you can. Be sure to use the names of the variables studied (i.e., pulse, age, emergency admission) rather than X and Y.</span>
+<span id="cb47-315"><a href="#cb47-315" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-316"><a href="#cb47-316" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>When there is a significant interaction, all lower order effects are **conditional**</span>
+<span id="cb47-317"><a href="#cb47-317" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>You can&#39;t talk about **just** the effect of age -- it&#39;s conditional on admission type</span>
+<span id="cb47-318"><a href="#cb47-318" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>You can&#39;t talk about **just** the effect of admission type -- it&#39;s conditional on age</span>
+<span id="cb47-319"><a href="#cb47-319" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>The **effect of age on pulse rate** depended on admission type</span>
+<span id="cb47-320"><a href="#cb47-320" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Older emergency admission patients had higher pulse rate than younger emergency admission patients, but the opposite was observed for non-emergency admission patients: Older non-emergency admission patients had lower pulse rate than younger non-emergency admission patients</span>
+<span id="cb47-321"><a href="#cb47-321" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>The **effect of admission type on pulse rate** depended on age</span>
+<span id="cb47-322"><a href="#cb47-322" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Emergency admission patients had higher pulse rate than non-emergency admission patients, but only for patients who were at least 58.6 year old</span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

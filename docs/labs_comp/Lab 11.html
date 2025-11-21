@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>BTS 510 Lab 9 – BTS 510 Fall 2025</title>
+<title>BTS 510 Lab 11 – BTS 510 Fall 2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -4800,7 +4800,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">BTS 510 Lab 9</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">BTS 510 Lab 11</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -4873,7 +4873,11 @@ window.Quarto = {
   <ul>
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="header-section-number">1</span> Learning objectives</a></li>
   <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data"><span class="header-section-number">2</span> Data</a></li>
-  <li><a href="#tasks" id="toc-tasks" class="nav-link" data-scroll-target="#tasks"><span class="header-section-number">3</span> Tasks</a></li>
+  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis"><span class="header-section-number">3</span> Analysis</a></li>
+  <li><a href="#pseudo-r2" id="toc-pseudo-r2" class="nav-link" data-scroll-target="#pseudo-r2"><span class="header-section-number">4</span> Pseudo <span class="math inline">R^2</span></a></li>
+  <li><a href="#confidence-intervals" id="toc-confidence-intervals" class="nav-link" data-scroll-target="#confidence-intervals"><span class="header-section-number">5</span> Confidence intervals</a></li>
+  <li><a href="#predicted-values" id="toc-predicted-values" class="nav-link" data-scroll-target="#predicted-values"><span class="header-section-number">6</span> Predicted values</a></li>
+  <li><a href="#tasks" id="toc-tasks" class="nav-link" data-scroll-target="#tasks"><span class="header-section-number">7</span> Tasks</a></li>
   </ul>
 </nav>
     </div>
@@ -4882,7 +4886,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">BTS 510 Lab 9</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title">BTS 510 Lab 11</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -4932,188 +4936,416 @@ window.Quarto = {
 <section id="learning-objectives" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">1</span> Learning objectives</h2>
 <ul>
-<li><strong>Describe</strong> <em>maximum likelihood estimation</em> for linear regression</li>
-<li><strong>Describe</strong> <em>hypothesis testing</em> for linear regression coefficients, including the sampling distribution used and degrees of freedom</li>
+<li><strong>Conduct</strong> logistic regression for <em>binary outcomes</em></li>
+<li><strong>Interpret</strong> results in terms of <em>probability</em>, <em>odds</em>, and <em>log-odds</em></li>
 </ul>
 </section>
 <section id="data" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="data"><span class="header-section-number">2</span> Data</h2>
 <ul>
-<li><code>FirstYearGPA</code> data from the <strong>Stat2Data</strong> package: <span class="math inline">n</span> = 219 subjects
+<li><code>ICU</code> data from the <strong>Stat2Data</strong> package: <span class="math inline">n</span> = 200
 <ul>
-<li><code>GPA</code>: First-year college GPA on a 0.0 to 4.0 scale</li>
-<li><code>HSGPA</code>: High school GPA on a 0.0 to 4.0 scale</li>
-<li><code>SATV</code>: Verbal/critical reading SAT score</li>
-<li><code>SATM</code>: Math SAT score</li>
-<li><code>Male</code>: 1= male, 0= female</li>
-<li><code>HU</code>: Number of credit hours earned in humanities courses in high school</li>
-<li><code>SS</code>: Number of credit hours earned in social science courses in high school</li>
-<li><code>FirstGen</code>: 1= student is the first in her or his family to attend college, 0=otherwise</li>
-<li><code>White</code>: 1= white students, 0= others</li>
-<li><code>CollegeBound</code>: 1=attended a high school where &gt;=50% students intended to go on to college, 0=otherwise</li>
+<li><code>ID</code>: Patient ID code</li>
+<li><code>Survive</code>: 1 = patient survived to discharge or 0 = patient died</li>
+<li><code>Age</code>: Age (in years)</li>
+<li><code>AgeGroup</code>: 1 = young (under 50), 2 = middle (50-69), 3 = old (70+)</li>
+<li><code>Sex</code>: 1 = female or 0 = male</li>
+<li><code>Infection</code>: 1 = infection suspected or 0 = no infection</li>
+<li><code>SysBP</code>: Systolic blood pressure (in mm of Hg)</li>
+<li><code>Pulse</code>: Heart rate (beats per minute)</li>
+<li><code>Emergency</code>: 1 = emergency admission or 0 = elective admission</li>
 </ul></li>
 </ul>
 </section>
-<section id="tasks" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="tasks"><span class="header-section-number">3</span> Tasks</h2>
-<p>Question 1: How do demographic variables (<code>Male</code>, <code>FirstGen</code> and <code>White</code>) predict first year college GPA (<code>GPA</code>)?</p>
-<p>Question 2: How does HS GPA (<code>HSGPA</code>) predict first year college GPA (<code>GPA</code>) over demographic variables (<code>Male</code>, <code>FirstGen</code> and <code>White</code>)?</p>
-<ol type="1">
-<li>Run the two models above.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Stat2Data)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(FirstYearGPA)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> FirstYearGPA, GPA <span class="sc">~</span> Male <span class="sc">+</span> FirstGen <span class="sc">+</span> White)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = GPA ~ Male + FirstGen + White, data = FirstYearGPA)
-
-Residuals:
-    Min      1Q  Median      3Q     Max 
--1.0622 -0.3192  0.0100  0.3658  1.1074 
-
-Coefficients:
-            Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  2.86850    0.07516  38.168  &lt; 2e-16 ***
-Male         0.02414    0.06091   0.396 0.692303    
-FirstGen    -0.13630    0.09807  -1.390 0.166045    
-White        0.29366    0.07657   3.835 0.000165 ***
----
-Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-
-Residual standard error: 0.4475 on 215 degrees of freedom
-Multiple R-squared:  0.08856,   Adjusted R-squared:  0.07584 
-F-statistic: 6.963 on 3 and 215 DF,  p-value: 0.0001711</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> FirstYearGPA, GPA <span class="sc">~</span> Male <span class="sc">+</span> FirstGen <span class="sc">+</span> White <span class="sc">+</span> HSGPA)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = GPA ~ Male + FirstGen + White + HSGPA, data = FirstYearGPA)
-
-Residuals:
-     Min       1Q   Median       3Q      Max 
--1.05776 -0.25735  0.04178  0.28247  0.74665 
-
-Coefficients:
-            Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  0.95274    0.25597   3.722 0.000253 ***
-Male         0.06194    0.05416   1.144 0.254080    
-FirstGen    -0.18508    0.08709  -2.125 0.034719 *  
-White        0.25738    0.06798   3.786 0.000199 ***
-HSGPA        0.55967    0.07220   7.751 3.63e-13 ***
----
-Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-
-Residual standard error: 0.3963 on 214 degrees of freedom
-Multiple R-squared:  0.2884,    Adjusted R-squared:  0.2751 
-F-statistic: 21.68 on 4 and 214 DF,  p-value: 4.96e-15</code></pre>
-</div>
-</div>
-<ol start="2" type="1">
-<li>What are the log-likelihoods of each model? What can you say about the models based on those values? What <em>can’t</em> you say?</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">logLik</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>&#39;log Lik.&#39; -132.6243 (df=5)</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">logLik</span>(m2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>&#39;log Lik.&#39; -105.5292 (df=6)</code></pre>
-</div>
-</div>
+<section id="analysis" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="analysis"><span class="header-section-number">3</span> Analysis</h2>
 <ul>
-<li>We <strong>can say</strong> that model 2 has a (qualitatively) higher (closer to 0) log-likelihood, which is better
+<li>Replicate and extend the analysis from the lecture
 <ul>
-<li>Without the LRT, we can’t say that one is quantitatively higher</li>
-<li>(We’ll do that next)</li>
-</ul></li>
-<li>We <strong>can’t say</strong> that either model is <strong>good</strong> because LL is <em>relative</em>
-<ul>
-<li>You can only use it to <em>compare</em> two models</li>
+<li><code>Age</code> and <code>Emergency</code> predict <code>Survive</code></li>
+<li>Be sure to mean center <code>Age</code> for interpretability</li>
 </ul></li>
 </ul>
-<ol start="3" type="1">
-<li>Compare the two models using a likelihood ratio test (LRT). Report the results of the test. What can you say about the models based on the test?</li>
+</section>
+<section id="pseudo-r2" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="pseudo-r2"><span class="header-section-number">4</span> Pseudo <span class="math inline">R^2</span></h2>
+<ul>
+<li>For linear regression, <span class="math inline">R^2_{multiple}</span> is calculated from the <strong>sums of squares</strong> from ordinary least squares estimation</li>
+<li>Logistic regression is estimated via maximum likelihood
+<ul>
+<li>There are no sums of squares</li>
+<li>There is, however, <strong>deviance</strong></li>
+</ul></li>
+<li>Deviance is a function of the log-likelihood
+<ul>
+<li>Deviance for a model is how far the model is from a <em>theoretical</em> <strong>perfect model</strong> where every observation is perfectly predicted</li>
+<li><strong>Relative measure</strong> so can only <strong>compare</strong> to another model</li>
+<li>Big deviance (far from perfect) is worse than small deviance (closer to perfect)</li>
+</ul></li>
+<li>Pseudo <span class="math inline">R^2</span>
+<ul>
+<li>Compare your model to a model with <strong>no predictors</strong> (only intercept)</li>
+<li>How much closer is this model to the perfect model than the intercept only model?</li>
+<li>Theoretically ranges from 0 to 1 (but not in practice)</li>
+<li><span class="math inline">R^2_{deviance} = 1 - \frac{deviance_{M}}{deviance_{intercept\ only}}</span></li>
+<li>Deviance for your model is “Residual deviance” from output</li>
+<li>Deviance for intercept model is “Null deviance” from output</li>
+</ul></li>
+</ul>
+</section>
+<section id="confidence-intervals" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="confidence-intervals"><span class="header-section-number">5</span> Confidence intervals</h2>
+<ul>
+<li>Calculate confidence intervals for all coefficients in a model using <code>confint()</code>
+<ul>
+<li>For example: <code>confint(m1)</code> to get confidence intervals for model <code>m1</code></li>
+<li>If the CI doesn’t include <strong>zero</strong>, the coefficient is significant</li>
+<li>Default is 99% confidence interval
+<ul>
+<li>Use <code>level</code> argument to change</li>
+<li>e.g., <code>confint(m1, level = 0.99)</code> produces 99% CIs</li>
+</ul></li>
+</ul></li>
+<li>To convert from default logit metric to odds metric: Exponentiate
+<ul>
+<li>Logit metric: <span class="math inline">b_1</span></li>
+<li>Convert to <strong>odds ratio</strong>: <span class="math inline">e^{b_1}</span></li>
+<li>Do the same thing to the confidence intervals
+<ul>
+<li><code>exp(confint(m1))</code> produces the odds metric CIs</li>
+<li>Compare to “no effect” value of <strong>one</strong> for odds</li>
+<li>If the CI doesn’t include <strong>one</strong>, the coefficient is significant</li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="predicted-values" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="predicted-values"><span class="header-section-number">6</span> Predicted values</h2>
+<ul>
+<li>Two main options
+<ul>
+<li>Use R like a calculator to calculate predicted values using equations
+<ul>
+<li>You can be fancy and grab the coefficients directly from the output</li>
+<li>e.g., using <code>coef(m1)[1]</code> to get the first coefficient, etc.</li>
+<li>Or just type the numbers in</li>
+</ul></li>
+<li>Use <code>predict()</code> to calculate predicted values
+<ul>
+<li>Set up a new dataset with the predictor values you’re interested in</li>
+<li>e.g., <code>age_vals &lt;- data.frame(AgeC = c(-20, 0, 20))</code></li>
+<li>Then use that new data in <code>predict()</code></li>
+<li>e.g., <code>predict(m1, newdata = age_vals, type = &quot;response&quot;)</code></li>
+<li><code>type = &quot;response&quot;</code> gives predicted values in <strong>probability</strong></li>
+<li><code>type = &quot;link&quot;</code> gives predicted values in <strong>logit</strong></li>
+</ul></li>
+</ul></li>
+</ul>
+</section>
+<section id="tasks" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="tasks"><span class="header-section-number">7</span> Tasks</h2>
+<ul>
+<li>Model 1: <code>Survive ~ Age</code></li>
+<li>Model 2: <code>Survive ~ Age + Emergency</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Stat2Data)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(ICU)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>ICU <span class="ot">&lt;-</span> ICU <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">AgeC =</span> Age <span class="sc">-</span> <span class="fu">mean</span>(Age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="at">data =</span> ICU, </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>          Survive <span class="sc">~</span> AgeC, </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">&quot;logit&quot;</span>))</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="at">data =</span> ICU, </span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>          Survive <span class="sc">~</span> AgeC <span class="sc">+</span> Emergency, </span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">&quot;logit&quot;</span>)) </span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+glm(formula = Survive ~ AgeC, family = binomial(link = &quot;logit&quot;), 
+    data = ICU)
+
+Coefficients:
+            Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)  1.47357    0.19133   7.702 1.34e-14 ***
+AgeC        -0.02754    0.01056  -2.607  0.00913 ** 
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 200.16  on 199  degrees of freedom
+Residual deviance: 192.31  on 198  degrees of freedom
+AIC: 196.31
+
+Number of Fisher Scoring iterations: 4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+glm(formula = Survive ~ AgeC + Emergency, family = binomial(link = &quot;logit&quot;), 
+    data = ICU)
+
+Coefficients:
+            Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)  3.55130    0.73325   4.843 1.28e-06 ***
+AgeC        -0.03402    0.01069  -3.181  0.00147 ** 
+Emergency   -2.45354    0.75257  -3.260  0.00111 ** 
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 200.16  on 199  degrees of freedom
+Residual deviance: 173.08  on 197  degrees of freedom
+AIC: 179.08
+
+Number of Fisher Scoring iterations: 6</code></pre>
+</div>
+</div>
+<ol type="1">
+<li>Conduct a likelihood ratio test to compare the models. Report the results. Which model is preferred?</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m1, m2, <span class="at">test =</span> <span class="st">&quot;LRT&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m1, m2, <span class="at">test =</span> <span class="st">&quot;LRT&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Analysis of Variance Table
+<pre><code>Analysis of Deviance Table
 
-Model 1: GPA ~ Male + FirstGen + White
-Model 2: GPA ~ Male + FirstGen + White + HSGPA
-  Res.Df    RSS Df Sum of Sq  Pr(&gt;Chi)    
-1    215 43.051                           
-2    214 33.614  1    9.4369 9.108e-15 ***
+Model 1: Survive ~ AgeC
+Model 2: Survive ~ AgeC + Emergency
+  Resid. Df Resid. Dev Df Deviance  Pr(&gt;Chi)    
+1       198     192.31                          
+2       197     173.08  1   19.231 1.158e-05 ***
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">logLik</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&#39;log Lik.&#39; -96.15319 (df=2)</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">logLik</span>(m2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&#39;log Lik.&#39; -86.53782 (df=3)</code></pre>
+</div>
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="dv">2</span> <span class="sc">*</span> (<span class="fu">logLik</span>(m1) <span class="sc">-</span> <span class="fu">logLik</span>(m2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&#39;log Lik.&#39; 54.1902 (df=5)</code></pre>
+<pre><code>&#39;log Lik.&#39; 19.23074 (df=2)</code></pre>
 </div>
 </div>
 <ul>
-<li><span class="math inline">\chi^2(1) = 54.1902, p&lt;.0001</span>
-<ul>
-<li>The models are significantly different from one another
-<ul>
-<li>Model 2 is a significantly better model than model 1</li>
-</ul></li>
-<li><strong>If they were not significantly different from one another, use the simpler model</strong></li>
-</ul></li>
+<li><span class="math inline">\chi^2(1) = 19.23, p&lt;.0001</span></li>
+<li>Model 2 is significantly different from (better than) model 1</li>
 </ul>
-<ol start="4" type="1">
-<li>Report the results for the better model (based on the LRT). Include all regression coefficients, <span class="math inline">R^2</span>, test statistics, <span class="math inline">p</span>-values.</li>
+<ol start="2" type="1">
+<li>Report the full results of the preferred model. This is similar to linear regression. For each coefficient (including intercept), report:</li>
 </ol>
+<ul>
+<li>Regression coefficient</li>
+<li>Standard error</li>
+<li><span class="math inline">z</span> statistic (note that there aren’t degrees of freedom for <span class="math inline">z</span> tests)</li>
+<li><span class="math inline">p</span> value</li>
+<li><strong>I forget to include the <span class="math inline">R^2</span> for the model in this list – include that too</strong></li>
+</ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
-lm(formula = GPA ~ Male + FirstGen + White + HSGPA, data = FirstYearGPA)
-
-Residuals:
-     Min       1Q   Median       3Q      Max 
--1.05776 -0.25735  0.04178  0.28247  0.74665 
+glm(formula = Survive ~ AgeC + Emergency, family = binomial(link = &quot;logit&quot;), 
+    data = ICU)
 
 Coefficients:
-            Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)  0.95274    0.25597   3.722 0.000253 ***
-Male         0.06194    0.05416   1.144 0.254080    
-FirstGen    -0.18508    0.08709  -2.125 0.034719 *  
-White        0.25738    0.06798   3.786 0.000199 ***
-HSGPA        0.55967    0.07220   7.751 3.63e-13 ***
+            Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)  3.55130    0.73325   4.843 1.28e-06 ***
+AgeC        -0.03402    0.01069  -3.181  0.00147 ** 
+Emergency   -2.45354    0.75257  -3.260  0.00111 ** 
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 
-Residual standard error: 0.3963 on 214 degrees of freedom
-Multiple R-squared:  0.2884,    Adjusted R-squared:  0.2751 
-F-statistic: 21.68 on 4 and 214 DF,  p-value: 4.96e-15</code></pre>
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 200.16  on 199  degrees of freedom
+Residual deviance: 173.08  on 197  degrees of freedom
+AIC: 179.08
+
+Number of Fisher Scoring iterations: 6</code></pre>
 </div>
 </div>
 <ul>
-<li>Based on the likelihood ratio test, model 2 (with 4 predictors) is better than model 1 (with 3 predictors), <span class="math inline">\chi^2(1) = 54.1902, p&lt;.0001</span></li>
-<li>Sex (<code>Gender</code>) is not a significant predictor of first year college GPA, <span class="math inline">b_1 = 0.06194, t(214) = 1.144, p&gt;.05</span></li>
-<li>First generation status (<code>FirstGen</code>) is a significant predictor of first year college GPA, <span class="math inline">b_2 = -0.18508, t(214) = -2.125, p&lt;.05</span>
+<li>Intercept: <span class="math inline">b_0 = 3.55, s.e. = 0.73, z = 4.843, p&lt;.0001</span>
 <ul>
-<li>First generation students (<code>FirstGen</code> = 1) have <strong>lower</strong> first year college GPA than non-first generation students (<code>FirstGen</code> = 0), <em>controlling for all other predictors</em></li>
+<li>For a person at mean age (<code>AgeC</code> = 0) and non-emergency admission (<code>Emergency</code> = 0), the predicted probability of survival is greater than 0.5 because the intercept is positive (i.e., &gt; 0).</li>
 </ul></li>
-<li>Race (<code>White</code>) is a significant predictor of first year college GPA, <span class="math inline">b_3 = 0.25738, t(214) = 3.786, p&lt;.0001</span>
+<li>Age effect: <span class="math inline">b_1 = -0.03, s.e. = 0.01, z = -3.181, p&lt;.001</span>
 <ul>
-<li>White students (<code>White</code> = 1) have <strong>higher</strong> first year college GPA than non-white students (<code>White</code> = 0), <em>controlling for all other predictors</em></li>
+<li>As age <strong>increases</strong>, the probability(/odds/logit) of survival <strong>decreases</strong> because <span class="math inline">b_1</span> is <strong>negative</strong></li>
 </ul></li>
-<li>High school GPA is a significant predictor of first year college GPA, <span class="math inline">b_4 = 0.55967, t(214) = 7.751, p&lt;.0001</span>
+<li>Emergency effect: <span class="math inline">b_2 = -2.45, s.e. = 0.75, z = -3.260, p&lt;.001</span>
 <ul>
-<li>Higher high school GPA is associated with <strong>higher</strong> first year college GPA, <em>controlling for all other predictors</em></li>
+<li>Emergency admissions (<code>Emergency</code> = 1) have a <strong>lower</strong> probability(/odds/logit) of survival compared to non-emergency admissions (<code>Emergency</code> = 0) because <span class="math inline">b_2</span> is <strong>negative</strong></li>
 </ul></li>
-<li>Overall, these four predictors account for 28.84% of the variance in first year college GPA, <span class="math inline">R^2 = 0.2884, F(4, 214) = 21.68, p&lt;.0001</span></li>
+<li>Pseudo <span class="math inline">R^2 = 1 - \frac{173.08}{200.16} = 0.135</span>
+<ul>
+<li>About 13.5% of the variance in the outcome is accounted for by these predictors</li>
+</ul></li>
+</ul>
+<ol start="3" type="1">
+<li>Calculate predicted probabilities for 6 predictor combinations:</li>
+</ol>
+<ul>
+<li>Emergency admit, 20 years younger than mean</li>
+<li>Emergency admit, mean age</li>
+<li>Emergency admit, 20 years older than mean</li>
+<li>Non-emergency admit, 20 years younger than mean</li>
+<li>Non-emergency admit, mean age</li>
+<li>Non-emergency admit, 20 years older than mean</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>age_vals <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">AgeC =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">20</span>, <span class="dv">0</span>, <span class="dv">20</span>, <span class="sc">-</span><span class="dv">20</span>, <span class="dv">0</span>, <span class="dv">20</span>))</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>eme_vals <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Emergency =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>vals <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(age_vals, eme_vals)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>vals</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  AgeC Emergency
+1  -20         0
+2    0         0
+3   20         0
+4  -20         1
+5    0         1
+6   20         1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(m2, <span class="at">newdata =</span> vals, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        1         2         3         4         5         6 
+0.9856793 0.9721127 0.9463930 0.8554609 0.7498415 0.6028714 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(m2, <span class="at">newdata =</span> vals, <span class="at">type =</span> <span class="st">&quot;link&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        1         2         3         4         5         6 
+4.2316255 3.5513021 2.8709788 1.7780903 1.0977670 0.4174436 </code></pre>
+</div>
+</div>
+<ul>
+<li>Say that you wanted to add the predicted values to the data set to make a plot</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>ICU_pred <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(age_vals, eme_vals)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>ICU_pred <span class="ot">&lt;-</span> ICU_pred <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">pred =</span> <span class="fu">predict</span>(m2, <span class="at">newdata =</span> vals, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>))</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>ICU_pred</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  AgeC Emergency      pred
+1  -20         0 0.9856793
+2    0         0 0.9721127
+3   20         0 0.9463930
+4  -20         1 0.8554609
+5    0         1 0.7498415
+6   20         1 0.6028714</code></pre>
+</div>
+</div>
+<ul>
+<li>And let’s just make the plot here</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU_pred, <span class="fu">aes</span>(<span class="at">x =</span> AgeC, <span class="at">y =</span> pred, <span class="at">group =</span> Emergency)) <span class="sc">+</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">as.factor</span>(Emergency)),</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group =</span> Emergency))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img role="img" src="Lab-11_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>Here’s just an overall plot of the data
+<ul>
+<li>I added the lines for each group using <code>stat_smooth()</code> which is the function that’s actually behind <code>geom_smooth()</code> that we use for straight lines – so <code>geom_smooth()</code> but with more options
+<ul>
+<li><code>method = &quot;glm&quot;</code> means it’s using generalized linear models for the line</li>
+<li><code>method.args=list(family=&quot;binomial&quot;)</code> tells it specifically to plot the logistic regression line (<code>family = binomial</code> just like in <code>glm()</code> for logistic regression)</li>
+<li>The arguments about <code>Emergency</code> are to get separate lines for the two emergency groups with different colors and a legend</li>
+</ul></li>
+<li>I added a horizontal line at probability = 0.5 for reference</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU, <span class="fu">aes</span>(<span class="at">x =</span> AgeC, <span class="at">y =</span> Survive, <span class="at">group =</span> Emergency)) <span class="sc">+</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">height =</span> <span class="fl">0.1</span>, </span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">alpha =</span> <span class="fl">0.3</span>, </span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>              <span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">as.factor</span>(Emergency))) <span class="sc">+</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">method=</span><span class="st">&quot;glm&quot;</span>, </span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">method.args=</span><span class="fu">list</span>(<span class="at">family=</span><span class="st">&quot;binomial&quot;</span>), </span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">se=</span><span class="cn">FALSE</span>, </span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>              <span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">as.factor</span>(Emergency), <span class="at">group =</span> Emergency)) <span class="sc">+</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">0.5</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img role="img" src="Lab-11_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ol start="4" type="1">
+<li>Report the odds ratios for each predictor and their confidence intervals. Interpret the odds ratios in words.</li>
+</ol>
+<ul>
+<li>To get confidence intervals, use <code>confint()</code></li>
+<li>To make odds ratios, exponentiate</li>
+<li>Do both at once
+<ul>
+<li>Must be in this order because <code>confint()</code> will only give CIs for model objects (like <code>m2</code>), not for portions of a model (like <code>summary(m2)$coefficients</code>) or transformations of a model (like <code>exp(summary(m2)$coefficients)</code>)</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">confint</span>(m2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Waiting for profiling to be done...</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                  2.5 %      97.5 %
+(Intercept) 10.50414466 216.4886964
+AgeC         0.94520074   0.9859692
+Emergency    0.01352979   0.3016906</code></pre>
+</div>
+</div>
+<ul>
+<li>Intercept: [10.50, 216.49]
+<ul>
+<li>Does not contain 1</li>
+<li>Odds of survival for <code>ageC</code> = 0 and <code>Emergency</code> = 0 is greater than 1</li>
+<li>Probability of survival is greater than 0.5</li>
+</ul></li>
+<li>Age: [0.95, 0.99]
+<ul>
+<li>Does not contain 1</li>
+<li>Odds of survival <strong>decreases</strong> as <code>ageC</code> <strong>increases</strong></li>
+<li>Probability of survival <strong>decreases</strong> as <code>ageC</code> <strong>increases</strong></li>
+</ul></li>
+<li>Emergency: [0.01, 0.30]
+<ul>
+<li>Does not contain 1</li>
+<li>Odds of survival <strong>decreases</strong> as <code>Emergency</code> <strong>increases</strong></li>
+<li>Probability of survival <strong>decreases</strong> as <code>Emergency</code> <strong>increases</strong></li>
+</ul></li>
+</ul>
+<ol start="5" type="1">
+<li>Describe the overall findings for this model. Be statistically accurate but avoid jargon and technical terms as much as you can. Be sure to use the names of the variables studied (i.e., survival, age, emergency admission) rather than X and Y.</li>
+</ol>
+<ul>
+<li>Survival decreases with increasing age (i.e., older people are less likely to survive after ICU admission)</li>
+<li>Survival decreases with emergency (as opposed to non-emergency) admission (i.e., emergency admission patients are less likely to survive than non-emergency admission patients)</li>
+<li>Patients are more likely to survive being admitted to the ICU, except for possibly the very oldest emergency admission patients
+<ul>
+<li>(I’m making this statement based on the plot with the two lines, which shows the emergency admission line <em>just</em> dips down below probability = 0.5 at the far right side of the plot)</li>
+</ul></li>
+<li>I used “likely” to describe things in a metric-agnostic way, but you could replace “more likely to survive” with “have a higher probability of survival” or “have a higher odds of survival” if you want to be more specific</li>
 </ul>
 
 
@@ -5590,104 +5822,239 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class>
-<div class="sourceCode" id="cb22" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;BTS 510 Lab 9&quot;</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co">    embed-resources: true</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co">    self-contained-math: true</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co">    html-math-method: katex</span></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-bg: true</span></span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-border-left: &quot;#31BAE9&quot;</span></span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
-<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
-<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Stat2Data)</span>
-<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">16</span>))</span>
-<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a><span class="fu">## Learning objectives</span></span>
-<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Describe** *maximum likelihood estimation* for linear regression </span>
-<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Describe** *hypothesis testing* for linear regression coefficients, including the sampling distribution used and degrees of freedom</span>
-<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data </span></span>
-<span id="cb22-31"><a href="#cb22-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-32"><a href="#cb22-32" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="in">`FirstYearGPA`</span> data from the **Stat2Data** package: $n$ = 219 subjects</span>
-<span id="cb22-33"><a href="#cb22-33" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`GPA`</span>: First-year college GPA on a 0.0 to 4.0 scale</span>
-<span id="cb22-34"><a href="#cb22-34" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`HSGPA`</span>: High school GPA on a 0.0 to 4.0 scale</span>
-<span id="cb22-35"><a href="#cb22-35" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`SATV`</span>: Verbal/critical reading SAT score</span>
-<span id="cb22-36"><a href="#cb22-36" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`SATM`</span>: Math SAT score</span>
-<span id="cb22-37"><a href="#cb22-37" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`Male`</span>: 1= male, 0= female</span>
-<span id="cb22-38"><a href="#cb22-38" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`HU`</span>: Number of credit hours earned in humanities courses in high school</span>
-<span id="cb22-39"><a href="#cb22-39" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`SS`</span>: Number of credit hours earned in social science courses in high school</span>
-<span id="cb22-40"><a href="#cb22-40" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`FirstGen`</span>: 1= student is the first in her or his family to attend college, 0=otherwise</span>
-<span id="cb22-41"><a href="#cb22-41" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`White`</span>: 1= white students, 0= others</span>
-<span id="cb22-42"><a href="#cb22-42" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`CollegeBound`</span>: 1=attended a high school where &gt;=50% students intended to go on to college, 0=otherwise</span>
-<span id="cb22-43"><a href="#cb22-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-44"><a href="#cb22-44" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tasks</span></span>
-<span id="cb22-45"><a href="#cb22-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-46"><a href="#cb22-46" aria-hidden="true" tabindex="-1"></a>Question 1: How do demographic variables (<span class="in">`Male`</span>, <span class="in">`FirstGen`</span> and <span class="in">`White`</span>) predict first year college GPA (<span class="in">`GPA`</span>)?</span>
-<span id="cb22-47"><a href="#cb22-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-48"><a href="#cb22-48" aria-hidden="true" tabindex="-1"></a>Question 2: How does HS GPA (<span class="in">`HSGPA`</span>) predict first year college GPA (<span class="in">`GPA`</span>) over demographic variables (<span class="in">`Male`</span>, <span class="in">`FirstGen`</span> and <span class="in">`White`</span>)?</span>
-<span id="cb22-49"><a href="#cb22-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-50"><a href="#cb22-50" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Run the two models above.</span>
-<span id="cb22-51"><a href="#cb22-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-54"><a href="#cb22-54" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb22-55"><a href="#cb22-55" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Stat2Data)</span>
-<span id="cb22-56"><a href="#cb22-56" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(FirstYearGPA)</span>
-<span id="cb22-57"><a href="#cb22-57" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> FirstYearGPA, GPA <span class="sc">~</span> Male <span class="sc">+</span> FirstGen <span class="sc">+</span> White)</span>
-<span id="cb22-58"><a href="#cb22-58" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span>
-<span id="cb22-59"><a href="#cb22-59" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> FirstYearGPA, GPA <span class="sc">~</span> Male <span class="sc">+</span> FirstGen <span class="sc">+</span> White <span class="sc">+</span> HSGPA)</span>
-<span id="cb22-60"><a href="#cb22-60" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2)</span>
-<span id="cb22-61"><a href="#cb22-61" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-62"><a href="#cb22-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-63"><a href="#cb22-63" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>What are the log-likelihoods of each model? What can you say about the models based on those values? What *can&#39;t* you say?</span>
-<span id="cb22-64"><a href="#cb22-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-67"><a href="#cb22-67" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb22-68"><a href="#cb22-68" aria-hidden="true" tabindex="-1"></a><span class="fu">logLik</span>(m1)</span>
-<span id="cb22-69"><a href="#cb22-69" aria-hidden="true" tabindex="-1"></a><span class="fu">logLik</span>(m2)</span>
-<span id="cb22-70"><a href="#cb22-70" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-71"><a href="#cb22-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-72"><a href="#cb22-72" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>We **can say** that model 2 has a (qualitatively) higher (closer to 0) log-likelihood, which is better</span>
-<span id="cb22-73"><a href="#cb22-73" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Without the LRT, we can&#39;t say that one is quantitatively higher</span>
-<span id="cb22-74"><a href="#cb22-74" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>(We&#39;ll do that next)</span>
-<span id="cb22-75"><a href="#cb22-75" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>We **can&#39;t say** that either model is **good** because LL is *relative*</span>
-<span id="cb22-76"><a href="#cb22-76" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>You can only use it to *compare* two models</span>
-<span id="cb22-77"><a href="#cb22-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-78"><a href="#cb22-78" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Compare the two models using a likelihood ratio test (LRT). Report the results of the test. What can you say about the models based on the test?</span>
-<span id="cb22-79"><a href="#cb22-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-82"><a href="#cb22-82" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb22-83"><a href="#cb22-83" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m1, m2, <span class="at">test =</span> <span class="st">&quot;LRT&quot;</span>)</span>
-<span id="cb22-84"><a href="#cb22-84" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="dv">2</span> <span class="sc">*</span> (<span class="fu">logLik</span>(m1) <span class="sc">-</span> <span class="fu">logLik</span>(m2))</span>
-<span id="cb22-85"><a href="#cb22-85" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-86"><a href="#cb22-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-87"><a href="#cb22-87" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>$\chi^2(1) = 54.1902, p&lt;.0001$</span>
-<span id="cb22-88"><a href="#cb22-88" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>The models are significantly different from one another</span>
-<span id="cb22-89"><a href="#cb22-89" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Model 2 is a significantly better model than model 1</span>
-<span id="cb22-90"><a href="#cb22-90" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>**If they were not significantly different from one another, use the simpler model**</span>
-<span id="cb22-91"><a href="#cb22-91" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-92"><a href="#cb22-92" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Report the results for the better model (based on the LRT). Include all regression coefficients, $R^2$, test statistics, $p$-values.</span>
-<span id="cb22-93"><a href="#cb22-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-96"><a href="#cb22-96" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb22-97"><a href="#cb22-97" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2)</span>
-<span id="cb22-98"><a href="#cb22-98" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-99"><a href="#cb22-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-100"><a href="#cb22-100" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Based on the likelihood ratio test, model 2 (with 4 predictors) is better than model 1 (with 3 predictors), $\chi^2(1) = 54.1902, p&lt;.0001$</span>
-<span id="cb22-101"><a href="#cb22-101" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Sex (<span class="in">`Gender`</span>) is not a significant predictor of first year college GPA, $b_1 = 0.06194, t(214) = 1.144, p&gt;.05$</span>
-<span id="cb22-102"><a href="#cb22-102" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>First generation status (<span class="in">`FirstGen`</span>) is a significant predictor of first year college GPA, $b_2 = -0.18508, t(214) = -2.125, p&lt;.05$</span>
-<span id="cb22-103"><a href="#cb22-103" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>First generation students (<span class="in">`FirstGen`</span> = 1) have **lower** first year college GPA than non-first generation students (<span class="in">`FirstGen`</span> = 0), *controlling for all other predictors*</span>
-<span id="cb22-104"><a href="#cb22-104" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Race (<span class="in">`White`</span>) is a significant predictor of first year college GPA, $b_3 = 0.25738, t(214) = 3.786, p&lt;.0001$</span>
-<span id="cb22-105"><a href="#cb22-105" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>White students (<span class="in">`White`</span> = 1) have **higher** first year college GPA than non-white students (<span class="in">`White`</span> = 0), *controlling for all other predictors*</span>
-<span id="cb22-106"><a href="#cb22-106" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>High school GPA is a significant predictor of first year college GPA, $b_4 = 0.55967, t(214) = 7.751, p&lt;.0001$</span>
-<span id="cb22-107"><a href="#cb22-107" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Higher high school GPA is associated with **higher** first year college GPA, *controlling for all other predictors*</span>
-<span id="cb22-108"><a href="#cb22-108" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Overall, these four predictors account for 28.84% of the variance in first year college GPA, $R^2 = 0.2884, F(4, 214) = 21.68, p&lt;.0001$</span>
+<div class="sourceCode" id="cb36" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;BTS 510 Lab 11&quot;</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="co">    embed-resources: true</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="co">    self-contained-math: true</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="co">    html-math-method: katex</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-bg: true</span></span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-border-left: &quot;#31BAE9&quot;</span></span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
+<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Stat2Data)</span>
+<span id="cb36-22"><a href="#cb36-22" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">16</span>))</span>
+<span id="cb36-23"><a href="#cb36-23" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-24"><a href="#cb36-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-25"><a href="#cb36-25" aria-hidden="true" tabindex="-1"></a><span class="fu">## Learning objectives</span></span>
+<span id="cb36-26"><a href="#cb36-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-27"><a href="#cb36-27" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Conduct** logistic regression for *binary outcomes*</span>
+<span id="cb36-28"><a href="#cb36-28" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Interpret** results in terms of *probability*, *odds*, and *log-odds*</span>
+<span id="cb36-29"><a href="#cb36-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-30"><a href="#cb36-30" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data </span></span>
+<span id="cb36-31"><a href="#cb36-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-32"><a href="#cb36-32" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="in">`ICU`</span> data from the **Stat2Data** package: $n$ = 200</span>
+<span id="cb36-33"><a href="#cb36-33" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`ID`</span>: Patient ID code</span>
+<span id="cb36-34"><a href="#cb36-34" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`Survive`</span>: 1 = patient survived to discharge or 0 = patient died</span>
+<span id="cb36-35"><a href="#cb36-35" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`Age`</span>: Age (in years)</span>
+<span id="cb36-36"><a href="#cb36-36" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`AgeGroup`</span>: 1 = young (under 50), 2 = middle (50-69), 3 = old (70+)</span>
+<span id="cb36-37"><a href="#cb36-37" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`Sex`</span>: 1 = female or 0 = male</span>
+<span id="cb36-38"><a href="#cb36-38" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`Infection`</span>: 1 = infection suspected or 0 = no infection</span>
+<span id="cb36-39"><a href="#cb36-39" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`SysBP`</span>: Systolic blood pressure (in mm of Hg)</span>
+<span id="cb36-40"><a href="#cb36-40" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`Pulse`</span>: Heart rate (beats per minute)</span>
+<span id="cb36-41"><a href="#cb36-41" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`Emergency`</span>: 1 = emergency admission or 0 = elective admission</span>
+<span id="cb36-42"><a href="#cb36-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-43"><a href="#cb36-43" aria-hidden="true" tabindex="-1"></a><span class="fu">## Analysis</span></span>
+<span id="cb36-44"><a href="#cb36-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-45"><a href="#cb36-45" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Replicate and extend the analysis from the lecture</span>
+<span id="cb36-46"><a href="#cb36-46" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`Age`</span> and <span class="in">`Emergency`</span> predict <span class="in">`Survive`</span></span>
+<span id="cb36-47"><a href="#cb36-47" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Be sure to mean center <span class="in">`Age`</span> for interpretability</span>
+<span id="cb36-48"><a href="#cb36-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-49"><a href="#cb36-49" aria-hidden="true" tabindex="-1"></a><span class="fu">## Pseudo $R^2$</span></span>
+<span id="cb36-50"><a href="#cb36-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-51"><a href="#cb36-51" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>For linear regression, $R^2_{multiple}$ is calculated from the **sums of squares** from ordinary least squares estimation</span>
+<span id="cb36-52"><a href="#cb36-52" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Logistic regression is estimated via maximum likelihood</span>
+<span id="cb36-53"><a href="#cb36-53" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>There are no sums of squares</span>
+<span id="cb36-54"><a href="#cb36-54" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>There is, however, **deviance**</span>
+<span id="cb36-55"><a href="#cb36-55" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Deviance is a function of the log-likelihood</span>
+<span id="cb36-56"><a href="#cb36-56" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Deviance for a model is how far the model is from a *theoretical* **perfect model** where every observation is perfectly predicted</span>
+<span id="cb36-57"><a href="#cb36-57" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>**Relative measure** so can only **compare** to another model</span>
+<span id="cb36-58"><a href="#cb36-58" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Big deviance (far from perfect) is worse than small deviance (closer to perfect)</span>
+<span id="cb36-59"><a href="#cb36-59" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Pseudo $R^2$</span>
+<span id="cb36-60"><a href="#cb36-60" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Compare your model to a model with **no predictors** (only intercept)</span>
+<span id="cb36-61"><a href="#cb36-61" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>How much closer is this model to the perfect model than the intercept only model?</span>
+<span id="cb36-62"><a href="#cb36-62" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Theoretically ranges from 0 to 1 (but not in practice)</span>
+<span id="cb36-63"><a href="#cb36-63" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>$R^2_{deviance} = 1 - \frac{deviance_{M}}{deviance_{intercept\ only}}$</span>
+<span id="cb36-64"><a href="#cb36-64" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Deviance for your model is &quot;Residual deviance&quot; from output</span>
+<span id="cb36-65"><a href="#cb36-65" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Deviance for intercept model is &quot;Null deviance&quot; from output</span>
+<span id="cb36-66"><a href="#cb36-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-67"><a href="#cb36-67" aria-hidden="true" tabindex="-1"></a><span class="fu">## Confidence intervals</span></span>
+<span id="cb36-68"><a href="#cb36-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-69"><a href="#cb36-69" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Calculate confidence intervals for all coefficients in a model using <span class="in">`confint()`</span></span>
+<span id="cb36-70"><a href="#cb36-70" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>For example: <span class="in">`confint(m1)`</span> to get confidence intervals for model <span class="in">`m1`</span></span>
+<span id="cb36-71"><a href="#cb36-71" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>If the CI doesn&#39;t include **zero**, the coefficient is significant</span>
+<span id="cb36-72"><a href="#cb36-72" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Default is 99% confidence interval</span>
+<span id="cb36-73"><a href="#cb36-73" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Use <span class="in">`level`</span> argument to change</span>
+<span id="cb36-74"><a href="#cb36-74" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>e.g., <span class="in">`confint(m1, level = 0.99)`</span> produces 99% CIs</span>
+<span id="cb36-75"><a href="#cb36-75" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>To convert from default logit metric to odds metric: Exponentiate</span>
+<span id="cb36-76"><a href="#cb36-76" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Logit metric: $b_1$</span>
+<span id="cb36-77"><a href="#cb36-77" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Convert to **odds ratio**: $e^{b_1}$</span>
+<span id="cb36-78"><a href="#cb36-78" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Do the same thing to the confidence intervals</span>
+<span id="cb36-79"><a href="#cb36-79" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span><span class="in">`exp(confint(m1))`</span> produces the odds metric CIs</span>
+<span id="cb36-80"><a href="#cb36-80" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Compare to &quot;no effect&quot; value of **one** for odds</span>
+<span id="cb36-81"><a href="#cb36-81" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>If the CI doesn&#39;t include **one**, the coefficient is significant</span>
+<span id="cb36-82"><a href="#cb36-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-83"><a href="#cb36-83" aria-hidden="true" tabindex="-1"></a><span class="fu">## Predicted values</span></span>
+<span id="cb36-84"><a href="#cb36-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-85"><a href="#cb36-85" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Two main options</span>
+<span id="cb36-86"><a href="#cb36-86" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Use R like a calculator to calculate predicted values using equations</span>
+<span id="cb36-87"><a href="#cb36-87" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>You can be fancy and grab the coefficients directly from the output</span>
+<span id="cb36-88"><a href="#cb36-88" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>e.g., using <span class="in">`coef(m1)[1]`</span> to get the first coefficient, etc.</span>
+<span id="cb36-89"><a href="#cb36-89" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Or just type the numbers in</span>
+<span id="cb36-90"><a href="#cb36-90" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Use <span class="in">`predict()`</span> to calculate predicted values</span>
+<span id="cb36-91"><a href="#cb36-91" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Set up a new dataset with the predictor values you&#39;re interested in</span>
+<span id="cb36-92"><a href="#cb36-92" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>e.g., <span class="in">`age_vals &lt;- data.frame(AgeC = c(-20, 0, 20))`</span></span>
+<span id="cb36-93"><a href="#cb36-93" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Then use that new data in <span class="in">`predict()`</span></span>
+<span id="cb36-94"><a href="#cb36-94" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>e.g., <span class="in">`predict(m1, newdata = age_vals, type = &quot;response&quot;)`</span></span>
+<span id="cb36-95"><a href="#cb36-95" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span><span class="in">`type = &quot;response&quot;`</span> gives predicted values in **probability**</span>
+<span id="cb36-96"><a href="#cb36-96" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span><span class="in">`type = &quot;link&quot;`</span> gives predicted values in **logit**</span>
+<span id="cb36-97"><a href="#cb36-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-98"><a href="#cb36-98" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tasks</span></span>
+<span id="cb36-99"><a href="#cb36-99" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-100"><a href="#cb36-100" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Model 1: <span class="in">`Survive ~ Age`</span></span>
+<span id="cb36-101"><a href="#cb36-101" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Model 2: <span class="in">`Survive ~ Age + Emergency`</span></span>
+<span id="cb36-102"><a href="#cb36-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-105"><a href="#cb36-105" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-106"><a href="#cb36-106" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Stat2Data)</span>
+<span id="cb36-107"><a href="#cb36-107" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(ICU)</span>
+<span id="cb36-108"><a href="#cb36-108" aria-hidden="true" tabindex="-1"></a>ICU <span class="ot">&lt;-</span> ICU <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">AgeC =</span> Age <span class="sc">-</span> <span class="fu">mean</span>(Age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb36-109"><a href="#cb36-109" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="at">data =</span> ICU, </span>
+<span id="cb36-110"><a href="#cb36-110" aria-hidden="true" tabindex="-1"></a>          Survive <span class="sc">~</span> AgeC, </span>
+<span id="cb36-111"><a href="#cb36-111" aria-hidden="true" tabindex="-1"></a>          <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">&quot;logit&quot;</span>))</span>
+<span id="cb36-112"><a href="#cb36-112" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="at">data =</span> ICU, </span>
+<span id="cb36-113"><a href="#cb36-113" aria-hidden="true" tabindex="-1"></a>          Survive <span class="sc">~</span> AgeC <span class="sc">+</span> Emergency, </span>
+<span id="cb36-114"><a href="#cb36-114" aria-hidden="true" tabindex="-1"></a>          <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">&quot;logit&quot;</span>)) </span>
+<span id="cb36-115"><a href="#cb36-115" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span>
+<span id="cb36-116"><a href="#cb36-116" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2)</span>
+<span id="cb36-117"><a href="#cb36-117" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-118"><a href="#cb36-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-119"><a href="#cb36-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-120"><a href="#cb36-120" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Conduct a likelihood ratio test to compare the models. Report the results. Which model is preferred?</span>
+<span id="cb36-121"><a href="#cb36-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-124"><a href="#cb36-124" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-125"><a href="#cb36-125" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m1, m2, <span class="at">test =</span> <span class="st">&quot;LRT&quot;</span>)</span>
+<span id="cb36-126"><a href="#cb36-126" aria-hidden="true" tabindex="-1"></a><span class="fu">logLik</span>(m1)</span>
+<span id="cb36-127"><a href="#cb36-127" aria-hidden="true" tabindex="-1"></a><span class="fu">logLik</span>(m2)</span>
+<span id="cb36-128"><a href="#cb36-128" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="dv">2</span> <span class="sc">*</span> (<span class="fu">logLik</span>(m1) <span class="sc">-</span> <span class="fu">logLik</span>(m2))</span>
+<span id="cb36-129"><a href="#cb36-129" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-130"><a href="#cb36-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-131"><a href="#cb36-131" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>$\chi^2(1) = 19.23, p&lt;.0001$</span>
+<span id="cb36-132"><a href="#cb36-132" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Model 2 is significantly different from (better than) model 1</span>
+<span id="cb36-133"><a href="#cb36-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-134"><a href="#cb36-134" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Report the full results of the preferred model. This is similar to linear regression. For each coefficient (including intercept), report:</span>
+<span id="cb36-135"><a href="#cb36-135" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Regression coefficient</span>
+<span id="cb36-136"><a href="#cb36-136" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Standard error</span>
+<span id="cb36-137"><a href="#cb36-137" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>$z$ statistic (note that there aren&#39;t degrees of freedom for $z$ tests)</span>
+<span id="cb36-138"><a href="#cb36-138" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>$p$ value </span>
+<span id="cb36-139"><a href="#cb36-139" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**I forget to include the $R^2$ for the model in this list -- include that too**</span>
+<span id="cb36-140"><a href="#cb36-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-143"><a href="#cb36-143" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-144"><a href="#cb36-144" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2)</span>
+<span id="cb36-145"><a href="#cb36-145" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-146"><a href="#cb36-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-147"><a href="#cb36-147" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Intercept: $b_0 = 3.55, s.e. = 0.73, z = 4.843, p&lt;.0001$</span>
+<span id="cb36-148"><a href="#cb36-148" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>For a person at mean age (<span class="in">`AgeC`</span> = 0) and non-emergency admission (<span class="in">`Emergency`</span> = 0), the predicted probability of survival is greater than 0.5 because the intercept is positive (i.e., &gt; 0).</span>
+<span id="cb36-149"><a href="#cb36-149" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Age effect: $b_1 = -0.03, s.e. = 0.01, z = -3.181, p&lt;.001$</span>
+<span id="cb36-150"><a href="#cb36-150" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>As age **increases**, the probability(/odds/logit) of survival **decreases** because $b_1$ is **negative**</span>
+<span id="cb36-151"><a href="#cb36-151" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Emergency effect: $b_2 = -2.45, s.e. = 0.75, z = -3.260, p&lt;.001$</span>
+<span id="cb36-152"><a href="#cb36-152" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Emergency admissions (<span class="in">`Emergency`</span> = 1) have a **lower** probability(/odds/logit) of survival compared to non-emergency admissions (`Emergency` = 0) because $b_2$ is **negative**</span>
+<span id="cb36-153"><a href="#cb36-153" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Pseudo $R^2 = 1 - \frac{173.08}{200.16} = <span class="in">`r round(1 - (173.08/200.16), 3)`</span>$</span>
+<span id="cb36-154"><a href="#cb36-154" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>About <span class="in">`r round(100*(1 - (173.08/200.16)), 1)`</span>% of the variance in the outcome is accounted for by these predictors</span>
+<span id="cb36-155"><a href="#cb36-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-156"><a href="#cb36-156" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Calculate predicted probabilities for 6 predictor combinations:</span>
+<span id="cb36-157"><a href="#cb36-157" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Emergency admit, 20 years younger than mean</span>
+<span id="cb36-158"><a href="#cb36-158" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Emergency admit, mean age</span>
+<span id="cb36-159"><a href="#cb36-159" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Emergency admit, 20 years older than mean</span>
+<span id="cb36-160"><a href="#cb36-160" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Non-emergency admit, 20 years younger than mean</span>
+<span id="cb36-161"><a href="#cb36-161" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Non-emergency admit, mean age</span>
+<span id="cb36-162"><a href="#cb36-162" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Non-emergency admit, 20 years older than mean</span>
+<span id="cb36-163"><a href="#cb36-163" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-166"><a href="#cb36-166" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-167"><a href="#cb36-167" aria-hidden="true" tabindex="-1"></a>age_vals <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">AgeC =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">20</span>, <span class="dv">0</span>, <span class="dv">20</span>, <span class="sc">-</span><span class="dv">20</span>, <span class="dv">0</span>, <span class="dv">20</span>))</span>
+<span id="cb36-168"><a href="#cb36-168" aria-hidden="true" tabindex="-1"></a>eme_vals <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Emergency =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb36-169"><a href="#cb36-169" aria-hidden="true" tabindex="-1"></a>vals <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(age_vals, eme_vals)</span>
+<span id="cb36-170"><a href="#cb36-170" aria-hidden="true" tabindex="-1"></a>vals</span>
+<span id="cb36-171"><a href="#cb36-171" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(m2, <span class="at">newdata =</span> vals, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb36-172"><a href="#cb36-172" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(m2, <span class="at">newdata =</span> vals, <span class="at">type =</span> <span class="st">&quot;link&quot;</span>)</span>
+<span id="cb36-173"><a href="#cb36-173" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-174"><a href="#cb36-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-175"><a href="#cb36-175" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Say that you wanted to add the predicted values to the data set to make a plot</span>
+<span id="cb36-176"><a href="#cb36-176" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb36-179"><a href="#cb36-179" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-180"><a href="#cb36-180" aria-hidden="true" tabindex="-1"></a>ICU_pred <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(age_vals, eme_vals)</span>
+<span id="cb36-181"><a href="#cb36-181" aria-hidden="true" tabindex="-1"></a>ICU_pred <span class="ot">&lt;-</span> ICU_pred <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">pred =</span> <span class="fu">predict</span>(m2, <span class="at">newdata =</span> vals, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>))</span>
+<span id="cb36-182"><a href="#cb36-182" aria-hidden="true" tabindex="-1"></a>ICU_pred</span>
+<span id="cb36-183"><a href="#cb36-183" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-184"><a href="#cb36-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-185"><a href="#cb36-185" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>And let&#39;s just make the plot here</span>
+<span id="cb36-186"><a href="#cb36-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-189"><a href="#cb36-189" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-190"><a href="#cb36-190" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU_pred, <span class="fu">aes</span>(<span class="at">x =</span> AgeC, <span class="at">y =</span> pred, <span class="at">group =</span> Emergency)) <span class="sc">+</span></span>
+<span id="cb36-191"><a href="#cb36-191" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">as.factor</span>(Emergency)),</span>
+<span id="cb36-192"><a href="#cb36-192" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb36-193"><a href="#cb36-193" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group =</span> Emergency))</span>
+<span id="cb36-194"><a href="#cb36-194" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-195"><a href="#cb36-195" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-196"><a href="#cb36-196" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Here&#39;s just an overall plot of the data</span>
+<span id="cb36-197"><a href="#cb36-197" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>I added the lines for each group using <span class="in">`stat_smooth()`</span> which is the function that&#39;s actually behind <span class="in">`geom_smooth()`</span> that we use for straight lines -- so <span class="in">`geom_smooth()`</span> but with more options</span>
+<span id="cb36-198"><a href="#cb36-198" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span><span class="in">`method = &quot;glm&quot;`</span> means it&#39;s using generalized linear models for the line</span>
+<span id="cb36-199"><a href="#cb36-199" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span><span class="in">`method.args=list(family=&quot;binomial&quot;)`</span> tells it specifically to plot the logistic regression line (<span class="in">`family = binomial`</span> just like in <span class="in">`glm()`</span> for logistic regression)</span>
+<span id="cb36-200"><a href="#cb36-200" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>The arguments about <span class="in">`Emergency`</span> are to get separate lines for the two emergency groups with different colors and a legend </span>
+<span id="cb36-201"><a href="#cb36-201" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>I added a horizontal line at probability = 0.5 for reference</span>
+<span id="cb36-202"><a href="#cb36-202" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-205"><a href="#cb36-205" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-206"><a href="#cb36-206" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU, <span class="fu">aes</span>(<span class="at">x =</span> AgeC, <span class="at">y =</span> Survive, <span class="at">group =</span> Emergency)) <span class="sc">+</span></span>
+<span id="cb36-207"><a href="#cb36-207" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">height =</span> <span class="fl">0.1</span>, </span>
+<span id="cb36-208"><a href="#cb36-208" aria-hidden="true" tabindex="-1"></a>              <span class="at">alpha =</span> <span class="fl">0.3</span>, </span>
+<span id="cb36-209"><a href="#cb36-209" aria-hidden="true" tabindex="-1"></a>              <span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">as.factor</span>(Emergency))) <span class="sc">+</span></span>
+<span id="cb36-210"><a href="#cb36-210" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">method=</span><span class="st">&quot;glm&quot;</span>, </span>
+<span id="cb36-211"><a href="#cb36-211" aria-hidden="true" tabindex="-1"></a>              <span class="at">method.args=</span><span class="fu">list</span>(<span class="at">family=</span><span class="st">&quot;binomial&quot;</span>), </span>
+<span id="cb36-212"><a href="#cb36-212" aria-hidden="true" tabindex="-1"></a>              <span class="at">se=</span><span class="cn">FALSE</span>, </span>
+<span id="cb36-213"><a href="#cb36-213" aria-hidden="true" tabindex="-1"></a>              <span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">as.factor</span>(Emergency), <span class="at">group =</span> Emergency)) <span class="sc">+</span></span>
+<span id="cb36-214"><a href="#cb36-214" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">0.5</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>)</span>
+<span id="cb36-215"><a href="#cb36-215" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-216"><a href="#cb36-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-217"><a href="#cb36-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-218"><a href="#cb36-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-219"><a href="#cb36-219" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Report the odds ratios for each predictor and their confidence intervals. Interpret the odds ratios in words.</span>
+<span id="cb36-220"><a href="#cb36-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-221"><a href="#cb36-221" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>To get confidence intervals, use <span class="in">`confint()`</span></span>
+<span id="cb36-222"><a href="#cb36-222" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>To make odds ratios, exponentiate</span>
+<span id="cb36-223"><a href="#cb36-223" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Do both at once</span>
+<span id="cb36-224"><a href="#cb36-224" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Must be in this order because <span class="in">`confint()`</span> will only give CIs for model objects (like <span class="in">`m2`</span>), not for portions of a model (like <span class="in">`summary(m2)$coefficients`</span>) or transformations of a model (like <span class="in">`exp(summary(m2)$coefficients)`</span>)</span>
+<span id="cb36-225"><a href="#cb36-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-228"><a href="#cb36-228" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb36-229"><a href="#cb36-229" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">confint</span>(m2))</span>
+<span id="cb36-230"><a href="#cb36-230" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb36-231"><a href="#cb36-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-232"><a href="#cb36-232" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Intercept: <span class="co">[</span><span class="ot">10.50, 216.49</span><span class="co">]</span></span>
+<span id="cb36-233"><a href="#cb36-233" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Does not contain 1</span>
+<span id="cb36-234"><a href="#cb36-234" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Odds of survival for <span class="in">`ageC`</span> = 0 and <span class="in">`Emergency`</span> = 0 is greater than 1</span>
+<span id="cb36-235"><a href="#cb36-235" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Probability of survival is greater than 0.5</span>
+<span id="cb36-236"><a href="#cb36-236" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Age: <span class="co">[</span><span class="ot">0.95, 0.99</span><span class="co">]</span></span>
+<span id="cb36-237"><a href="#cb36-237" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Does not contain 1</span>
+<span id="cb36-238"><a href="#cb36-238" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Odds of survival **decreases** as `ageC` **increases**</span>
+<span id="cb36-239"><a href="#cb36-239" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Probability of survival **decreases** as `ageC` **increases**</span>
+<span id="cb36-240"><a href="#cb36-240" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Emergency: <span class="co">[</span><span class="ot">0.01, 0.30</span><span class="co">]</span></span>
+<span id="cb36-241"><a href="#cb36-241" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Does not contain 1</span>
+<span id="cb36-242"><a href="#cb36-242" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Odds of survival **decreases** as `Emergency` **increases**</span>
+<span id="cb36-243"><a href="#cb36-243" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Probability of survival **decreases** as `Emergency` **increases**</span>
+<span id="cb36-244"><a href="#cb36-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-245"><a href="#cb36-245" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Describe the overall findings for this model. Be statistically accurate but avoid jargon and technical terms as much as you can. Be sure to use the names of the variables studied (i.e., survival, age, emergency admission) rather than X and Y.</span>
+<span id="cb36-246"><a href="#cb36-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-247"><a href="#cb36-247" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Survival decreases with increasing age (i.e., older people are less likely to survive after ICU admission)</span>
+<span id="cb36-248"><a href="#cb36-248" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Survival decreases with emergency (as opposed to non-emergency) admission (i.e., emergency admission patients are less likely to survive than non-emergency admission patients)</span>
+<span id="cb36-249"><a href="#cb36-249" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Patients are more likely to survive being admitted to the ICU, except for possibly the very oldest emergency admission patients</span>
+<span id="cb36-250"><a href="#cb36-250" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>(I&#39;m making this statement based on the plot with the two lines, which shows the emergency admission line *just* dips down below probability = 0.5 at the far right side of the plot)</span>
+<span id="cb36-251"><a href="#cb36-251" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>I used &quot;likely&quot; to describe things in a metric-agnostic way, but you could replace &quot;more likely to survive&quot; with &quot;have a higher probability of survival&quot; or &quot;have a higher odds of survival&quot; if you want to be more specific</span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

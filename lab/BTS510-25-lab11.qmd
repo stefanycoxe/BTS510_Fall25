@@ -67,7 +67,7 @@ theme_set(theme_classic(base_size = 16))
 * Calculate confidence intervals for all coefficients in a model using `confint()`
   * For example: `confint(m1)` to get confidence intervals for model `m1`
   * If the CI doesn't include **zero**, the coefficient is significant
-  * Default is 99% confidence interval
+  * Default is **95% confidence interval**
     * Use `level` argument to change
     * e.g., `confint(m1, level = 0.99)` produces 99% CIs
 * To convert from default logit metric to odds metric: Exponentiate

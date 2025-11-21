@@ -4904,6 +4904,12 @@ window.Quarto = {
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
+<pre><code>Warning: package &#39;ggplot2&#39; was built under R version 4.5.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package &#39;readr&#39; was built under R version 4.5.2</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
 <pre><code>Warning: package &#39;purrr&#39; was built under R version 4.5.2</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
@@ -4911,9 +4917,9 @@ window.Quarto = {
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ dplyr     1.1.4     ✔ readr     2.1.6
 ✔ forcats   1.0.1     ✔ stringr   1.6.0
-✔ ggplot2   4.0.0     ✔ tibble    3.3.0
+✔ ggplot2   4.0.1     ✔ tibble    3.3.0
 ✔ lubridate 1.9.4     ✔ tidyr     1.3.1
 ✔ purrr     1.2.0     
 ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
@@ -4921,8 +4927,8 @@ window.Quarto = {
 ✖ dplyr::lag()    masks stats::lag()
 ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Stat2Data)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">16</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Stat2Data)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">16</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="learning-objectives" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">1</span> Learning objectives</h2>
@@ -4950,8 +4956,8 @@ window.Quarto = {
 </ul></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Stat2Data)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(ICU)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Stat2Data)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(ICU)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="research-question" class="level2" data-number="3">
@@ -4969,9 +4975,9 @@ window.Quarto = {
 <li>Model 3: Infection status <em>and</em> admission type predict blood pressure</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> ICU, SysBP <span class="sc">~</span> Infection)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> ICU, SysBP <span class="sc">~</span> Emergency)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> ICU, SysBP <span class="sc">~</span> Infection <span class="sc">+</span> Emergency)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> ICU, SysBP <span class="sc">~</span> Infection)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> ICU, SysBP <span class="sc">~</span> Emergency)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> ICU, SysBP <span class="sc">~</span> Infection <span class="sc">+</span> Emergency)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="2" type="1">
 <li><strong>Which is the best model?</strong></li>
@@ -4980,7 +4986,7 @@ window.Quarto = {
 <li>Use the <span class="math inline">F</span>-test for <span class="math inline">R^2_{change}</span> and the AIC values to help you decide. Report the tests and values that you used to decide this.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m1, m2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m1, m2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Analysis of Variance Table
 
@@ -4990,7 +4996,7 @@ Model 2: SysBP ~ Emergency
 1    198 204796                      
 2    198 208758  0   -3961.4         </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m1, m3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m1, m3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Analysis of Variance Table
 
@@ -5002,7 +5008,7 @@ Model 2: SysBP ~ Infection + Emergency
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m2, m3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m2, m3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Analysis of Variance Table
 
@@ -5028,15 +5034,15 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 </ul></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1959.866</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(m2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(m2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1963.698</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(m3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(m3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1957.184</code></pre>
 </div>
@@ -5056,7 +5062,7 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <li><span class="math inline">R^2</span> value, test statistic, <span class="math inline">p</span>-value, interpretation (in words)</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -5113,31 +5119,31 @@ F-statistic:  7.89 on 2 and 197 DF,  p-value: 0.0005054</code></pre>
 </ul></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>b0 <span class="ot">&lt;-</span> <span class="fl">146.194</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">13.553</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>b2 <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">11.186</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>p_00 <span class="ot">&lt;-</span> b0 <span class="sc">+</span> b1<span class="sc">*</span><span class="dv">0</span> <span class="sc">+</span> b2<span class="sc">*</span><span class="dv">0</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>p_10 <span class="ot">&lt;-</span> b0 <span class="sc">+</span> b1<span class="sc">*</span><span class="dv">1</span> <span class="sc">+</span> b2<span class="sc">*</span><span class="dv">0</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>p_01 <span class="ot">&lt;-</span> b0 <span class="sc">+</span> b1<span class="sc">*</span><span class="dv">0</span> <span class="sc">+</span> b2<span class="sc">*</span><span class="dv">1</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>p_11 <span class="ot">&lt;-</span> b0 <span class="sc">+</span> b1<span class="sc">*</span><span class="dv">1</span> <span class="sc">+</span> b2<span class="sc">*</span><span class="dv">1</span></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="co"># no infection, no emergency</span></span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>p_00</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>b0 <span class="ot">&lt;-</span> <span class="fl">146.194</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">13.553</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>b2 <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">11.186</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>p_00 <span class="ot">&lt;-</span> b0 <span class="sc">+</span> b1<span class="sc">*</span><span class="dv">0</span> <span class="sc">+</span> b2<span class="sc">*</span><span class="dv">0</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>p_10 <span class="ot">&lt;-</span> b0 <span class="sc">+</span> b1<span class="sc">*</span><span class="dv">1</span> <span class="sc">+</span> b2<span class="sc">*</span><span class="dv">0</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>p_01 <span class="ot">&lt;-</span> b0 <span class="sc">+</span> b1<span class="sc">*</span><span class="dv">0</span> <span class="sc">+</span> b2<span class="sc">*</span><span class="dv">1</span></span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>p_11 <span class="ot">&lt;-</span> b0 <span class="sc">+</span> b1<span class="sc">*</span><span class="dv">1</span> <span class="sc">+</span> b2<span class="sc">*</span><span class="dv">1</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="co"># no infection, no emergency</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>p_00</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 146.194</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># infection, no emergency</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>p_10</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># infection, no emergency</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>p_10</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 132.641</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># no infection, emergency</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>p_01</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># no infection, emergency</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>p_01</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 135.008</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># infection, emergency</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>p_11</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># infection, emergency</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>p_11</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 121.455</code></pre>
 </div>
@@ -5158,9 +5164,9 @@ F-statistic:  7.89 on 2 and 197 DF,  p-value: 0.0005054</code></pre>
 </ul></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># step 1</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>new_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Infection =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>), <span class="at">Emergency =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>))</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>new_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># step 1</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>new_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Infection =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>), <span class="at">Emergency =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>new_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Infection Emergency
 1         0         0
@@ -5170,9 +5176,9 @@ F-statistic:  7.89 on 2 and 197 DF,  p-value: 0.0005054</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># step 2</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>new_data<span class="sc">$</span>pred_BP <span class="ot">&lt;-</span> <span class="fu">predict</span>(m3, <span class="at">newdata =</span> new_data)</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>new_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># step 2</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>new_data<span class="sc">$</span>pred_BP <span class="ot">&lt;-</span> <span class="fu">predict</span>(m3, <span class="at">newdata =</span> new_data)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>new_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Infection Emergency  pred_BP
 1         0         0 146.1943
@@ -5188,18 +5194,18 @@ F-statistic:  7.89 on 2 and 197 DF,  p-value: 0.0005054</code></pre>
 </ul></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> new_data, <span class="fu">aes</span>(<span class="at">x =</span> Infection, </span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">y =</span> pred_BP, </span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">shape =</span> <span class="fu">as.factor</span>(Emergency))) <span class="sc">+</span></span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">round</span>(pred_BP, <span class="dv">2</span>)), </span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">nudge_x =</span> <span class="fl">0.25</span>,</span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">nudge_y =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">1.5</span>) <span class="sc">+</span></span>
-<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">120</span>, <span class="dv">160</span>) <span class="sc">+</span></span>
-<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">shape =</span> <span class="st">&quot;Emergency&quot;</span>, </span>
-<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Predicted systolic blood pressure (mm/Hg)&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> new_data, <span class="fu">aes</span>(<span class="at">x =</span> Infection, </span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">y =</span> pred_BP, </span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">shape =</span> <span class="fu">as.factor</span>(Emergency))) <span class="sc">+</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">round</span>(pred_BP, <span class="dv">2</span>)), </span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">nudge_x =</span> <span class="fl">0.25</span>,</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">nudge_y =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">120</span>, <span class="dv">160</span>) <span class="sc">+</span></span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">shape =</span> <span class="st">&quot;Emergency&quot;</span>, </span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Predicted systolic blood pressure (mm/Hg)&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -5232,8 +5238,8 @@ F-statistic:  7.89 on 2 and 197 DF,  p-value: 0.0005054</code></pre>
 <li>Using the <strong>predicted</strong> and <strong>residual</strong> values, assess whether the assumptions are met for <strong>model 3</strong>. Include the plots and describe your conclusions based on them.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>ICU<span class="sc">$</span>pred1 <span class="ot">&lt;-</span> <span class="fu">fitted</span>(m3)</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>ICU<span class="sc">$</span>resi1 <span class="ot">&lt;-</span> <span class="fu">residuals</span>(m3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>ICU<span class="sc">$</span>pred1 <span class="ot">&lt;-</span> <span class="fu">fitted</span>(m3)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>ICU<span class="sc">$</span>resi1 <span class="ot">&lt;-</span> <span class="fu">residuals</span>(m3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -5263,11 +5269,11 @@ Note
 </ul></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU, </span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> pred1, <span class="at">y =</span> resi1)) <span class="sc">+</span> </span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>, </span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU, </span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> pred1, <span class="at">y =</span> resi1)) <span class="sc">+</span> </span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>, </span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -5283,11 +5289,11 @@ Note
 </ul></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU, </span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Infection, <span class="at">y =</span> resi1)) <span class="sc">+</span> </span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>, </span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU, </span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Infection, <span class="at">y =</span> resi1)) <span class="sc">+</span> </span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>, </span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -5303,11 +5309,11 @@ Note
 </ul></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU, </span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Emergency, <span class="at">y =</span> resi1)) <span class="sc">+</span> </span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>, </span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU, </span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Emergency, <span class="at">y =</span> resi1)) <span class="sc">+</span> </span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>, </span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -5323,10 +5329,10 @@ Note
 </ul></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU,</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> resi1)) <span class="sc">+</span></span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">cols =</span> <span class="fu">vars</span>(Infection))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU,</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> resi1)) <span class="sc">+</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">cols =</span> <span class="fu">vars</span>(Infection))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`stat_bin()` using `bins = 30`. Pick better value `binwidth`.</code></pre>
 </div>
@@ -5345,10 +5351,10 @@ Note
 </ul></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU,</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> resi1)) <span class="sc">+</span></span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">cols =</span> <span class="fu">vars</span>(Emergency))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU,</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> resi1)) <span class="sc">+</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">cols =</span> <span class="fu">vars</span>(Emergency))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`stat_bin()` using `bins = 30`. Pick better value `binwidth`.</code></pre>
 </div>
@@ -5849,273 +5855,273 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class>
-<div class="sourceCode" id="cb43" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;BTS 510 Lab 7&quot;</span></span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="co">    embed-resources: true</span></span>
-<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a><span class="co">    self-contained-math: true</span></span>
-<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="co">    html-math-method: katex</span></span>
-<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
-<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-bg: true</span></span>
-<span id="cb43-12"><a href="#cb43-12" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-border-left: &quot;#31BAE9&quot;</span></span>
-<span id="cb43-13"><a href="#cb43-13" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb43-14"><a href="#cb43-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-17"><a href="#cb43-17" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb43-18"><a href="#cb43-18" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
-<span id="cb43-19"><a href="#cb43-19" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
-<span id="cb43-20"><a href="#cb43-20" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb43-21"><a href="#cb43-21" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Stat2Data)</span>
-<span id="cb43-22"><a href="#cb43-22" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">16</span>))</span>
-<span id="cb43-23"><a href="#cb43-23" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb43-24"><a href="#cb43-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-25"><a href="#cb43-25" aria-hidden="true" tabindex="-1"></a><span class="fu">## Learning objectives</span></span>
-<span id="cb43-26"><a href="#cb43-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-27"><a href="#cb43-27" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Add predictors** to a linear regression model</span>
-<span id="cb43-28"><a href="#cb43-28" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Interpret **partial regression coefficients**</span>
-<span id="cb43-29"><a href="#cb43-29" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Re-code predictors** to answer your research questions</span>
-<span id="cb43-30"><a href="#cb43-30" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Compare** different models using $R^2_{change}$</span>
-<span id="cb43-31"><a href="#cb43-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-32"><a href="#cb43-32" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data </span></span>
-<span id="cb43-33"><a href="#cb43-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-34"><a href="#cb43-34" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="in">`ICU`</span> data from the **Stat2Data** package</span>
-<span id="cb43-35"><a href="#cb43-35" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`ID`</span>: Patient ID code</span>
-<span id="cb43-36"><a href="#cb43-36" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`Survive`</span>: 1 = patient survived to discharge or 0 = patient died</span>
-<span id="cb43-37"><a href="#cb43-37" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`Age`</span>: Age (in years)</span>
-<span id="cb43-38"><a href="#cb43-38" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`AgeGroup`</span>: 1 = young (under 50), 2 = middle (50-69), 3 = old (70+)</span>
-<span id="cb43-39"><a href="#cb43-39" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`Sex`</span>: 1 = female or 0 = male</span>
-<span id="cb43-40"><a href="#cb43-40" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`Infection`</span>: 1 = infection suspected or 0 = no infection</span>
-<span id="cb43-41"><a href="#cb43-41" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`SysBP`</span>: Systolic blood pressure (in mm of Hg)</span>
-<span id="cb43-42"><a href="#cb43-42" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`Pulse`</span>: Heart rate (beats per minute)</span>
-<span id="cb43-43"><a href="#cb43-43" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`Emergency`</span>: 1 = emergency admission or 0 = elective admission</span>
-<span id="cb43-44"><a href="#cb43-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-47"><a href="#cb43-47" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb43-48"><a href="#cb43-48" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Stat2Data)</span>
-<span id="cb43-49"><a href="#cb43-49" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(ICU)</span>
-<span id="cb43-50"><a href="#cb43-50" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb43-51"><a href="#cb43-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-52"><a href="#cb43-52" aria-hidden="true" tabindex="-1"></a><span class="fu">## Research question</span></span>
-<span id="cb43-53"><a href="#cb43-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-54"><a href="#cb43-54" aria-hidden="true" tabindex="-1"></a>**How do infection status (`Infection`) and admission type (`Emergency`) predict blood pressure?**</span>
-<span id="cb43-55"><a href="#cb43-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-56"><a href="#cb43-56" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tasks</span></span>
-<span id="cb43-57"><a href="#cb43-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-58"><a href="#cb43-58" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Conduct **three linear regression models** to address the above research questions.</span>
-<span id="cb43-59"><a href="#cb43-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-60"><a href="#cb43-60" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Model 1: Infection status predicts blood pressure</span>
-<span id="cb43-61"><a href="#cb43-61" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Model 2: Admission type predicts blood pressure</span>
-<span id="cb43-62"><a href="#cb43-62" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Model 3: Infection status *and* admission type predict blood pressure</span>
-<span id="cb43-63"><a href="#cb43-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-66"><a href="#cb43-66" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb43-67"><a href="#cb43-67" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> ICU, SysBP <span class="sc">~</span> Infection)</span>
-<span id="cb43-68"><a href="#cb43-68" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> ICU, SysBP <span class="sc">~</span> Emergency)</span>
-<span id="cb43-69"><a href="#cb43-69" aria-hidden="true" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> ICU, SysBP <span class="sc">~</span> Infection <span class="sc">+</span> Emergency)</span>
-<span id="cb43-70"><a href="#cb43-70" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb43-71"><a href="#cb43-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-72"><a href="#cb43-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-73"><a href="#cb43-73" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Which is the best model?** </span>
-<span id="cb43-74"><a href="#cb43-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-75"><a href="#cb43-75" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Use the $F$-test for $R^2_{change}$ and the AIC values to help you decide. Report the tests and values that you used to decide this. </span>
-<span id="cb43-76"><a href="#cb43-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-79"><a href="#cb43-79" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb43-80"><a href="#cb43-80" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m1, m2)</span>
-<span id="cb43-81"><a href="#cb43-81" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m1, m3)</span>
-<span id="cb43-82"><a href="#cb43-82" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m2, m3)</span>
-<span id="cb43-83"><a href="#cb43-83" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb43-84"><a href="#cb43-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-85"><a href="#cb43-85" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Note: Cannot use this to compare models with same number of predictors because degrees of freedom is the difference in number of predictors </span>
-<span id="cb43-86"><a href="#cb43-86" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Comparison of <span class="in">`m1`</span> and <span class="in">`m2`</span> is useless</span>
-<span id="cb43-87"><a href="#cb43-87" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Can compare <span class="in">`m3`</span> (two predictors) to each of the 1 predictor models</span>
-<span id="cb43-88"><a href="#cb43-88" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`m3`</span> is better than <span class="in">`m1`</span>, F(1, 197) = 4.6668, p&lt;.05</span>
-<span id="cb43-89"><a href="#cb43-89" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`m3`</span> is better than <span class="in">`m2`</span>, F(1, 197) = 8.5677, p&lt;.01</span>
-<span id="cb43-90"><a href="#cb43-90" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Basically, both predictors are better than either one alone</span>
-<span id="cb43-91"><a href="#cb43-91" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-92"><a href="#cb43-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-95"><a href="#cb43-95" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb43-96"><a href="#cb43-96" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(m1)</span>
-<span id="cb43-97"><a href="#cb43-97" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(m2)</span>
-<span id="cb43-98"><a href="#cb43-98" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(m3)</span>
-<span id="cb43-99"><a href="#cb43-99" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb43-100"><a href="#cb43-100" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Lower is better for AIC and BIC</span>
-<span id="cb43-101"><a href="#cb43-101" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`m3`</span> has the lowest AIC</span>
-<span id="cb43-102"><a href="#cb43-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-103"><a href="#cb43-103" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Report the results of the **best** model, including:</span>
-<span id="cb43-104"><a href="#cb43-104" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Intercept value, test statistic, $p$-value, interpretation (in words)</span>
-<span id="cb43-105"><a href="#cb43-105" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Slope value(s), test statistic(s), $p$-value(s), interpretation(s) (in words)</span>
-<span id="cb43-106"><a href="#cb43-106" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>$R^2$ value, test statistic, $p$-value, interpretation (in words)</span>
-<span id="cb43-107"><a href="#cb43-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-110"><a href="#cb43-110" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb43-111"><a href="#cb43-111" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m3)</span>
-<span id="cb43-112"><a href="#cb43-112" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb43-113"><a href="#cb43-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-114"><a href="#cb43-114" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Intercept</span>
-<span id="cb43-115"><a href="#cb43-115" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>$b_0$ = 146.194, t(197) = 31.995, p&lt;.0001</span>
-<span id="cb43-116"><a href="#cb43-116" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>The predicted blood pressure for a person without an infection (<span class="in">`Infection`</span> = 0) and without an emergency admission (<span class="in">`Emergency`</span> = 0) is 146.194.</span>
-<span id="cb43-117"><a href="#cb43-117" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="in">`Infection`</span> effect</span>
-<span id="cb43-118"><a href="#cb43-118" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>$b_1$ = -13.553, t(197) = -2.927, p&lt;.01</span>
-<span id="cb43-119"><a href="#cb43-119" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Holding <span class="in">`Emergency`</span> constant, for a 1 unit increase in <span class="in">`Infection`</span> (i.e., going from no infection (0) to infection (1)), we expect the predicted blood pressure to **decrease** by 13.553 points.</span>
-<span id="cb43-120"><a href="#cb43-120" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="in">`Emergency`</span> effect</span>
-<span id="cb43-121"><a href="#cb43-121" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>$b_2$ = -11.186, t(197) = -2.160, p&lt;.05</span>
-<span id="cb43-122"><a href="#cb43-122" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Holding <span class="in">`Infection`</span> constant, for a 1 unit increase in <span class="in">`Emergency`</span> (i.e., going from regular admission (0) to emergency admission (1)), we expect the predicted blood pressure to **decrease** by 11.186 points.  </span>
-<span id="cb43-123"><a href="#cb43-123" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>$R^2$ = 0.074, F(2, 197) = 7.89, p&lt;.001</span>
-<span id="cb43-124"><a href="#cb43-124" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>The two predictors together account for 7.4% of the variance in blood pressure.</span>
-<span id="cb43-125"><a href="#cb43-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-126"><a href="#cb43-126" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-127"><a href="#cb43-127" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Based on **model 3**, what are the predicted blood pressures for the 4 combinations of infection status and admission type? (i.e., infected non-emergency, non-infected non-emergency, infected emergency, non-infected emergency)</span>
-<span id="cb43-128"><a href="#cb43-128" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-129"><a href="#cb43-129" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Method 1: Use R like a calculator</span>
-<span id="cb43-130"><a href="#cb43-130" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Easy and straight-forward</span>
-<span id="cb43-131"><a href="#cb43-131" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>You have to keep track of things</span>
-<span id="cb43-132"><a href="#cb43-132" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Not in a data frame to do other things with</span>
-<span id="cb43-133"><a href="#cb43-133" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-136"><a href="#cb43-136" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb43-137"><a href="#cb43-137" aria-hidden="true" tabindex="-1"></a>b0 <span class="ot">&lt;-</span> <span class="fl">146.194</span></span>
-<span id="cb43-138"><a href="#cb43-138" aria-hidden="true" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">13.553</span></span>
-<span id="cb43-139"><a href="#cb43-139" aria-hidden="true" tabindex="-1"></a>b2 <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">11.186</span></span>
-<span id="cb43-140"><a href="#cb43-140" aria-hidden="true" tabindex="-1"></a>p_00 <span class="ot">&lt;-</span> b0 <span class="sc">+</span> b1<span class="sc">*</span><span class="dv">0</span> <span class="sc">+</span> b2<span class="sc">*</span><span class="dv">0</span></span>
-<span id="cb43-141"><a href="#cb43-141" aria-hidden="true" tabindex="-1"></a>p_10 <span class="ot">&lt;-</span> b0 <span class="sc">+</span> b1<span class="sc">*</span><span class="dv">1</span> <span class="sc">+</span> b2<span class="sc">*</span><span class="dv">0</span></span>
-<span id="cb43-142"><a href="#cb43-142" aria-hidden="true" tabindex="-1"></a>p_01 <span class="ot">&lt;-</span> b0 <span class="sc">+</span> b1<span class="sc">*</span><span class="dv">0</span> <span class="sc">+</span> b2<span class="sc">*</span><span class="dv">1</span></span>
-<span id="cb43-143"><a href="#cb43-143" aria-hidden="true" tabindex="-1"></a>p_11 <span class="ot">&lt;-</span> b0 <span class="sc">+</span> b1<span class="sc">*</span><span class="dv">1</span> <span class="sc">+</span> b2<span class="sc">*</span><span class="dv">1</span></span>
-<span id="cb43-144"><a href="#cb43-144" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-145"><a href="#cb43-145" aria-hidden="true" tabindex="-1"></a><span class="co"># no infection, no emergency</span></span>
-<span id="cb43-146"><a href="#cb43-146" aria-hidden="true" tabindex="-1"></a>p_00</span>
-<span id="cb43-147"><a href="#cb43-147" aria-hidden="true" tabindex="-1"></a><span class="co"># infection, no emergency</span></span>
-<span id="cb43-148"><a href="#cb43-148" aria-hidden="true" tabindex="-1"></a>p_10</span>
-<span id="cb43-149"><a href="#cb43-149" aria-hidden="true" tabindex="-1"></a><span class="co"># no infection, emergency</span></span>
-<span id="cb43-150"><a href="#cb43-150" aria-hidden="true" tabindex="-1"></a>p_01</span>
-<span id="cb43-151"><a href="#cb43-151" aria-hidden="true" tabindex="-1"></a><span class="co"># infection, emergency</span></span>
-<span id="cb43-152"><a href="#cb43-152" aria-hidden="true" tabindex="-1"></a>p_11</span>
-<span id="cb43-153"><a href="#cb43-153" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb43-154"><a href="#cb43-154" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-155"><a href="#cb43-155" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Method 2: Use the <span class="in">`predict()`</span> function</span>
-<span id="cb43-156"><a href="#cb43-156" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Step 1. Create a new dataset with the predictor values you want</span>
-<span id="cb43-157"><a href="#cb43-157" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Variables must have same names as in the model: <span class="in">`Infection`</span> and <span class="in">`Emergency`</span></span>
-<span id="cb43-158"><a href="#cb43-158" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Check the new dataset to make sure it looks like what you want</span>
-<span id="cb43-159"><a href="#cb43-159" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Step 2. Use <span class="in">`predict()`</span> function to add a new variable (<span class="in">`pred_BP`</span>) to the new dataset</span>
-<span id="cb43-160"><a href="#cb43-160" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span><span class="in">`new_data$pred_BP`</span> is a variable called <span class="in">`pred_BP`</span> in the <span class="in">`new_data`</span> dataset</span>
-<span id="cb43-161"><a href="#cb43-161" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>If this variable doesn&#39;t exist already (here, it doesn&#39;t), it will be created</span>
-<span id="cb43-162"><a href="#cb43-162" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb43-165"><a href="#cb43-165" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb43-166"><a href="#cb43-166" aria-hidden="true" tabindex="-1"></a><span class="co"># step 1</span></span>
-<span id="cb43-167"><a href="#cb43-167" aria-hidden="true" tabindex="-1"></a>new_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Infection =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>), <span class="at">Emergency =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>))</span>
-<span id="cb43-168"><a href="#cb43-168" aria-hidden="true" tabindex="-1"></a>new_data</span>
-<span id="cb43-169"><a href="#cb43-169" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb43-170"><a href="#cb43-170" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-173"><a href="#cb43-173" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb43-174"><a href="#cb43-174" aria-hidden="true" tabindex="-1"></a><span class="co"># step 2</span></span>
-<span id="cb43-175"><a href="#cb43-175" aria-hidden="true" tabindex="-1"></a>new_data<span class="sc">$</span>pred_BP <span class="ot">&lt;-</span> <span class="fu">predict</span>(m3, <span class="at">newdata =</span> new_data)</span>
-<span id="cb43-176"><a href="#cb43-176" aria-hidden="true" tabindex="-1"></a>new_data</span>
-<span id="cb43-177"><a href="#cb43-177" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb43-178"><a href="#cb43-178" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-179"><a href="#cb43-179" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Use this dataset to make a plot</span>
-<span id="cb43-180"><a href="#cb43-180" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>And add some labels</span>
-<span id="cb43-181"><a href="#cb43-181" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-184"><a href="#cb43-184" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb43-185"><a href="#cb43-185" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> new_data, <span class="fu">aes</span>(<span class="at">x =</span> Infection, </span>
-<span id="cb43-186"><a href="#cb43-186" aria-hidden="true" tabindex="-1"></a>                            <span class="at">y =</span> pred_BP, </span>
-<span id="cb43-187"><a href="#cb43-187" aria-hidden="true" tabindex="-1"></a>                            <span class="at">shape =</span> <span class="fu">as.factor</span>(Emergency))) <span class="sc">+</span></span>
-<span id="cb43-188"><a href="#cb43-188" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb43-189"><a href="#cb43-189" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb43-190"><a href="#cb43-190" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">round</span>(pred_BP, <span class="dv">2</span>)), </span>
-<span id="cb43-191"><a href="#cb43-191" aria-hidden="true" tabindex="-1"></a>            <span class="at">nudge_x =</span> <span class="fl">0.25</span>,</span>
-<span id="cb43-192"><a href="#cb43-192" aria-hidden="true" tabindex="-1"></a>            <span class="at">nudge_y =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb43-193"><a href="#cb43-193" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">1.5</span>) <span class="sc">+</span></span>
-<span id="cb43-194"><a href="#cb43-194" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">120</span>, <span class="dv">160</span>) <span class="sc">+</span></span>
-<span id="cb43-195"><a href="#cb43-195" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">shape =</span> <span class="st">&quot;Emergency&quot;</span>, </span>
-<span id="cb43-196"><a href="#cb43-196" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Predicted systolic blood pressure (mm/Hg)&quot;</span>)</span>
-<span id="cb43-197"><a href="#cb43-197" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb43-198"><a href="#cb43-198" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-199"><a href="#cb43-199" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Effect of <span class="in">`Infection`</span></span>
-<span id="cb43-200"><a href="#cb43-200" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>$b_1$ = <span class="in">`r round(b1, 2)`</span></span>
-<span id="cb43-201"><a href="#cb43-201" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Effect of <span class="in">`Infection`</span>, controlling for <span class="in">`Emergency`</span> is the **slope** of the lines</span>
-<span id="cb43-202"><a href="#cb43-202" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>When <span class="in">`Emergency`</span> = 0: 132.64 - 146.19 = <span class="in">`r round(b1,2)`</span></span>
-<span id="cb43-203"><a href="#cb43-203" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>When <span class="in">`Emergency`</span> = 1: 121.45 - 135.01 = <span class="in">`r round(b1,2)`</span></span>
-<span id="cb43-204"><a href="#cb43-204" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Effect of <span class="in">`Emergency`</span></span>
-<span id="cb43-205"><a href="#cb43-205" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>$b_2$ = <span class="in">`r round(b2, 2)`</span></span>
-<span id="cb43-206"><a href="#cb43-206" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Effect of <span class="in">`Emergency`</span>, controlling for <span class="in">`Infection`</span> is the **difference** between lines</span>
-<span id="cb43-207"><a href="#cb43-207" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>When <span class="in">`Infection`</span> = 0: 135.01 - 146.19 = <span class="in">`r round(b2,2)`</span></span>
-<span id="cb43-208"><a href="#cb43-208" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>When <span class="in">`Infection`</span> = 1: 121.45 - 132.64 = <span class="in">`r round(b2,2)`</span></span>
-<span id="cb43-209"><a href="#cb43-209" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-210"><a href="#cb43-210" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Using the **predicted** and **residual** values, assess whether the assumptions are met for **model 3**. Include the plots and describe your conclusions based on them. </span>
-<span id="cb43-211"><a href="#cb43-211" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-214"><a href="#cb43-214" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb43-215"><a href="#cb43-215" aria-hidden="true" tabindex="-1"></a>ICU<span class="sc">$</span>pred1 <span class="ot">&lt;-</span> <span class="fu">fitted</span>(m3)</span>
-<span id="cb43-216"><a href="#cb43-216" aria-hidden="true" tabindex="-1"></a>ICU<span class="sc">$</span>resi1 <span class="ot">&lt;-</span> <span class="fu">residuals</span>(m3)</span>
-<span id="cb43-217"><a href="#cb43-217" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb43-218"><a href="#cb43-218" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-219"><a href="#cb43-219" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
-<span id="cb43-220"><a href="#cb43-220" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>With **caution**, you can use the <span class="in">`warning: false`</span> option to suppress all the warnings that the loess line (<span class="in">`geom_smooth()`</span>) is giving</span>
-<span id="cb43-221"><a href="#cb43-221" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="in">`#| warning: false`</span> in the first line of the code chunk</span>
-<span id="cb43-222"><a href="#cb43-222" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Note the <span class="in">`#|`</span> at the start of the line</span>
-<span id="cb43-223"><a href="#cb43-223" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Unfortunately doesn&#39;t show in output, so look at **code**</span>
-<span id="cb43-224"><a href="#cb43-224" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>I did this for these first couple of residuals plots because they give warnings because they are trying to calculate a running average at the edges </span>
-<span id="cb43-225"><a href="#cb43-225" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb43-226"><a href="#cb43-226" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-227"><a href="#cb43-227" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Residuals vs predicted value ($\hat{Y}$)</span>
-<span id="cb43-228"><a href="#cb43-228" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Want a flat line with roughly equal variance (vertical spread) across </span>
-<span id="cb43-229"><a href="#cb43-229" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-232"><a href="#cb43-232" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb43-233"><a href="#cb43-233" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb43-234"><a href="#cb43-234" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU, </span>
-<span id="cb43-235"><a href="#cb43-235" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> pred1, <span class="at">y =</span> resi1)) <span class="sc">+</span> </span>
-<span id="cb43-236"><a href="#cb43-236" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>, </span>
-<span id="cb43-237"><a href="#cb43-237" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb43-238"><a href="#cb43-238" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span>
-<span id="cb43-239"><a href="#cb43-239" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb43-240"><a href="#cb43-240" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-241"><a href="#cb43-241" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Residuals vs <span class="in">`Infection`</span></span>
-<span id="cb43-242"><a href="#cb43-242" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Want a flat line with roughly equal variance (vertical spread) across </span>
-<span id="cb43-243"><a href="#cb43-243" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-246"><a href="#cb43-246" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb43-247"><a href="#cb43-247" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb43-248"><a href="#cb43-248" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU, </span>
-<span id="cb43-249"><a href="#cb43-249" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Infection, <span class="at">y =</span> resi1)) <span class="sc">+</span> </span>
-<span id="cb43-250"><a href="#cb43-250" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>, </span>
-<span id="cb43-251"><a href="#cb43-251" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb43-252"><a href="#cb43-252" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span>
-<span id="cb43-253"><a href="#cb43-253" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb43-254"><a href="#cb43-254" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-255"><a href="#cb43-255" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Residuals vs <span class="in">`Emergency`</span></span>
-<span id="cb43-256"><a href="#cb43-256" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Want a flat line with roughly equal variance (vertical spread) across </span>
-<span id="cb43-257"><a href="#cb43-257" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-260"><a href="#cb43-260" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb43-261"><a href="#cb43-261" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb43-262"><a href="#cb43-262" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU, </span>
-<span id="cb43-263"><a href="#cb43-263" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Emergency, <span class="at">y =</span> resi1)) <span class="sc">+</span> </span>
-<span id="cb43-264"><a href="#cb43-264" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>, </span>
-<span id="cb43-265"><a href="#cb43-265" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb43-266"><a href="#cb43-266" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span>
-<span id="cb43-267"><a href="#cb43-267" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb43-268"><a href="#cb43-268" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-269"><a href="#cb43-269" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Histogram of residuals, conditional on <span class="in">`Infection`</span></span>
-<span id="cb43-270"><a href="#cb43-270" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Want roughly normal distributions for each</span>
-<span id="cb43-271"><a href="#cb43-271" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-274"><a href="#cb43-274" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb43-275"><a href="#cb43-275" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU,</span>
-<span id="cb43-276"><a href="#cb43-276" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> resi1)) <span class="sc">+</span></span>
-<span id="cb43-277"><a href="#cb43-277" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
-<span id="cb43-278"><a href="#cb43-278" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">cols =</span> <span class="fu">vars</span>(Infection))</span>
-<span id="cb43-279"><a href="#cb43-279" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb43-280"><a href="#cb43-280" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-281"><a href="#cb43-281" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Histogram of residuals, conditional on <span class="in">`Emergency`</span></span>
-<span id="cb43-282"><a href="#cb43-282" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Want roughly normal distributions for each</span>
-<span id="cb43-283"><a href="#cb43-283" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-286"><a href="#cb43-286" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb43-287"><a href="#cb43-287" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU,</span>
-<span id="cb43-288"><a href="#cb43-288" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> resi1)) <span class="sc">+</span></span>
-<span id="cb43-289"><a href="#cb43-289" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
-<span id="cb43-290"><a href="#cb43-290" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">cols =</span> <span class="fu">vars</span>(Emergency))</span>
-<span id="cb43-291"><a href="#cb43-291" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb43-292"><a href="#cb43-292" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-293"><a href="#cb43-293" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>In plain language, answer the research question: **How do infection status and admission type predict blood pressure?** (This should not be lengthy -- just a couple sentences.)</span>
-<span id="cb43-294"><a href="#cb43-294" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb43-295"><a href="#cb43-295" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Whether someone has an infection or not affects blood pressure</span>
-<span id="cb43-296"><a href="#cb43-296" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Patients *with an infection* had **lower** blood pressure than patients *without an infection*</span>
-<span id="cb43-297"><a href="#cb43-297" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Whether someone was an emergency admission or not affects blood pressure</span>
-<span id="cb43-298"><a href="#cb43-298" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Patients with *emergency* admissions had **lower** blood pressure than patients with *non-emergency* admissions</span>
-<span id="cb43-299"><a href="#cb43-299" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>(Note that this model only includes simple **additive** effects, which leads to the parallel lines. What if it instead looked like, e.g., emergency admission doesn&#39;t affect blood pressure for people with infections, but it does for people without infections? **Non-parallel lines**)</span>
+<div class="sourceCode" id="cb45" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;BTS 510 Lab 7&quot;</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="co">    embed-resources: true</span></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="co">    self-contained-math: true</span></span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="co">    html-math-method: katex</span></span>
+<span id="cb45-8"><a href="#cb45-8" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
+<span id="cb45-9"><a href="#cb45-9" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb45-10"><a href="#cb45-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb45-11"><a href="#cb45-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-bg: true</span></span>
+<span id="cb45-12"><a href="#cb45-12" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-border-left: &quot;#31BAE9&quot;</span></span>
+<span id="cb45-13"><a href="#cb45-13" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb45-14"><a href="#cb45-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-17"><a href="#cb45-17" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-18"><a href="#cb45-18" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb45-19"><a href="#cb45-19" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
+<span id="cb45-20"><a href="#cb45-20" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb45-21"><a href="#cb45-21" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Stat2Data)</span>
+<span id="cb45-22"><a href="#cb45-22" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">16</span>))</span>
+<span id="cb45-23"><a href="#cb45-23" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb45-24"><a href="#cb45-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-25"><a href="#cb45-25" aria-hidden="true" tabindex="-1"></a><span class="fu">## Learning objectives</span></span>
+<span id="cb45-26"><a href="#cb45-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-27"><a href="#cb45-27" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Add predictors** to a linear regression model</span>
+<span id="cb45-28"><a href="#cb45-28" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Interpret **partial regression coefficients**</span>
+<span id="cb45-29"><a href="#cb45-29" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Re-code predictors** to answer your research questions</span>
+<span id="cb45-30"><a href="#cb45-30" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Compare** different models using $R^2_{change}$</span>
+<span id="cb45-31"><a href="#cb45-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-32"><a href="#cb45-32" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data </span></span>
+<span id="cb45-33"><a href="#cb45-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-34"><a href="#cb45-34" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="in">`ICU`</span> data from the **Stat2Data** package</span>
+<span id="cb45-35"><a href="#cb45-35" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`ID`</span>: Patient ID code</span>
+<span id="cb45-36"><a href="#cb45-36" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`Survive`</span>: 1 = patient survived to discharge or 0 = patient died</span>
+<span id="cb45-37"><a href="#cb45-37" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`Age`</span>: Age (in years)</span>
+<span id="cb45-38"><a href="#cb45-38" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`AgeGroup`</span>: 1 = young (under 50), 2 = middle (50-69), 3 = old (70+)</span>
+<span id="cb45-39"><a href="#cb45-39" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`Sex`</span>: 1 = female or 0 = male</span>
+<span id="cb45-40"><a href="#cb45-40" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`Infection`</span>: 1 = infection suspected or 0 = no infection</span>
+<span id="cb45-41"><a href="#cb45-41" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`SysBP`</span>: Systolic blood pressure (in mm of Hg)</span>
+<span id="cb45-42"><a href="#cb45-42" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`Pulse`</span>: Heart rate (beats per minute)</span>
+<span id="cb45-43"><a href="#cb45-43" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`Emergency`</span>: 1 = emergency admission or 0 = elective admission</span>
+<span id="cb45-44"><a href="#cb45-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-47"><a href="#cb45-47" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-48"><a href="#cb45-48" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Stat2Data)</span>
+<span id="cb45-49"><a href="#cb45-49" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(ICU)</span>
+<span id="cb45-50"><a href="#cb45-50" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb45-51"><a href="#cb45-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-52"><a href="#cb45-52" aria-hidden="true" tabindex="-1"></a><span class="fu">## Research question</span></span>
+<span id="cb45-53"><a href="#cb45-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-54"><a href="#cb45-54" aria-hidden="true" tabindex="-1"></a>**How do infection status (`Infection`) and admission type (`Emergency`) predict blood pressure?**</span>
+<span id="cb45-55"><a href="#cb45-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-56"><a href="#cb45-56" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tasks</span></span>
+<span id="cb45-57"><a href="#cb45-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-58"><a href="#cb45-58" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Conduct **three linear regression models** to address the above research questions.</span>
+<span id="cb45-59"><a href="#cb45-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-60"><a href="#cb45-60" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Model 1: Infection status predicts blood pressure</span>
+<span id="cb45-61"><a href="#cb45-61" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Model 2: Admission type predicts blood pressure</span>
+<span id="cb45-62"><a href="#cb45-62" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Model 3: Infection status *and* admission type predict blood pressure</span>
+<span id="cb45-63"><a href="#cb45-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-66"><a href="#cb45-66" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-67"><a href="#cb45-67" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> ICU, SysBP <span class="sc">~</span> Infection)</span>
+<span id="cb45-68"><a href="#cb45-68" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> ICU, SysBP <span class="sc">~</span> Emergency)</span>
+<span id="cb45-69"><a href="#cb45-69" aria-hidden="true" tabindex="-1"></a>m3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="at">data =</span> ICU, SysBP <span class="sc">~</span> Infection <span class="sc">+</span> Emergency)</span>
+<span id="cb45-70"><a href="#cb45-70" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb45-71"><a href="#cb45-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-72"><a href="#cb45-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-73"><a href="#cb45-73" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Which is the best model?** </span>
+<span id="cb45-74"><a href="#cb45-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-75"><a href="#cb45-75" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Use the $F$-test for $R^2_{change}$ and the AIC values to help you decide. Report the tests and values that you used to decide this. </span>
+<span id="cb45-76"><a href="#cb45-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-79"><a href="#cb45-79" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-80"><a href="#cb45-80" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m1, m2)</span>
+<span id="cb45-81"><a href="#cb45-81" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m1, m3)</span>
+<span id="cb45-82"><a href="#cb45-82" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m2, m3)</span>
+<span id="cb45-83"><a href="#cb45-83" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb45-84"><a href="#cb45-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-85"><a href="#cb45-85" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Note: Cannot use this to compare models with same number of predictors because degrees of freedom is the difference in number of predictors </span>
+<span id="cb45-86"><a href="#cb45-86" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Comparison of <span class="in">`m1`</span> and <span class="in">`m2`</span> is useless</span>
+<span id="cb45-87"><a href="#cb45-87" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Can compare <span class="in">`m3`</span> (two predictors) to each of the 1 predictor models</span>
+<span id="cb45-88"><a href="#cb45-88" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`m3`</span> is better than <span class="in">`m1`</span>, F(1, 197) = 4.6668, p&lt;.05</span>
+<span id="cb45-89"><a href="#cb45-89" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`m3`</span> is better than <span class="in">`m2`</span>, F(1, 197) = 8.5677, p&lt;.01</span>
+<span id="cb45-90"><a href="#cb45-90" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Basically, both predictors are better than either one alone</span>
+<span id="cb45-91"><a href="#cb45-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-92"><a href="#cb45-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-95"><a href="#cb45-95" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-96"><a href="#cb45-96" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(m1)</span>
+<span id="cb45-97"><a href="#cb45-97" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(m2)</span>
+<span id="cb45-98"><a href="#cb45-98" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(m3)</span>
+<span id="cb45-99"><a href="#cb45-99" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb45-100"><a href="#cb45-100" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Lower is better for AIC and BIC</span>
+<span id="cb45-101"><a href="#cb45-101" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`m3`</span> has the lowest AIC</span>
+<span id="cb45-102"><a href="#cb45-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-103"><a href="#cb45-103" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Report the results of the **best** model, including:</span>
+<span id="cb45-104"><a href="#cb45-104" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Intercept value, test statistic, $p$-value, interpretation (in words)</span>
+<span id="cb45-105"><a href="#cb45-105" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Slope value(s), test statistic(s), $p$-value(s), interpretation(s) (in words)</span>
+<span id="cb45-106"><a href="#cb45-106" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>$R^2$ value, test statistic, $p$-value, interpretation (in words)</span>
+<span id="cb45-107"><a href="#cb45-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-110"><a href="#cb45-110" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-111"><a href="#cb45-111" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m3)</span>
+<span id="cb45-112"><a href="#cb45-112" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb45-113"><a href="#cb45-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-114"><a href="#cb45-114" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Intercept</span>
+<span id="cb45-115"><a href="#cb45-115" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>$b_0$ = 146.194, t(197) = 31.995, p&lt;.0001</span>
+<span id="cb45-116"><a href="#cb45-116" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>The predicted blood pressure for a person without an infection (<span class="in">`Infection`</span> = 0) and without an emergency admission (<span class="in">`Emergency`</span> = 0) is 146.194.</span>
+<span id="cb45-117"><a href="#cb45-117" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="in">`Infection`</span> effect</span>
+<span id="cb45-118"><a href="#cb45-118" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>$b_1$ = -13.553, t(197) = -2.927, p&lt;.01</span>
+<span id="cb45-119"><a href="#cb45-119" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Holding <span class="in">`Emergency`</span> constant, for a 1 unit increase in <span class="in">`Infection`</span> (i.e., going from no infection (0) to infection (1)), we expect the predicted blood pressure to **decrease** by 13.553 points.</span>
+<span id="cb45-120"><a href="#cb45-120" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="in">`Emergency`</span> effect</span>
+<span id="cb45-121"><a href="#cb45-121" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>$b_2$ = -11.186, t(197) = -2.160, p&lt;.05</span>
+<span id="cb45-122"><a href="#cb45-122" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Holding <span class="in">`Infection`</span> constant, for a 1 unit increase in <span class="in">`Emergency`</span> (i.e., going from regular admission (0) to emergency admission (1)), we expect the predicted blood pressure to **decrease** by 11.186 points.  </span>
+<span id="cb45-123"><a href="#cb45-123" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>$R^2$ = 0.074, F(2, 197) = 7.89, p&lt;.001</span>
+<span id="cb45-124"><a href="#cb45-124" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>The two predictors together account for 7.4% of the variance in blood pressure.</span>
+<span id="cb45-125"><a href="#cb45-125" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-126"><a href="#cb45-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-127"><a href="#cb45-127" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Based on **model 3**, what are the predicted blood pressures for the 4 combinations of infection status and admission type? (i.e., infected non-emergency, non-infected non-emergency, infected emergency, non-infected emergency)</span>
+<span id="cb45-128"><a href="#cb45-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-129"><a href="#cb45-129" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Method 1: Use R like a calculator</span>
+<span id="cb45-130"><a href="#cb45-130" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Easy and straight-forward</span>
+<span id="cb45-131"><a href="#cb45-131" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>You have to keep track of things</span>
+<span id="cb45-132"><a href="#cb45-132" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Not in a data frame to do other things with</span>
+<span id="cb45-133"><a href="#cb45-133" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-136"><a href="#cb45-136" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-137"><a href="#cb45-137" aria-hidden="true" tabindex="-1"></a>b0 <span class="ot">&lt;-</span> <span class="fl">146.194</span></span>
+<span id="cb45-138"><a href="#cb45-138" aria-hidden="true" tabindex="-1"></a>b1 <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">13.553</span></span>
+<span id="cb45-139"><a href="#cb45-139" aria-hidden="true" tabindex="-1"></a>b2 <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fl">11.186</span></span>
+<span id="cb45-140"><a href="#cb45-140" aria-hidden="true" tabindex="-1"></a>p_00 <span class="ot">&lt;-</span> b0 <span class="sc">+</span> b1<span class="sc">*</span><span class="dv">0</span> <span class="sc">+</span> b2<span class="sc">*</span><span class="dv">0</span></span>
+<span id="cb45-141"><a href="#cb45-141" aria-hidden="true" tabindex="-1"></a>p_10 <span class="ot">&lt;-</span> b0 <span class="sc">+</span> b1<span class="sc">*</span><span class="dv">1</span> <span class="sc">+</span> b2<span class="sc">*</span><span class="dv">0</span></span>
+<span id="cb45-142"><a href="#cb45-142" aria-hidden="true" tabindex="-1"></a>p_01 <span class="ot">&lt;-</span> b0 <span class="sc">+</span> b1<span class="sc">*</span><span class="dv">0</span> <span class="sc">+</span> b2<span class="sc">*</span><span class="dv">1</span></span>
+<span id="cb45-143"><a href="#cb45-143" aria-hidden="true" tabindex="-1"></a>p_11 <span class="ot">&lt;-</span> b0 <span class="sc">+</span> b1<span class="sc">*</span><span class="dv">1</span> <span class="sc">+</span> b2<span class="sc">*</span><span class="dv">1</span></span>
+<span id="cb45-144"><a href="#cb45-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-145"><a href="#cb45-145" aria-hidden="true" tabindex="-1"></a><span class="co"># no infection, no emergency</span></span>
+<span id="cb45-146"><a href="#cb45-146" aria-hidden="true" tabindex="-1"></a>p_00</span>
+<span id="cb45-147"><a href="#cb45-147" aria-hidden="true" tabindex="-1"></a><span class="co"># infection, no emergency</span></span>
+<span id="cb45-148"><a href="#cb45-148" aria-hidden="true" tabindex="-1"></a>p_10</span>
+<span id="cb45-149"><a href="#cb45-149" aria-hidden="true" tabindex="-1"></a><span class="co"># no infection, emergency</span></span>
+<span id="cb45-150"><a href="#cb45-150" aria-hidden="true" tabindex="-1"></a>p_01</span>
+<span id="cb45-151"><a href="#cb45-151" aria-hidden="true" tabindex="-1"></a><span class="co"># infection, emergency</span></span>
+<span id="cb45-152"><a href="#cb45-152" aria-hidden="true" tabindex="-1"></a>p_11</span>
+<span id="cb45-153"><a href="#cb45-153" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb45-154"><a href="#cb45-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-155"><a href="#cb45-155" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Method 2: Use the <span class="in">`predict()`</span> function</span>
+<span id="cb45-156"><a href="#cb45-156" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Step 1. Create a new dataset with the predictor values you want</span>
+<span id="cb45-157"><a href="#cb45-157" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Variables must have same names as in the model: <span class="in">`Infection`</span> and <span class="in">`Emergency`</span></span>
+<span id="cb45-158"><a href="#cb45-158" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Check the new dataset to make sure it looks like what you want</span>
+<span id="cb45-159"><a href="#cb45-159" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Step 2. Use <span class="in">`predict()`</span> function to add a new variable (<span class="in">`pred_BP`</span>) to the new dataset</span>
+<span id="cb45-160"><a href="#cb45-160" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span><span class="in">`new_data$pred_BP`</span> is a variable called <span class="in">`pred_BP`</span> in the <span class="in">`new_data`</span> dataset</span>
+<span id="cb45-161"><a href="#cb45-161" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>If this variable doesn&#39;t exist already (here, it doesn&#39;t), it will be created</span>
+<span id="cb45-162"><a href="#cb45-162" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb45-165"><a href="#cb45-165" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-166"><a href="#cb45-166" aria-hidden="true" tabindex="-1"></a><span class="co"># step 1</span></span>
+<span id="cb45-167"><a href="#cb45-167" aria-hidden="true" tabindex="-1"></a>new_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Infection =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>), <span class="at">Emergency =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb45-168"><a href="#cb45-168" aria-hidden="true" tabindex="-1"></a>new_data</span>
+<span id="cb45-169"><a href="#cb45-169" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb45-170"><a href="#cb45-170" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-173"><a href="#cb45-173" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-174"><a href="#cb45-174" aria-hidden="true" tabindex="-1"></a><span class="co"># step 2</span></span>
+<span id="cb45-175"><a href="#cb45-175" aria-hidden="true" tabindex="-1"></a>new_data<span class="sc">$</span>pred_BP <span class="ot">&lt;-</span> <span class="fu">predict</span>(m3, <span class="at">newdata =</span> new_data)</span>
+<span id="cb45-176"><a href="#cb45-176" aria-hidden="true" tabindex="-1"></a>new_data</span>
+<span id="cb45-177"><a href="#cb45-177" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb45-178"><a href="#cb45-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-179"><a href="#cb45-179" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Use this dataset to make a plot</span>
+<span id="cb45-180"><a href="#cb45-180" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>And add some labels</span>
+<span id="cb45-181"><a href="#cb45-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-184"><a href="#cb45-184" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-185"><a href="#cb45-185" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> new_data, <span class="fu">aes</span>(<span class="at">x =</span> Infection, </span>
+<span id="cb45-186"><a href="#cb45-186" aria-hidden="true" tabindex="-1"></a>                            <span class="at">y =</span> pred_BP, </span>
+<span id="cb45-187"><a href="#cb45-187" aria-hidden="true" tabindex="-1"></a>                            <span class="at">shape =</span> <span class="fu">as.factor</span>(Emergency))) <span class="sc">+</span></span>
+<span id="cb45-188"><a href="#cb45-188" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
+<span id="cb45-189"><a href="#cb45-189" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb45-190"><a href="#cb45-190" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">round</span>(pred_BP, <span class="dv">2</span>)), </span>
+<span id="cb45-191"><a href="#cb45-191" aria-hidden="true" tabindex="-1"></a>            <span class="at">nudge_x =</span> <span class="fl">0.25</span>,</span>
+<span id="cb45-192"><a href="#cb45-192" aria-hidden="true" tabindex="-1"></a>            <span class="at">nudge_y =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb45-193"><a href="#cb45-193" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb45-194"><a href="#cb45-194" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">120</span>, <span class="dv">160</span>) <span class="sc">+</span></span>
+<span id="cb45-195"><a href="#cb45-195" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">shape =</span> <span class="st">&quot;Emergency&quot;</span>, </span>
+<span id="cb45-196"><a href="#cb45-196" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Predicted systolic blood pressure (mm/Hg)&quot;</span>)</span>
+<span id="cb45-197"><a href="#cb45-197" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb45-198"><a href="#cb45-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-199"><a href="#cb45-199" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Effect of <span class="in">`Infection`</span></span>
+<span id="cb45-200"><a href="#cb45-200" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>$b_1$ = <span class="in">`r round(b1, 2)`</span></span>
+<span id="cb45-201"><a href="#cb45-201" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Effect of <span class="in">`Infection`</span>, controlling for <span class="in">`Emergency`</span> is the **slope** of the lines</span>
+<span id="cb45-202"><a href="#cb45-202" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>When <span class="in">`Emergency`</span> = 0: 132.64 - 146.19 = <span class="in">`r round(b1,2)`</span></span>
+<span id="cb45-203"><a href="#cb45-203" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>When <span class="in">`Emergency`</span> = 1: 121.45 - 135.01 = <span class="in">`r round(b1,2)`</span></span>
+<span id="cb45-204"><a href="#cb45-204" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Effect of <span class="in">`Emergency`</span></span>
+<span id="cb45-205"><a href="#cb45-205" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>$b_2$ = <span class="in">`r round(b2, 2)`</span></span>
+<span id="cb45-206"><a href="#cb45-206" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Effect of <span class="in">`Emergency`</span>, controlling for <span class="in">`Infection`</span> is the **difference** between lines</span>
+<span id="cb45-207"><a href="#cb45-207" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>When <span class="in">`Infection`</span> = 0: 135.01 - 146.19 = <span class="in">`r round(b2,2)`</span></span>
+<span id="cb45-208"><a href="#cb45-208" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>When <span class="in">`Infection`</span> = 1: 121.45 - 132.64 = <span class="in">`r round(b2,2)`</span></span>
+<span id="cb45-209"><a href="#cb45-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-210"><a href="#cb45-210" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Using the **predicted** and **residual** values, assess whether the assumptions are met for **model 3**. Include the plots and describe your conclusions based on them. </span>
+<span id="cb45-211"><a href="#cb45-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-214"><a href="#cb45-214" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-215"><a href="#cb45-215" aria-hidden="true" tabindex="-1"></a>ICU<span class="sc">$</span>pred1 <span class="ot">&lt;-</span> <span class="fu">fitted</span>(m3)</span>
+<span id="cb45-216"><a href="#cb45-216" aria-hidden="true" tabindex="-1"></a>ICU<span class="sc">$</span>resi1 <span class="ot">&lt;-</span> <span class="fu">residuals</span>(m3)</span>
+<span id="cb45-217"><a href="#cb45-217" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb45-218"><a href="#cb45-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-219"><a href="#cb45-219" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb45-220"><a href="#cb45-220" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>With **caution**, you can use the <span class="in">`warning: false`</span> option to suppress all the warnings that the loess line (<span class="in">`geom_smooth()`</span>) is giving</span>
+<span id="cb45-221"><a href="#cb45-221" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="in">`#| warning: false`</span> in the first line of the code chunk</span>
+<span id="cb45-222"><a href="#cb45-222" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Note the <span class="in">`#|`</span> at the start of the line</span>
+<span id="cb45-223"><a href="#cb45-223" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Unfortunately doesn&#39;t show in output, so look at **code**</span>
+<span id="cb45-224"><a href="#cb45-224" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>I did this for these first couple of residuals plots because they give warnings because they are trying to calculate a running average at the edges </span>
+<span id="cb45-225"><a href="#cb45-225" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb45-226"><a href="#cb45-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-227"><a href="#cb45-227" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Residuals vs predicted value ($\hat{Y}$)</span>
+<span id="cb45-228"><a href="#cb45-228" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Want a flat line with roughly equal variance (vertical spread) across </span>
+<span id="cb45-229"><a href="#cb45-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-232"><a href="#cb45-232" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-233"><a href="#cb45-233" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb45-234"><a href="#cb45-234" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU, </span>
+<span id="cb45-235"><a href="#cb45-235" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> pred1, <span class="at">y =</span> resi1)) <span class="sc">+</span> </span>
+<span id="cb45-236"><a href="#cb45-236" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>, </span>
+<span id="cb45-237"><a href="#cb45-237" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb45-238"><a href="#cb45-238" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span>
+<span id="cb45-239"><a href="#cb45-239" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb45-240"><a href="#cb45-240" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-241"><a href="#cb45-241" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Residuals vs <span class="in">`Infection`</span></span>
+<span id="cb45-242"><a href="#cb45-242" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Want a flat line with roughly equal variance (vertical spread) across </span>
+<span id="cb45-243"><a href="#cb45-243" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-246"><a href="#cb45-246" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-247"><a href="#cb45-247" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb45-248"><a href="#cb45-248" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU, </span>
+<span id="cb45-249"><a href="#cb45-249" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Infection, <span class="at">y =</span> resi1)) <span class="sc">+</span> </span>
+<span id="cb45-250"><a href="#cb45-250" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>, </span>
+<span id="cb45-251"><a href="#cb45-251" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb45-252"><a href="#cb45-252" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span>
+<span id="cb45-253"><a href="#cb45-253" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb45-254"><a href="#cb45-254" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-255"><a href="#cb45-255" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Residuals vs <span class="in">`Emergency`</span></span>
+<span id="cb45-256"><a href="#cb45-256" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Want a flat line with roughly equal variance (vertical spread) across </span>
+<span id="cb45-257"><a href="#cb45-257" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-260"><a href="#cb45-260" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-261"><a href="#cb45-261" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb45-262"><a href="#cb45-262" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU, </span>
+<span id="cb45-263"><a href="#cb45-263" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> Emergency, <span class="at">y =</span> resi1)) <span class="sc">+</span> </span>
+<span id="cb45-264"><a href="#cb45-264" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>, </span>
+<span id="cb45-265"><a href="#cb45-265" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb45-266"><a href="#cb45-266" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span>
+<span id="cb45-267"><a href="#cb45-267" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb45-268"><a href="#cb45-268" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-269"><a href="#cb45-269" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Histogram of residuals, conditional on <span class="in">`Infection`</span></span>
+<span id="cb45-270"><a href="#cb45-270" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Want roughly normal distributions for each</span>
+<span id="cb45-271"><a href="#cb45-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-274"><a href="#cb45-274" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-275"><a href="#cb45-275" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU,</span>
+<span id="cb45-276"><a href="#cb45-276" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> resi1)) <span class="sc">+</span></span>
+<span id="cb45-277"><a href="#cb45-277" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb45-278"><a href="#cb45-278" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">cols =</span> <span class="fu">vars</span>(Infection))</span>
+<span id="cb45-279"><a href="#cb45-279" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb45-280"><a href="#cb45-280" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-281"><a href="#cb45-281" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Histogram of residuals, conditional on <span class="in">`Emergency`</span></span>
+<span id="cb45-282"><a href="#cb45-282" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Want roughly normal distributions for each</span>
+<span id="cb45-283"><a href="#cb45-283" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-286"><a href="#cb45-286" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb45-287"><a href="#cb45-287" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU,</span>
+<span id="cb45-288"><a href="#cb45-288" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">x =</span> resi1)) <span class="sc">+</span></span>
+<span id="cb45-289"><a href="#cb45-289" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
+<span id="cb45-290"><a href="#cb45-290" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">cols =</span> <span class="fu">vars</span>(Emergency))</span>
+<span id="cb45-291"><a href="#cb45-291" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb45-292"><a href="#cb45-292" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-293"><a href="#cb45-293" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>In plain language, answer the research question: **How do infection status and admission type predict blood pressure?** (This should not be lengthy -- just a couple sentences.)</span>
+<span id="cb45-294"><a href="#cb45-294" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-295"><a href="#cb45-295" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Whether someone has an infection or not affects blood pressure</span>
+<span id="cb45-296"><a href="#cb45-296" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Patients *with an infection* had **lower** blood pressure than patients *without an infection*</span>
+<span id="cb45-297"><a href="#cb45-297" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Whether someone was an emergency admission or not affects blood pressure</span>
+<span id="cb45-298"><a href="#cb45-298" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Patients with *emergency* admissions had **lower** blood pressure than patients with *non-emergency* admissions</span>
+<span id="cb45-299"><a href="#cb45-299" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>(Note that this model only includes simple **additive** effects, which leads to the parallel lines. What if it instead looked like, e.g., emergency admission doesn&#39;t affect blood pressure for people with infections, but it does for people without infections? **Non-parallel lines**)</span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

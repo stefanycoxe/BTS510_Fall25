@@ -1,0 +1,234 @@
+---
+title: "BTS 510 Lab 11"
+format:
+  html:
+    embed-resources: true
+    self-contained-math: true
+    html-math-method: katex
+    number-sections: true
+    toc: true
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+---
+
+```{r}
+#| label: setup
+set.seed(12345)
+library(tidyverse)
+library(Stat2Data)
+theme_set(theme_classic(base_size = 16))
+```
+
+## Learning objectives
+
+* **Conduct** logistic regression for *binary outcomes*
+* **Interpret** results in terms of *probability*, *odds*, and *log-odds*
+
+## Data 
+
+* `ICU` data from the **Stat2Data** package: $n$ = 200
+  * `ID`: Patient ID code
+  * `Survive`: 1 = patient survived to discharge or 0 = patient died
+  * `Age`: Age (in years)
+  * `AgeGroup`: 1 = young (under 50), 2 = middle (50-69), 3 = old (70+)
+  * `Sex`: 1 = female or 0 = male
+  * `Infection`: 1 = infection suspected or 0 = no infection
+  * `SysBP`: Systolic blood pressure (in mm of Hg)
+  * `Pulse`: Heart rate (beats per minute)
+  * `Emergency`: 1 = emergency admission or 0 = elective admission
+
+## Analysis
+
+* Replicate and extend the analysis from the lecture
+  * `Age` and `Emergency` predict `Survive`
+  * Be sure to mean center `Age` for interpretability
+
+## Pseudo $R^2$
+
+* For linear regression, $R^2_{multiple}$ is calculated from the **sums of squares** from ordinary least squares estimation
+* Logistic regression is estimated via maximum likelihood
+  * There are no sums of squares
+  * There is, however, **deviance**
+* Deviance is a function of the log-likelihood
+  * Deviance for a model is how far the model is from a *theoretical* **perfect model** where every observation is perfectly predicted
+  * **Relative measure** so can only **compare** to another model
+  * Big deviance (far from perfect) is worse than small deviance (closer to perfect)
+* Pseudo $R^2$
+  * Compare your model to a model with **no predictors** (only intercept)
+  * How much closer is this model to the perfect model than the intercept only model?
+  * Theoretically ranges from 0 to 1 (but not in practice)
+  * $R^2_{deviance} = 1 - \frac{deviance_{M}}{deviance_{intercept\ only}}$
+  * Deviance for your model is "Residual deviance" from output
+  * Deviance for intercept model is "Null deviance" from output
+
+## Confidence intervals
+
+* Calculate confidence intervals for all coefficients in a model using `confint()`
+  * For example: `confint(m1)` to get confidence intervals for model `m1`
+  * If the CI doesn't include **zero**, the coefficient is significant
+  * Default is 99% confidence interval
+    * Use `level` argument to change
+    * e.g., `confint(m1, level = 0.99)` produces 99% CIs
+* To convert from default logit metric to odds metric: Exponentiate
+  * Logit metric: $b_1$
+  * Convert to **odds ratio**: $e^{b_1}$
+  * Do the same thing to the confidence intervals
+    * `exp(confint(m1))` produces the odds metric CIs
+    * Compare to "no effect" value of **one** for odds
+    * If the CI doesn't include **one**, the coefficient is significant
+
+## Predicted values
+
+* Two main options
+  * Use R like a calculator to calculate predicted values using equations
+    * You can be fancy and grab the coefficients directly from the output
+    * e.g., using `coef(m1)[1]` to get the first coefficient, etc.
+    * Or just type the numbers in
+  * Use `predict()` to calculate predicted values
+    * Set up a new dataset with the predictor values you're interested in
+    * e.g., `age_vals <- data.frame(AgeC = c(-20, 0, 20))`
+    * Then use that new data in `predict()`
+    * e.g., `predict(m1, newdata = age_vals, type = "response")`
+    * `type = "response"` gives predicted values in **probability**
+    * `type = "link"` gives predicted values in **logit**
+
+## Tasks
+
+* Model 1: `Survive ~ Age`
+* Model 2: `Survive ~ Age + Emergency`
+
+```{r}
+library(Stat2Data)
+data(ICU)
+ICU <- ICU %>% mutate(AgeC = Age - mean(Age, na.rm = TRUE))
+m1 <- glm(data = ICU, 
+          Survive ~ AgeC, 
+          family = binomial(link = "logit"))
+m2 <- glm(data = ICU, 
+          Survive ~ AgeC + Emergency, 
+          family = binomial(link = "logit")) 
+summary(m1)
+summary(m2)
+```
+
+
+1. Conduct a likelihood ratio test to compare the models. Report the results. Which model is preferred?
+
+```{r}
+anova(m1, m2, test = "LRT")
+logLik(m1)
+logLik(m2)
+-2 * (logLik(m1) - logLik(m2))
+```
+
+* $\chi^2(1) = 19.23, p<.0001$
+* Model 2 is significantly different from (better than) model 1
+
+2. Report the full results of the preferred model. This is similar to linear regression. For each coefficient (including intercept), report:
+* Regression coefficient
+* Standard error
+* $z$ statistic (note that there aren't degrees of freedom for $z$ tests)
+* $p$ value 
+* **I forget to include the $R^2$ for the model in this list -- include that too**
+
+```{r}
+summary(m2)
+```
+
+* Intercept: $b_0 = 3.55, s.e. = 0.73, z = 4.843, p<.0001$
+  * For a person at mean age (`AgeC` = 0) and non-emergency admission (`Emergency` = 0), the predicted probability of survival is greater than 0.5 because the intercept is positive (i.e., > 0).
+* Age effect: $b_1 = -0.03, s.e. = 0.01, z = -3.181, p<.001$
+  * As age **increases**, the probability(/odds/logit) of survival **decreases** because $b_1$ is **negative**
+* Emergency effect: $b_2 = -2.45, s.e. = 0.75, z = -3.260, p<.001$
+  * Emergency admissions (`Emergency` = 1) have a **lower** probability(/odds/logit) of survival compared to non-emergency admissions (`Emergency` = 0) because $b_2$ is **negative**
+* Pseudo $R^2 = 1 - \frac{173.08}{200.16} = `r round(1 - (173.08/200.16), 3)`$
+  * About `r round(100*(1 - (173.08/200.16)), 1)`% of the variance in the outcome is accounted for by these predictors
+
+3. Calculate predicted probabilities for 6 predictor combinations:
+* Emergency admit, 20 years younger than mean
+* Emergency admit, mean age
+* Emergency admit, 20 years older than mean
+* Non-emergency admit, 20 years younger than mean
+* Non-emergency admit, mean age
+* Non-emergency admit, 20 years older than mean
+
+```{r}
+age_vals <- data.frame(AgeC = c(-20, 0, 20, -20, 0, 20))
+eme_vals <- data.frame(Emergency = c(0, 0, 0, 1, 1, 1))
+vals <- data.frame(age_vals, eme_vals)
+vals
+predict(m2, newdata = vals, type = "response")
+predict(m2, newdata = vals, type = "link")
+```
+
+* Say that you wanted to add the predicted values to the data set to make a plot
+  
+```{r}
+ICU_pred <- data.frame(age_vals, eme_vals)
+ICU_pred <- ICU_pred %>% mutate(pred = predict(m2, newdata = vals, type = "response"))
+ICU_pred
+```
+
+* And let's just make the plot here
+
+```{r}
+ggplot(data = ICU_pred, aes(x = AgeC, y = pred, group = Emergency)) +
+  geom_point(aes(color = as.factor(Emergency)),
+             size = 4) +
+  geom_line(aes(group = Emergency))
+```
+
+* Here's just an overall plot of the data
+  * I added the lines for each group using `stat_smooth()` which is the function that's actually behind `geom_smooth()` that we use for straight lines -- so `geom_smooth()` but with more options
+    * `method = "glm"` means it's using generalized linear models for the line
+    * `method.args=list(family="binomial")` tells it specifically to plot the logistic regression line (`family = binomial` just like in `glm()` for logistic regression)
+    * The arguments about `Emergency` are to get separate lines for the two emergency groups with different colors and a legend 
+  * I added a horizontal line at probability = 0.5 for reference
+
+```{r}
+ggplot(data = ICU, aes(x = AgeC, y = Survive, group = Emergency)) +
+  geom_jitter(height = 0.1, 
+              alpha = 0.3, 
+              aes(color = as.factor(Emergency))) +
+  stat_smooth(method="glm", 
+              method.args=list(family="binomial"), 
+              se=FALSE, 
+              aes(color = as.factor(Emergency), group = Emergency)) +
+  geom_hline(yintercept = 0.5, linetype = "dashed")
+```
+
+
+
+4. Report the odds ratios for each predictor and their confidence intervals. Interpret the odds ratios in words.
+
+* To get confidence intervals, use `confint()`
+* To make odds ratios, exponentiate
+* Do both at once
+  * Must be in this order because `confint()` will only give CIs for model objects (like `m2`), not for portions of a model (like `summary(m2)$coefficients`) or transformations of a model (like `exp(summary(m2)$coefficients)`)
+
+```{r}
+exp(confint(m2))
+```
+
+* Intercept: [10.50, 216.49]
+  * Does not contain 1
+  * Odds of survival for `ageC` = 0 and `Emergency` = 0 is greater than 1
+  * Probability of survival is greater than 0.5
+* Age: [0.95, 0.99]
+  * Does not contain 1
+  * Odds of survival **decreases** as `ageC` **increases**
+  * Probability of survival **decreases** as `ageC` **increases**
+* Emergency: [0.01, 0.30]
+  * Does not contain 1
+  * Odds of survival **decreases** as `Emergency` **increases**
+  * Probability of survival **decreases** as `Emergency` **increases**
+
+5. Describe the overall findings for this model. Be statistically accurate but avoid jargon and technical terms as much as you can. Be sure to use the names of the variables studied (i.e., survival, age, emergency admission) rather than X and Y.
+
+* Survival decreases with increasing age (i.e., older people are less likely to survive after ICU admission)
+* Survival decreases with emergency (as opposed to non-emergency) admission (i.e., emergency admission patients are less likely to survive than non-emergency admission patients)
+* Patients are more likely to survive being admitted to the ICU, except for possibly the very oldest emergency admission patients
+  * (I'm making this statement based on the plot with the two lines, which shows the emergency admission line *just* dips down below probability = 0.5 at the far right side of the plot)
+* I used "likely" to describe things in a metric-agnostic way, but you could replace "more likely to survive" with "have a higher probability of survival" or "have a higher odds of survival" if you want to be more specific
+
