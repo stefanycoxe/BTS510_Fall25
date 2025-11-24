@@ -311,7 +311,7 @@ title: "Materials"
 
 :::
 
-::: {.callout-tip title="Week 11" collapse=false}
+::: {.callout-tip title="Week 11" collapse=true}
 
 ## Week 11: Logistic regression
 
@@ -337,3 +337,40 @@ title: "Materials"
 * **No homework this week**
 
 :::
+
+::: {.callout-tip title="Week 12" collapse=false}
+
+## Week 12: Poisson regression
+
+### Learning objectives
+
+* **Conduct** Poisson regression for *count outcomes*
+* **Interpret** results in terms of *predicted counts*
+* **Describe** when to use alternative models / specifications
+  * Negative binomial, inflated zeroes, offset, etc.
+
+### Before class: Lecture 
+
+* [Lecture 12](https://youtu.be/E46GrcnrBTc){target="_blank"} 
+* [Lecture survey](https://forms.gle/3FuYhAXqy91kAdfw8){target="_blank"}: Complete by Wednesday, December 3 at 8pm
+* [Slides (html)](/slides/BTS510-25-12.qmd){target="_blank"}
+    
+### During class: Lab
+
+* [Lab 12 (html with link to code)](/lab/BTS510-25-lab12.qmd){target="_blank"}
+  * [Data for lab](/slides/jpapoisson.txt) (right click, save as...)
+
+### After class: Assignment
+
+* **To be uploaded later**
+
+<!-- * [Homework 5](/assignments/hw5.qmd) -->
+
+:::
+
+
+
+
+
+
+

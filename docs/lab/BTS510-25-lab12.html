@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>BTS 510 Lab 11 – BTS 510 Fall 2025</title>
+<title>BTS 510 Lab 12 – BTS 510 Fall 2025</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -4800,7 +4800,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">BTS 510 Lab 11</li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">BTS 510 Lab 12</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -4874,10 +4874,8 @@ window.Quarto = {
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="header-section-number">1</span> Learning objectives</a></li>
   <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data"><span class="header-section-number">2</span> Data</a></li>
   <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis"><span class="header-section-number">3</span> Analysis</a></li>
-  <li><a href="#pseudo-r2" id="toc-pseudo-r2" class="nav-link" data-scroll-target="#pseudo-r2"><span class="header-section-number">4</span> Pseudo <span class="math inline">R^2</span></a></li>
-  <li><a href="#confidence-intervals" id="toc-confidence-intervals" class="nav-link" data-scroll-target="#confidence-intervals"><span class="header-section-number">5</span> Confidence intervals</a></li>
-  <li><a href="#predicted-values" id="toc-predicted-values" class="nav-link" data-scroll-target="#predicted-values"><span class="header-section-number">6</span> Predicted values</a></li>
-  <li><a href="#tasks" id="toc-tasks" class="nav-link" data-scroll-target="#tasks"><span class="header-section-number">7</span> Tasks</a></li>
+  <li><a href="#tasks" id="toc-tasks" class="nav-link" data-scroll-target="#tasks"><span class="header-section-number">4</span> Tasks</a></li>
+  <li><a href="#bonus-task-are-there-excess-zeroes" id="toc-bonus-task-are-there-excess-zeroes" class="nav-link" data-scroll-target="#bonus-task-are-there-excess-zeroes"><span class="header-section-number">5</span> Bonus task: Are there excess zeroes?</a></li>
   </ul>
 </nav>
     </div>
@@ -4886,7 +4884,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">BTS 510 Lab 11</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title">BTS 510 Lab 12</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -4936,416 +4934,150 @@ window.Quarto = {
 <section id="learning-objectives" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">1</span> Learning objectives</h2>
 <ul>
-<li><strong>Conduct</strong> logistic regression for <em>binary outcomes</em></li>
-<li><strong>Interpret</strong> results in terms of <em>probability</em>, <em>odds</em>, and <em>log-odds</em></li>
+<li><strong>Conduct</strong> Poisson regression for <em>count outcomes</em></li>
+<li><strong>Interpret</strong> results in terms of <em>predicted counts</em></li>
+<li><strong>Describe</strong> when to use alternative models / specifications
+<ul>
+<li>Negative binomial, inflated zeroes, offset, etc.</li>
+</ul></li>
 </ul>
 </section>
 <section id="data" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="data"><span class="header-section-number">2</span> Data</h2>
 <ul>
-<li><code>ICU</code> data from the <strong>Stat2Data</strong> package: <span class="math inline">n</span> = 200
+<li>Read in data from text file: <code>jpapoisson.txt</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">read_table</span>(<span class="st">&quot;jpapoisson.txt&quot;</span>,</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(dat) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ID&quot;</span>, <span class="st">&quot;sensation&quot;</span>, <span class="st">&quot;sex&quot;</span>, <span class="st">&quot;alcohol&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <ul>
-<li><code>ID</code>: Patient ID code</li>
-<li><code>Survive</code>: 1 = patient survived to discharge or 0 = patient died</li>
-<li><code>Age</code>: Age (in years)</li>
-<li><code>AgeGroup</code>: 1 = young (under 50), 2 = middle (50-69), 3 = old (70+)</li>
-<li><code>Sex</code>: 1 = female or 0 = male</li>
-<li><code>Infection</code>: 1 = infection suspected or 0 = no infection</li>
-<li><code>SysBP</code>: Systolic blood pressure (in mm of Hg)</li>
-<li><code>Pulse</code>: Heart rate (beats per minute)</li>
-<li><code>Emergency</code>: 1 = emergency admission or 0 = elective admission</li>
+<li><span class="math inline">n</span> = <strong>400</strong> observations on 4 variables
+<ul>
+<li><code>ID</code>: ID variable</li>
+<li><code>sensation</code>: 1 to 7 scale of sensation seeking</li>
+<li><code>sex</code>: 0 = female, 1 = male</li>
+<li><code>alcohol</code>: count of number of alcoholic drinks consumed</li>
 </ul></li>
 </ul>
 </section>
 <section id="analysis" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="analysis"><span class="header-section-number">3</span> Analysis</h2>
 <ul>
-<li>Replicate and extend the analysis from the lecture
+<li>Extend the analysis from the lecture
 <ul>
-<li><code>Age</code> and <code>Emergency</code> predict <code>Survive</code></li>
-<li>Be sure to mean center <code>Age</code> for interpretability</li>
+<li><code>sensation</code> and <code>sex</code> predict <code>alcohol</code></li>
+<li>Be sure to mean center <code>sensation</code> for interpretability</li>
 </ul></li>
 </ul>
 </section>
-<section id="pseudo-r2" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="pseudo-r2"><span class="header-section-number">4</span> Pseudo <span class="math inline">R^2</span></h2>
+<section id="tasks" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="tasks"><span class="header-section-number">4</span> Tasks</h2>
 <ul>
-<li>For linear regression, <span class="math inline">R^2_{multiple}</span> is calculated from the <strong>sums of squares</strong> from ordinary least squares estimation</li>
-<li>Logistic regression is estimated via maximum likelihood
-<ul>
-<li>There are no sums of squares</li>
-<li>There is, however, <strong>deviance</strong></li>
-</ul></li>
-<li>Deviance is a function of the log-likelihood
-<ul>
-<li>Deviance for a model is how far the model is from a <em>theoretical</em> <strong>perfect model</strong> where every observation is perfectly predicted</li>
-<li><strong>Relative measure</strong> so can only <strong>compare</strong> to another model</li>
-<li>Big deviance (far from perfect) is worse than small deviance (closer to perfect)</li>
-</ul></li>
-<li>Pseudo <span class="math inline">R^2</span>
-<ul>
-<li>Compare your model to a model with <strong>no predictors</strong> (only intercept)</li>
-<li>How much closer is this model to the perfect model than the intercept only model?</li>
-<li>Theoretically ranges from 0 to 1 (but not in practice)</li>
-<li><span class="math inline">R^2_{deviance} = 1 - \frac{deviance_{M}}{deviance_{intercept\ only}}</span></li>
-<li>Deviance for your model is “Residual deviance” from output</li>
-<li>Deviance for intercept model is “Null deviance” from output</li>
-</ul></li>
+<li>Model 1: Poisson regression for <code>alcohol ~ sensation + sex</code></li>
+<li>Model 2: Negative binomial for <code>alcohol ~ sensation + sex</code></li>
 </ul>
-</section>
-<section id="confidence-intervals" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="confidence-intervals"><span class="header-section-number">5</span> Confidence intervals</h2>
-<ul>
-<li>Calculate confidence intervals for all coefficients in a model using <code>confint()</code>
-<ul>
-<li>For example: <code>confint(m1)</code> to get confidence intervals for model <code>m1</code></li>
-<li>If the CI doesn’t include <strong>zero</strong>, the coefficient is significant</li>
-<li>Default is 99% confidence interval
-<ul>
-<li>Use <code>level</code> argument to change</li>
-<li>e.g., <code>confint(m1, level = 0.99)</code> produces 99% CIs</li>
-</ul></li>
-</ul></li>
-<li>To convert from default logit metric to odds metric: Exponentiate
-<ul>
-<li>Logit metric: <span class="math inline">b_1</span></li>
-<li>Convert to <strong>odds ratio</strong>: <span class="math inline">e^{b_1}</span></li>
-<li>Do the same thing to the confidence intervals
-<ul>
-<li><code>exp(confint(m1))</code> produces the odds metric CIs</li>
-<li>Compare to “no effect” value of <strong>one</strong> for odds</li>
-<li>If the CI doesn’t include <strong>one</strong>, the coefficient is significant</li>
-</ul></li>
-</ul></li>
-</ul>
-</section>
-<section id="predicted-values" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="predicted-values"><span class="header-section-number">6</span> Predicted values</h2>
-<ul>
-<li>Two main options
-<ul>
-<li>Use R like a calculator to calculate predicted values using equations
-<ul>
-<li>You can be fancy and grab the coefficients directly from the output</li>
-<li>e.g., using <code>coef(m1)[1]</code> to get the first coefficient, etc.</li>
-<li>Or just type the numbers in</li>
-</ul></li>
-<li>Use <code>predict()</code> to calculate predicted values
-<ul>
-<li>Set up a new dataset with the predictor values you’re interested in</li>
-<li>e.g., <code>age_vals &lt;- data.frame(AgeC = c(-20, 0, 20))</code></li>
-<li>Then use that new data in <code>predict()</code></li>
-<li>e.g., <code>predict(m1, newdata = age_vals, type = &quot;response&quot;)</code></li>
-<li><code>type = &quot;response&quot;</code> gives predicted values in <strong>probability</strong></li>
-<li><code>type = &quot;link&quot;</code> gives predicted values in <strong>logit</strong></li>
-</ul></li>
-</ul></li>
-</ul>
-</section>
-<section id="tasks" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="tasks"><span class="header-section-number">7</span> Tasks</h2>
-<ul>
-<li>Model 1: <code>Survive ~ Age</code></li>
-<li>Model 2: <code>Survive ~ Age + Emergency</code></li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Stat2Data)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(ICU)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>ICU <span class="ot">&lt;-</span> ICU <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">AgeC =</span> Age <span class="sc">-</span> <span class="fu">mean</span>(Age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="at">data =</span> ICU, </span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>          Survive <span class="sc">~</span> AgeC, </span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">&quot;logit&quot;</span>))</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="at">data =</span> ICU, </span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>          Survive <span class="sc">~</span> AgeC <span class="sc">+</span> Emergency, </span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>          <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">&quot;logit&quot;</span>)) </span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-glm(formula = Survive ~ AgeC, family = binomial(link = &quot;logit&quot;), 
-    data = ICU)
-
-Coefficients:
-            Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept)  1.47357    0.19133   7.702 1.34e-14 ***
-AgeC        -0.02754    0.01056  -2.607  0.00913 ** 
----
-Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-
-(Dispersion parameter for binomial family taken to be 1)
-
-    Null deviance: 200.16  on 199  degrees of freedom
-Residual deviance: 192.31  on 198  degrees of freedom
-AIC: 196.31
-
-Number of Fisher Scoring iterations: 4</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-glm(formula = Survive ~ AgeC + Emergency, family = binomial(link = &quot;logit&quot;), 
-    data = ICU)
-
-Coefficients:
-            Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept)  3.55130    0.73325   4.843 1.28e-06 ***
-AgeC        -0.03402    0.01069  -3.181  0.00147 ** 
-Emergency   -2.45354    0.75257  -3.260  0.00111 ** 
----
-Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-
-(Dispersion parameter for binomial family taken to be 1)
-
-    Null deviance: 200.16  on 199  degrees of freedom
-Residual deviance: 173.08  on 197  degrees of freedom
-AIC: 179.08
-
-Number of Fisher Scoring iterations: 6</code></pre>
-</div>
-</div>
 <ol type="1">
-<li>Conduct a likelihood ratio test to compare the models. Report the results. Which model is preferred?</li>
+<li><p>How can we compare models 1 and 2? Do that comparison. Which model is preferred?</p></li>
+<li><p>Report the full results of the preferred model.</p></li>
 </ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m1, m2, <span class="at">test =</span> <span class="st">&quot;LRT&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Analysis of Deviance Table
-
-Model 1: Survive ~ AgeC
-Model 2: Survive ~ AgeC + Emergency
-  Resid. Df Resid. Dev Df Deviance  Pr(&gt;Chi)    
-1       198     192.31                          
-2       197     173.08  1   19.231 1.158e-05 ***
----
-Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">logLik</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>&#39;log Lik.&#39; -96.15319 (df=2)</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">logLik</span>(m2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>&#39;log Lik.&#39; -86.53782 (df=3)</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="dv">2</span> <span class="sc">*</span> (<span class="fu">logLik</span>(m1) <span class="sc">-</span> <span class="fu">logLik</span>(m2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>&#39;log Lik.&#39; 19.23074 (df=2)</code></pre>
-</div>
-</div>
 <ul>
-<li><span class="math inline">\chi^2(1) = 19.23, p&lt;.0001</span></li>
-<li>Model 2 is significantly different from (better than) model 1</li>
-</ul>
-<ol start="2" type="1">
-<li>Report the full results of the preferred model. This is similar to linear regression. For each coefficient (including intercept), report:</li>
-</ol>
+<li>Report the <span class="math inline">R^2</span> for the model</li>
+<li>For each coefficient (including intercept), report:
 <ul>
 <li>Regression coefficient</li>
 <li>Standard error</li>
-<li><span class="math inline">z</span> statistic (note that there aren’t degrees of freedom for <span class="math inline">z</span> tests)</li>
+<li><span class="math inline">z</span> statistic</li>
 <li><span class="math inline">p</span> value</li>
-<li><strong>I forget to include the <span class="math inline">R^2</span> for the model in this list – include that too</strong></li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-glm(formula = Survive ~ AgeC + Emergency, family = binomial(link = &quot;logit&quot;), 
-    data = ICU)
-
-Coefficients:
-            Estimate Std. Error z value Pr(&gt;|z|)    
-(Intercept)  3.55130    0.73325   4.843 1.28e-06 ***
-AgeC        -0.03402    0.01069  -3.181  0.00147 ** 
-Emergency   -2.45354    0.75257  -3.260  0.00111 ** 
----
-Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-
-(Dispersion parameter for binomial family taken to be 1)
-
-    Null deviance: 200.16  on 199  degrees of freedom
-Residual deviance: 173.08  on 197  degrees of freedom
-AIC: 179.08
-
-Number of Fisher Scoring iterations: 6</code></pre>
-</div>
-</div>
-<ul>
-<li>Intercept: <span class="math inline">b_0 = 3.55, s.e. = 0.73, z = 4.843, p&lt;.0001</span>
-<ul>
-<li>For a person at mean age (<code>AgeC</code> = 0) and non-emergency admission (<code>Emergency</code> = 0), the predicted probability of survival is greater than 0.5 because the intercept is positive (i.e., &gt; 0).</li>
-</ul></li>
-<li>Age effect: <span class="math inline">b_1 = -0.03, s.e. = 0.01, z = -3.181, p&lt;.001</span>
-<ul>
-<li>As age <strong>increases</strong>, the probability(/odds/logit) of survival <strong>decreases</strong> because <span class="math inline">b_1</span> is <strong>negative</strong></li>
-</ul></li>
-<li>Emergency effect: <span class="math inline">b_2 = -2.45, s.e. = 0.75, z = -3.260, p&lt;.001</span>
-<ul>
-<li>Emergency admissions (<code>Emergency</code> = 1) have a <strong>lower</strong> probability(/odds/logit) of survival compared to non-emergency admissions (<code>Emergency</code> = 0) because <span class="math inline">b_2</span> is <strong>negative</strong></li>
-</ul></li>
-<li>Pseudo <span class="math inline">R^2 = 1 - \frac{173.08}{200.16} = 0.135</span>
-<ul>
-<li>About 13.5% of the variance in the outcome is accounted for by these predictors</li>
 </ul></li>
 </ul>
 <ol start="3" type="1">
-<li>Calculate predicted probabilities for 6 predictor combinations:</li>
+<li>Calculate predicted counts for <code>alcohol</code> for 6 predictor combinations:</li>
 </ol>
 <ul>
-<li>Emergency admit, 20 years younger than mean</li>
-<li>Emergency admit, mean age</li>
-<li>Emergency admit, 20 years older than mean</li>
-<li>Non-emergency admit, 20 years younger than mean</li>
-<li>Non-emergency admit, mean age</li>
-<li>Non-emergency admit, 20 years older than mean</li>
+<li>Male, low sensation seeking</li>
+<li>Male, mean sensation seeking</li>
+<li>Male, high sensation seeking</li>
+<li>Female, low sensation seeking</li>
+<li>Female, mean sensation seeking</li>
+<li>Female, high sensation seeking</li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>age_vals <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">AgeC =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">20</span>, <span class="dv">0</span>, <span class="dv">20</span>, <span class="sc">-</span><span class="dv">20</span>, <span class="dv">0</span>, <span class="dv">20</span>))</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>eme_vals <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Emergency =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>))</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>vals <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(age_vals, eme_vals)</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>vals</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  AgeC Emergency
-1  -20         0
-2    0         0
-3   20         0
-4  -20         1
-5    0         1
-6   20         1</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(m2, <span class="at">newdata =</span> vals, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>        1         2         3         4         5         6 
-0.9856793 0.9721127 0.9463930 0.8554609 0.7498415 0.6028714 </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(m2, <span class="at">newdata =</span> vals, <span class="at">type =</span> <span class="st">&quot;link&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>        1         2         3         4         5         6 
-4.2316255 3.5513021 2.8709788 1.7780903 1.0977670 0.4174436 </code></pre>
-</div>
-</div>
-<ul>
-<li>Say that you wanted to add the predicted values to the data set to make a plot</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>ICU_pred <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(age_vals, eme_vals)</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>ICU_pred <span class="ot">&lt;-</span> ICU_pred <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">pred =</span> <span class="fu">predict</span>(m2, <span class="at">newdata =</span> vals, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>))</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>ICU_pred</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  AgeC Emergency      pred
-1  -20         0 0.9856793
-2    0         0 0.9721127
-3   20         0 0.9463930
-4  -20         1 0.8554609
-5    0         1 0.7498415
-6   20         1 0.6028714</code></pre>
-</div>
-</div>
-<ul>
-<li>And let’s just make the plot here</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU_pred, <span class="fu">aes</span>(<span class="at">x =</span> AgeC, <span class="at">y =</span> pred, <span class="at">group =</span> Emergency)) <span class="sc">+</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">as.factor</span>(Emergency)),</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group =</span> Emergency))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img role="img" src="data:image/png;base64,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" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<ul>
-<li>Here’s just an overall plot of the data
-<ul>
-<li>I added the lines for each group using <code>stat_smooth()</code> which is the function that’s actually behind <code>geom_smooth()</code> that we use for straight lines – so <code>geom_smooth()</code> but with more options
-<ul>
-<li><code>method = &quot;glm&quot;</code> means it’s using generalized linear models for the line</li>
-<li><code>method.args=list(family=&quot;binomial&quot;)</code> tells it specifically to plot the logistic regression line (<code>family = binomial</code> just like in <code>glm()</code> for logistic regression)</li>
-<li>The arguments about <code>Emergency</code> are to get separate lines for the two emergency groups with different colors and a legend</li>
-</ul></li>
-<li>I added a horizontal line at probability = 0.5 for reference</li>
-</ul></li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU, <span class="fu">aes</span>(<span class="at">x =</span> AgeC, <span class="at">y =</span> Survive, <span class="at">group =</span> Emergency)) <span class="sc">+</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">height =</span> <span class="fl">0.1</span>, </span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">alpha =</span> <span class="fl">0.3</span>, </span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>              <span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">as.factor</span>(Emergency))) <span class="sc">+</span></span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">method=</span><span class="st">&quot;glm&quot;</span>, </span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">method.args=</span><span class="fu">list</span>(<span class="at">family=</span><span class="st">&quot;binomial&quot;</span>), </span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">se=</span><span class="cn">FALSE</span>, </span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>              <span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">as.factor</span>(Emergency), <span class="at">group =</span> Emergency)) <span class="sc">+</span></span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">0.5</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img role="img" src="data:image/png;base64,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" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
 <ol start="4" type="1">
-<li>Report the odds ratios for each predictor and their confidence intervals. Interpret the odds ratios in words.</li>
+<li><p>Report the <strong>rate ratios</strong> for each predictor and their confidence intervals. Interpret the <strong>rate ratios</strong> in words.</p></li>
+<li><p>Describe the overall findings for this model. Be statistically accurate but avoid jargon and technical terms as much as you can. Be sure to use the names of the variables studied (i.e., sensation seeking, sex, alcoholic drinks consumed) rather than X and Y.</p></li>
 </ol>
+</section>
+<section id="bonus-task-are-there-excess-zeroes" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="bonus-task-are-there-excess-zeroes"><span class="header-section-number">5</span> Bonus task: Are there excess zeroes?</h2>
 <ul>
-<li>To get confidence intervals, use <code>confint()</code></li>
-<li>To make odds ratios, exponentiate</li>
-<li>Do both at once
+<li>Zero-inflated Poisson
 <ul>
-<li>Must be in this order because <code>confint()</code> will only give CIs for model objects (like <code>m2</code>), not for portions of a model (like <code>summary(m2)$coefficients</code>) or transformations of a model (like <code>exp(summary(m2)$coefficients)</code>)</li>
+<li><code>y ~ count_predictors | logistic_predictors</code></li>
 </ul></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">confint</span>(m2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Waiting for profiling to be done...</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                  2.5 %      97.5 %
-(Intercept) 10.50414466 216.4886964
-AgeC         0.94520074   0.9859692
-Emergency    0.01352979   0.3016906</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pscl)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>zip <span class="ot">&lt;-</span> <span class="fu">zeroinfl</span>(alcohol <span class="sc">~</span> sensationC <span class="sc">+</span> sex <span class="sc">|</span> sensationC <span class="sc">+</span> sex, </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> dat,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">dist =</span> <span class="st">&quot;poisson&quot;</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(zip)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
-<li>Intercept: [10.50, 216.49]
+<li>Zero-inflated negative binomial
 <ul>
-<li>Does not contain 1</li>
-<li>Odds of survival for <code>ageC</code> = 0 and <code>Emergency</code> = 0 is greater than 1</li>
-<li>Probability of survival is greater than 0.5</li>
-</ul></li>
-<li>Age: [0.95, 0.99]
-<ul>
-<li>Does not contain 1</li>
-<li>Odds of survival <strong>decreases</strong> as <code>ageC</code> <strong>increases</strong></li>
-<li>Probability of survival <strong>decreases</strong> as <code>ageC</code> <strong>increases</strong></li>
-</ul></li>
-<li>Emergency: [0.01, 0.30]
-<ul>
-<li>Does not contain 1</li>
-<li>Odds of survival <strong>decreases</strong> as <code>Emergency</code> <strong>increases</strong></li>
-<li>Probability of survival <strong>decreases</strong> as <code>Emergency</code> <strong>increases</strong></li>
+<li><code>y ~ count_predictors | logistic_predictors</code></li>
 </ul></li>
 </ul>
-<ol start="5" type="1">
-<li>Describe the overall findings for this model. Be statistically accurate but avoid jargon and technical terms as much as you can. Be sure to use the names of the variables studied (i.e., survival, age, emergency admission) rather than X and Y.</li>
-</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pscl)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>zinb <span class="ot">&lt;-</span> <span class="fu">zeroinfl</span>(alcohol <span class="sc">~</span> sensationC <span class="sc">+</span> sex <span class="sc">|</span> sensationC <span class="sc">+</span> sex, </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> dat,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">dist =</span> <span class="st">&quot;negbin&quot;</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(zinb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <ul>
-<li>Survival decreases with increasing age (i.e., older people are less likely to survive after ICU admission)</li>
-<li>Survival decreases with emergency (as opposed to non-emergency) admission (i.e., emergency admission patients are less likely to survive than non-emergency admission patients)</li>
-<li>Patients are more likely to survive being admitted to the ICU, except for possibly the very oldest emergency admission patients
+<li>Hurdle Poisson
 <ul>
-<li>(I’m making this statement based on the plot with the two lines, which shows the emergency admission line <em>just</em> dips down below probability = 0.5 at the far right side of the plot)</li>
+<li><code>y ~ count_predictors | logistic_predictors</code></li>
 </ul></li>
-<li>I used “likely” to describe things in a metric-agnostic way, but you could replace “more likely to survive” with “have a higher probability of survival” or “have a higher odds of survival” if you want to be more specific</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pscl)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>hurdle_poi <span class="ot">&lt;-</span> <span class="fu">hurdle</span>(alcohol <span class="sc">~</span> sensationC <span class="sc">+</span> sex <span class="sc">|</span> sensationC <span class="sc">+</span> sex, </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">data =</span> dat, </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">dist =</span> <span class="st">&quot;poisson&quot;</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(hurdle_poi)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Hurdle negative binomial
+<ul>
+<li><code>y ~ count_predictors | logistic_predictors</code></li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pscl)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>hurdle_nb <span class="ot">&lt;-</span> <span class="fu">hurdle</span>(alcohol <span class="sc">~</span> sensationC <span class="sc">+</span> sex <span class="sc">|</span> sensationC <span class="sc">+</span> sex, </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data =</span> dat, </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">dist =</span> <span class="st">&quot;negbin&quot;</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(hurdle_nb)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Compare using Vuong test and/or AIC and/or BIC
+<ul>
+<li>Think about your comparisons
+<ul>
+<li>If there <strong>NOT</strong> overdispersion, does adding excess zeroes help?
+<ul>
+<li><code>m1</code> vs <code>zip</code></li>
+</ul></li>
+<li>If there <strong>IS</strong> overdispersion already, does adding excess zeroes help?
+<ul>
+<li><code>m2</code> vs <code>zinb</code></li>
+</ul></li>
+<li>And so on…</li>
+</ul></li>
+</ul></li>
 </ul>
 
 
@@ -5822,239 +5554,143 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class>
-<div class="sourceCode" id="cb36" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;BTS 510 Lab 11&quot;</span></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="co">    embed-resources: true</span></span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="co">    self-contained-math: true</span></span>
-<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="co">    html-math-method: katex</span></span>
-<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
-<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-bg: true</span></span>
-<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-border-left: &quot;#31BAE9&quot;</span></span>
-<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-17"><a href="#cb36-17" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb36-18"><a href="#cb36-18" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
-<span id="cb36-19"><a href="#cb36-19" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
-<span id="cb36-20"><a href="#cb36-20" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb36-21"><a href="#cb36-21" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Stat2Data)</span>
-<span id="cb36-22"><a href="#cb36-22" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">16</span>))</span>
-<span id="cb36-23"><a href="#cb36-23" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb36-24"><a href="#cb36-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-25"><a href="#cb36-25" aria-hidden="true" tabindex="-1"></a><span class="fu">## Learning objectives</span></span>
-<span id="cb36-26"><a href="#cb36-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-27"><a href="#cb36-27" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Conduct** logistic regression for *binary outcomes*</span>
-<span id="cb36-28"><a href="#cb36-28" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Interpret** results in terms of *probability*, *odds*, and *log-odds*</span>
-<span id="cb36-29"><a href="#cb36-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-30"><a href="#cb36-30" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data </span></span>
-<span id="cb36-31"><a href="#cb36-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-32"><a href="#cb36-32" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span><span class="in">`ICU`</span> data from the **Stat2Data** package: $n$ = 200</span>
-<span id="cb36-33"><a href="#cb36-33" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`ID`</span>: Patient ID code</span>
-<span id="cb36-34"><a href="#cb36-34" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`Survive`</span>: 1 = patient survived to discharge or 0 = patient died</span>
-<span id="cb36-35"><a href="#cb36-35" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`Age`</span>: Age (in years)</span>
-<span id="cb36-36"><a href="#cb36-36" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`AgeGroup`</span>: 1 = young (under 50), 2 = middle (50-69), 3 = old (70+)</span>
-<span id="cb36-37"><a href="#cb36-37" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`Sex`</span>: 1 = female or 0 = male</span>
-<span id="cb36-38"><a href="#cb36-38" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`Infection`</span>: 1 = infection suspected or 0 = no infection</span>
-<span id="cb36-39"><a href="#cb36-39" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`SysBP`</span>: Systolic blood pressure (in mm of Hg)</span>
-<span id="cb36-40"><a href="#cb36-40" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`Pulse`</span>: Heart rate (beats per minute)</span>
-<span id="cb36-41"><a href="#cb36-41" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`Emergency`</span>: 1 = emergency admission or 0 = elective admission</span>
-<span id="cb36-42"><a href="#cb36-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-43"><a href="#cb36-43" aria-hidden="true" tabindex="-1"></a><span class="fu">## Analysis</span></span>
-<span id="cb36-44"><a href="#cb36-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-45"><a href="#cb36-45" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Replicate and extend the analysis from the lecture</span>
-<span id="cb36-46"><a href="#cb36-46" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`Age`</span> and <span class="in">`Emergency`</span> predict <span class="in">`Survive`</span></span>
-<span id="cb36-47"><a href="#cb36-47" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Be sure to mean center <span class="in">`Age`</span> for interpretability</span>
-<span id="cb36-48"><a href="#cb36-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-49"><a href="#cb36-49" aria-hidden="true" tabindex="-1"></a><span class="fu">## Pseudo $R^2$</span></span>
-<span id="cb36-50"><a href="#cb36-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-51"><a href="#cb36-51" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>For linear regression, $R^2_{multiple}$ is calculated from the **sums of squares** from ordinary least squares estimation</span>
-<span id="cb36-52"><a href="#cb36-52" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Logistic regression is estimated via maximum likelihood</span>
-<span id="cb36-53"><a href="#cb36-53" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>There are no sums of squares</span>
-<span id="cb36-54"><a href="#cb36-54" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>There is, however, **deviance**</span>
-<span id="cb36-55"><a href="#cb36-55" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Deviance is a function of the log-likelihood</span>
-<span id="cb36-56"><a href="#cb36-56" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Deviance for a model is how far the model is from a *theoretical* **perfect model** where every observation is perfectly predicted</span>
-<span id="cb36-57"><a href="#cb36-57" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>**Relative measure** so can only **compare** to another model</span>
-<span id="cb36-58"><a href="#cb36-58" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Big deviance (far from perfect) is worse than small deviance (closer to perfect)</span>
-<span id="cb36-59"><a href="#cb36-59" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Pseudo $R^2$</span>
-<span id="cb36-60"><a href="#cb36-60" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Compare your model to a model with **no predictors** (only intercept)</span>
-<span id="cb36-61"><a href="#cb36-61" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>How much closer is this model to the perfect model than the intercept only model?</span>
-<span id="cb36-62"><a href="#cb36-62" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Theoretically ranges from 0 to 1 (but not in practice)</span>
-<span id="cb36-63"><a href="#cb36-63" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>$R^2_{deviance} = 1 - \frac{deviance_{M}}{deviance_{intercept\ only}}$</span>
-<span id="cb36-64"><a href="#cb36-64" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Deviance for your model is &quot;Residual deviance&quot; from output</span>
-<span id="cb36-65"><a href="#cb36-65" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Deviance for intercept model is &quot;Null deviance&quot; from output</span>
-<span id="cb36-66"><a href="#cb36-66" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-67"><a href="#cb36-67" aria-hidden="true" tabindex="-1"></a><span class="fu">## Confidence intervals</span></span>
-<span id="cb36-68"><a href="#cb36-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-69"><a href="#cb36-69" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Calculate confidence intervals for all coefficients in a model using <span class="in">`confint()`</span></span>
-<span id="cb36-70"><a href="#cb36-70" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>For example: <span class="in">`confint(m1)`</span> to get confidence intervals for model <span class="in">`m1`</span></span>
-<span id="cb36-71"><a href="#cb36-71" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>If the CI doesn&#39;t include **zero**, the coefficient is significant</span>
-<span id="cb36-72"><a href="#cb36-72" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Default is 99% confidence interval</span>
-<span id="cb36-73"><a href="#cb36-73" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Use <span class="in">`level`</span> argument to change</span>
-<span id="cb36-74"><a href="#cb36-74" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>e.g., <span class="in">`confint(m1, level = 0.99)`</span> produces 99% CIs</span>
-<span id="cb36-75"><a href="#cb36-75" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>To convert from default logit metric to odds metric: Exponentiate</span>
-<span id="cb36-76"><a href="#cb36-76" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Logit metric: $b_1$</span>
-<span id="cb36-77"><a href="#cb36-77" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Convert to **odds ratio**: $e^{b_1}$</span>
-<span id="cb36-78"><a href="#cb36-78" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Do the same thing to the confidence intervals</span>
-<span id="cb36-79"><a href="#cb36-79" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span><span class="in">`exp(confint(m1))`</span> produces the odds metric CIs</span>
-<span id="cb36-80"><a href="#cb36-80" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Compare to &quot;no effect&quot; value of **one** for odds</span>
-<span id="cb36-81"><a href="#cb36-81" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>If the CI doesn&#39;t include **one**, the coefficient is significant</span>
-<span id="cb36-82"><a href="#cb36-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-83"><a href="#cb36-83" aria-hidden="true" tabindex="-1"></a><span class="fu">## Predicted values</span></span>
-<span id="cb36-84"><a href="#cb36-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-85"><a href="#cb36-85" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Two main options</span>
-<span id="cb36-86"><a href="#cb36-86" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Use R like a calculator to calculate predicted values using equations</span>
-<span id="cb36-87"><a href="#cb36-87" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>You can be fancy and grab the coefficients directly from the output</span>
-<span id="cb36-88"><a href="#cb36-88" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>e.g., using <span class="in">`coef(m1)[1]`</span> to get the first coefficient, etc.</span>
-<span id="cb36-89"><a href="#cb36-89" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Or just type the numbers in</span>
-<span id="cb36-90"><a href="#cb36-90" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Use <span class="in">`predict()`</span> to calculate predicted values</span>
-<span id="cb36-91"><a href="#cb36-91" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Set up a new dataset with the predictor values you&#39;re interested in</span>
-<span id="cb36-92"><a href="#cb36-92" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>e.g., <span class="in">`age_vals &lt;- data.frame(AgeC = c(-20, 0, 20))`</span></span>
-<span id="cb36-93"><a href="#cb36-93" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>Then use that new data in <span class="in">`predict()`</span></span>
-<span id="cb36-94"><a href="#cb36-94" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>e.g., <span class="in">`predict(m1, newdata = age_vals, type = &quot;response&quot;)`</span></span>
-<span id="cb36-95"><a href="#cb36-95" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span><span class="in">`type = &quot;response&quot;`</span> gives predicted values in **probability**</span>
-<span id="cb36-96"><a href="#cb36-96" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span><span class="in">`type = &quot;link&quot;`</span> gives predicted values in **logit**</span>
-<span id="cb36-97"><a href="#cb36-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-98"><a href="#cb36-98" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tasks</span></span>
-<span id="cb36-99"><a href="#cb36-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-100"><a href="#cb36-100" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Model 1: <span class="in">`Survive ~ Age`</span></span>
-<span id="cb36-101"><a href="#cb36-101" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Model 2: <span class="in">`Survive ~ Age + Emergency`</span></span>
-<span id="cb36-102"><a href="#cb36-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-105"><a href="#cb36-105" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb36-106"><a href="#cb36-106" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Stat2Data)</span>
-<span id="cb36-107"><a href="#cb36-107" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(ICU)</span>
-<span id="cb36-108"><a href="#cb36-108" aria-hidden="true" tabindex="-1"></a>ICU <span class="ot">&lt;-</span> ICU <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">AgeC =</span> Age <span class="sc">-</span> <span class="fu">mean</span>(Age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb36-109"><a href="#cb36-109" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="at">data =</span> ICU, </span>
-<span id="cb36-110"><a href="#cb36-110" aria-hidden="true" tabindex="-1"></a>          Survive <span class="sc">~</span> AgeC, </span>
-<span id="cb36-111"><a href="#cb36-111" aria-hidden="true" tabindex="-1"></a>          <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">&quot;logit&quot;</span>))</span>
-<span id="cb36-112"><a href="#cb36-112" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">glm</span>(<span class="at">data =</span> ICU, </span>
-<span id="cb36-113"><a href="#cb36-113" aria-hidden="true" tabindex="-1"></a>          Survive <span class="sc">~</span> AgeC <span class="sc">+</span> Emergency, </span>
-<span id="cb36-114"><a href="#cb36-114" aria-hidden="true" tabindex="-1"></a>          <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">&quot;logit&quot;</span>)) </span>
-<span id="cb36-115"><a href="#cb36-115" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m1)</span>
-<span id="cb36-116"><a href="#cb36-116" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2)</span>
-<span id="cb36-117"><a href="#cb36-117" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb36-118"><a href="#cb36-118" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-119"><a href="#cb36-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-120"><a href="#cb36-120" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Conduct a likelihood ratio test to compare the models. Report the results. Which model is preferred?</span>
-<span id="cb36-121"><a href="#cb36-121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-124"><a href="#cb36-124" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb36-125"><a href="#cb36-125" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(m1, m2, <span class="at">test =</span> <span class="st">&quot;LRT&quot;</span>)</span>
-<span id="cb36-126"><a href="#cb36-126" aria-hidden="true" tabindex="-1"></a><span class="fu">logLik</span>(m1)</span>
-<span id="cb36-127"><a href="#cb36-127" aria-hidden="true" tabindex="-1"></a><span class="fu">logLik</span>(m2)</span>
-<span id="cb36-128"><a href="#cb36-128" aria-hidden="true" tabindex="-1"></a><span class="sc">-</span><span class="dv">2</span> <span class="sc">*</span> (<span class="fu">logLik</span>(m1) <span class="sc">-</span> <span class="fu">logLik</span>(m2))</span>
-<span id="cb36-129"><a href="#cb36-129" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb36-130"><a href="#cb36-130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-131"><a href="#cb36-131" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>$\chi^2(1) = 19.23, p&lt;.0001$</span>
-<span id="cb36-132"><a href="#cb36-132" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Model 2 is significantly different from (better than) model 1</span>
-<span id="cb36-133"><a href="#cb36-133" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-134"><a href="#cb36-134" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Report the full results of the preferred model. This is similar to linear regression. For each coefficient (including intercept), report:</span>
-<span id="cb36-135"><a href="#cb36-135" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Regression coefficient</span>
-<span id="cb36-136"><a href="#cb36-136" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Standard error</span>
-<span id="cb36-137"><a href="#cb36-137" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>$z$ statistic (note that there aren&#39;t degrees of freedom for $z$ tests)</span>
-<span id="cb36-138"><a href="#cb36-138" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>$p$ value </span>
-<span id="cb36-139"><a href="#cb36-139" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**I forget to include the $R^2$ for the model in this list -- include that too**</span>
-<span id="cb36-140"><a href="#cb36-140" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-143"><a href="#cb36-143" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb36-144"><a href="#cb36-144" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2)</span>
-<span id="cb36-145"><a href="#cb36-145" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb36-146"><a href="#cb36-146" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-147"><a href="#cb36-147" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Intercept: $b_0 = 3.55, s.e. = 0.73, z = 4.843, p&lt;.0001$</span>
-<span id="cb36-148"><a href="#cb36-148" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>For a person at mean age (<span class="in">`AgeC`</span> = 0) and non-emergency admission (<span class="in">`Emergency`</span> = 0), the predicted probability of survival is greater than 0.5 because the intercept is positive (i.e., &gt; 0).</span>
-<span id="cb36-149"><a href="#cb36-149" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Age effect: $b_1 = -0.03, s.e. = 0.01, z = -3.181, p&lt;.001$</span>
-<span id="cb36-150"><a href="#cb36-150" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>As age **increases**, the probability(/odds/logit) of survival **decreases** because $b_1$ is **negative**</span>
-<span id="cb36-151"><a href="#cb36-151" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Emergency effect: $b_2 = -2.45, s.e. = 0.75, z = -3.260, p&lt;.001$</span>
-<span id="cb36-152"><a href="#cb36-152" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Emergency admissions (<span class="in">`Emergency`</span> = 1) have a **lower** probability(/odds/logit) of survival compared to non-emergency admissions (`Emergency` = 0) because $b_2$ is **negative**</span>
-<span id="cb36-153"><a href="#cb36-153" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Pseudo $R^2 = 1 - \frac{173.08}{200.16} = <span class="in">`r round(1 - (173.08/200.16), 3)`</span>$</span>
-<span id="cb36-154"><a href="#cb36-154" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>About <span class="in">`r round(100*(1 - (173.08/200.16)), 1)`</span>% of the variance in the outcome is accounted for by these predictors</span>
-<span id="cb36-155"><a href="#cb36-155" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-156"><a href="#cb36-156" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Calculate predicted probabilities for 6 predictor combinations:</span>
-<span id="cb36-157"><a href="#cb36-157" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Emergency admit, 20 years younger than mean</span>
-<span id="cb36-158"><a href="#cb36-158" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Emergency admit, mean age</span>
-<span id="cb36-159"><a href="#cb36-159" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Emergency admit, 20 years older than mean</span>
-<span id="cb36-160"><a href="#cb36-160" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Non-emergency admit, 20 years younger than mean</span>
-<span id="cb36-161"><a href="#cb36-161" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Non-emergency admit, mean age</span>
-<span id="cb36-162"><a href="#cb36-162" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Non-emergency admit, 20 years older than mean</span>
-<span id="cb36-163"><a href="#cb36-163" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-166"><a href="#cb36-166" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb36-167"><a href="#cb36-167" aria-hidden="true" tabindex="-1"></a>age_vals <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">AgeC =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">20</span>, <span class="dv">0</span>, <span class="dv">20</span>, <span class="sc">-</span><span class="dv">20</span>, <span class="dv">0</span>, <span class="dv">20</span>))</span>
-<span id="cb36-168"><a href="#cb36-168" aria-hidden="true" tabindex="-1"></a>eme_vals <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Emergency =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>))</span>
-<span id="cb36-169"><a href="#cb36-169" aria-hidden="true" tabindex="-1"></a>vals <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(age_vals, eme_vals)</span>
-<span id="cb36-170"><a href="#cb36-170" aria-hidden="true" tabindex="-1"></a>vals</span>
-<span id="cb36-171"><a href="#cb36-171" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(m2, <span class="at">newdata =</span> vals, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span>
-<span id="cb36-172"><a href="#cb36-172" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(m2, <span class="at">newdata =</span> vals, <span class="at">type =</span> <span class="st">&quot;link&quot;</span>)</span>
-<span id="cb36-173"><a href="#cb36-173" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb36-174"><a href="#cb36-174" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-175"><a href="#cb36-175" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Say that you wanted to add the predicted values to the data set to make a plot</span>
-<span id="cb36-176"><a href="#cb36-176" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb36-179"><a href="#cb36-179" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb36-180"><a href="#cb36-180" aria-hidden="true" tabindex="-1"></a>ICU_pred <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(age_vals, eme_vals)</span>
-<span id="cb36-181"><a href="#cb36-181" aria-hidden="true" tabindex="-1"></a>ICU_pred <span class="ot">&lt;-</span> ICU_pred <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">pred =</span> <span class="fu">predict</span>(m2, <span class="at">newdata =</span> vals, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>))</span>
-<span id="cb36-182"><a href="#cb36-182" aria-hidden="true" tabindex="-1"></a>ICU_pred</span>
-<span id="cb36-183"><a href="#cb36-183" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb36-184"><a href="#cb36-184" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-185"><a href="#cb36-185" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>And let&#39;s just make the plot here</span>
-<span id="cb36-186"><a href="#cb36-186" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-189"><a href="#cb36-189" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb36-190"><a href="#cb36-190" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU_pred, <span class="fu">aes</span>(<span class="at">x =</span> AgeC, <span class="at">y =</span> pred, <span class="at">group =</span> Emergency)) <span class="sc">+</span></span>
-<span id="cb36-191"><a href="#cb36-191" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">as.factor</span>(Emergency)),</span>
-<span id="cb36-192"><a href="#cb36-192" aria-hidden="true" tabindex="-1"></a>             <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb36-193"><a href="#cb36-193" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group =</span> Emergency))</span>
-<span id="cb36-194"><a href="#cb36-194" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb36-195"><a href="#cb36-195" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-196"><a href="#cb36-196" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Here&#39;s just an overall plot of the data</span>
-<span id="cb36-197"><a href="#cb36-197" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>I added the lines for each group using <span class="in">`stat_smooth()`</span> which is the function that&#39;s actually behind <span class="in">`geom_smooth()`</span> that we use for straight lines -- so <span class="in">`geom_smooth()`</span> but with more options</span>
-<span id="cb36-198"><a href="#cb36-198" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span><span class="in">`method = &quot;glm&quot;`</span> means it&#39;s using generalized linear models for the line</span>
-<span id="cb36-199"><a href="#cb36-199" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span><span class="in">`method.args=list(family=&quot;binomial&quot;)`</span> tells it specifically to plot the logistic regression line (<span class="in">`family = binomial`</span> just like in <span class="in">`glm()`</span> for logistic regression)</span>
-<span id="cb36-200"><a href="#cb36-200" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>The arguments about <span class="in">`Emergency`</span> are to get separate lines for the two emergency groups with different colors and a legend </span>
-<span id="cb36-201"><a href="#cb36-201" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>I added a horizontal line at probability = 0.5 for reference</span>
-<span id="cb36-202"><a href="#cb36-202" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-205"><a href="#cb36-205" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb36-206"><a href="#cb36-206" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ICU, <span class="fu">aes</span>(<span class="at">x =</span> AgeC, <span class="at">y =</span> Survive, <span class="at">group =</span> Emergency)) <span class="sc">+</span></span>
-<span id="cb36-207"><a href="#cb36-207" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">height =</span> <span class="fl">0.1</span>, </span>
-<span id="cb36-208"><a href="#cb36-208" aria-hidden="true" tabindex="-1"></a>              <span class="at">alpha =</span> <span class="fl">0.3</span>, </span>
-<span id="cb36-209"><a href="#cb36-209" aria-hidden="true" tabindex="-1"></a>              <span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">as.factor</span>(Emergency))) <span class="sc">+</span></span>
-<span id="cb36-210"><a href="#cb36-210" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">method=</span><span class="st">&quot;glm&quot;</span>, </span>
-<span id="cb36-211"><a href="#cb36-211" aria-hidden="true" tabindex="-1"></a>              <span class="at">method.args=</span><span class="fu">list</span>(<span class="at">family=</span><span class="st">&quot;binomial&quot;</span>), </span>
-<span id="cb36-212"><a href="#cb36-212" aria-hidden="true" tabindex="-1"></a>              <span class="at">se=</span><span class="cn">FALSE</span>, </span>
-<span id="cb36-213"><a href="#cb36-213" aria-hidden="true" tabindex="-1"></a>              <span class="fu">aes</span>(<span class="at">color =</span> <span class="fu">as.factor</span>(Emergency), <span class="at">group =</span> Emergency)) <span class="sc">+</span></span>
-<span id="cb36-214"><a href="#cb36-214" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">0.5</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>)</span>
-<span id="cb36-215"><a href="#cb36-215" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb36-216"><a href="#cb36-216" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-217"><a href="#cb36-217" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-218"><a href="#cb36-218" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-219"><a href="#cb36-219" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Report the odds ratios for each predictor and their confidence intervals. Interpret the odds ratios in words.</span>
-<span id="cb36-220"><a href="#cb36-220" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-221"><a href="#cb36-221" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>To get confidence intervals, use <span class="in">`confint()`</span></span>
-<span id="cb36-222"><a href="#cb36-222" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>To make odds ratios, exponentiate</span>
-<span id="cb36-223"><a href="#cb36-223" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Do both at once</span>
-<span id="cb36-224"><a href="#cb36-224" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Must be in this order because <span class="in">`confint()`</span> will only give CIs for model objects (like <span class="in">`m2`</span>), not for portions of a model (like <span class="in">`summary(m2)$coefficients`</span>) or transformations of a model (like <span class="in">`exp(summary(m2)$coefficients)`</span>)</span>
-<span id="cb36-225"><a href="#cb36-225" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-228"><a href="#cb36-228" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb36-229"><a href="#cb36-229" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">confint</span>(m2))</span>
-<span id="cb36-230"><a href="#cb36-230" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb36-231"><a href="#cb36-231" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-232"><a href="#cb36-232" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Intercept: <span class="co">[</span><span class="ot">10.50, 216.49</span><span class="co">]</span></span>
-<span id="cb36-233"><a href="#cb36-233" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Does not contain 1</span>
-<span id="cb36-234"><a href="#cb36-234" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Odds of survival for <span class="in">`ageC`</span> = 0 and <span class="in">`Emergency`</span> = 0 is greater than 1</span>
-<span id="cb36-235"><a href="#cb36-235" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Probability of survival is greater than 0.5</span>
-<span id="cb36-236"><a href="#cb36-236" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Age: <span class="co">[</span><span class="ot">0.95, 0.99</span><span class="co">]</span></span>
-<span id="cb36-237"><a href="#cb36-237" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Does not contain 1</span>
-<span id="cb36-238"><a href="#cb36-238" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Odds of survival **decreases** as `ageC` **increases**</span>
-<span id="cb36-239"><a href="#cb36-239" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Probability of survival **decreases** as `ageC` **increases**</span>
-<span id="cb36-240"><a href="#cb36-240" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Emergency: <span class="co">[</span><span class="ot">0.01, 0.30</span><span class="co">]</span></span>
-<span id="cb36-241"><a href="#cb36-241" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Does not contain 1</span>
-<span id="cb36-242"><a href="#cb36-242" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Odds of survival **decreases** as `Emergency` **increases**</span>
-<span id="cb36-243"><a href="#cb36-243" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Probability of survival **decreases** as `Emergency` **increases**</span>
-<span id="cb36-244"><a href="#cb36-244" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-245"><a href="#cb36-245" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Describe the overall findings for this model. Be statistically accurate but avoid jargon and technical terms as much as you can. Be sure to use the names of the variables studied (i.e., survival, age, emergency admission) rather than X and Y.</span>
-<span id="cb36-246"><a href="#cb36-246" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-247"><a href="#cb36-247" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Survival decreases with increasing age (i.e., older people are less likely to survive after ICU admission)</span>
-<span id="cb36-248"><a href="#cb36-248" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Survival decreases with emergency (as opposed to non-emergency) admission (i.e., emergency admission patients are less likely to survive than non-emergency admission patients)</span>
-<span id="cb36-249"><a href="#cb36-249" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Patients are more likely to survive being admitted to the ICU, except for possibly the very oldest emergency admission patients</span>
-<span id="cb36-250"><a href="#cb36-250" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>(I&#39;m making this statement based on the plot with the two lines, which shows the emergency admission line *just* dips down below probability = 0.5 at the far right side of the plot)</span>
-<span id="cb36-251"><a href="#cb36-251" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>I used &quot;likely&quot; to describe things in a metric-agnostic way, but you could replace &quot;more likely to survive&quot; with &quot;have a higher probability of survival&quot; or &quot;have a higher odds of survival&quot; if you want to be more specific</span>
+<div class="sourceCode" id="cb13" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;BTS 510 Lab 12&quot;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co">    embed-resources: true</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co">    self-contained-math: true</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co">    html-math-method: katex</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-bg: true</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co">    code-block-border-left: &quot;#31BAE9&quot;</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">12345</span>)</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Stat2Data)</span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_classic</span>(<span class="at">base_size =</span> <span class="dv">16</span>))</span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a><span class="fu">## Learning objectives</span></span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Conduct** Poisson regression for *count outcomes*</span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Interpret** results in terms of *predicted counts*</span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Describe** when to use alternative models / specifications</span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Negative binomial, inflated zeroes, offset, etc.</span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data </span></span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Read in data from text file: <span class="in">`jpapoisson.txt`</span></span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb13-40"><a href="#cb13-40" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">read_table</span>(<span class="st">&quot;jpapoisson.txt&quot;</span>,</span>
+<span id="cb13-41"><a href="#cb13-41" aria-hidden="true" tabindex="-1"></a>                  <span class="at">col_names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb13-42"><a href="#cb13-42" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(dat) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;ID&quot;</span>, <span class="st">&quot;sensation&quot;</span>, <span class="st">&quot;sex&quot;</span>, <span class="st">&quot;alcohol&quot;</span>)</span>
+<span id="cb13-43"><a href="#cb13-43" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-44"><a href="#cb13-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-45"><a href="#cb13-45" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>$n$ = **400** observations on 4 variables</span>
+<span id="cb13-46"><a href="#cb13-46" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`ID`</span>: ID variable</span>
+<span id="cb13-47"><a href="#cb13-47" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`sensation`</span>: 1 to 7 scale of sensation seeking</span>
+<span id="cb13-48"><a href="#cb13-48" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`sex`</span>: 0 = female, 1 = male</span>
+<span id="cb13-49"><a href="#cb13-49" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`alcohol`</span>: count of number of alcoholic drinks consumed</span>
+<span id="cb13-50"><a href="#cb13-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-51"><a href="#cb13-51" aria-hidden="true" tabindex="-1"></a><span class="fu">## Analysis</span></span>
+<span id="cb13-52"><a href="#cb13-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-53"><a href="#cb13-53" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Extend the analysis from the lecture</span>
+<span id="cb13-54"><a href="#cb13-54" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`sensation`</span> and <span class="in">`sex`</span> predict <span class="in">`alcohol`</span></span>
+<span id="cb13-55"><a href="#cb13-55" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Be sure to mean center <span class="in">`sensation`</span> for interpretability</span>
+<span id="cb13-56"><a href="#cb13-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-57"><a href="#cb13-57" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tasks</span></span>
+<span id="cb13-58"><a href="#cb13-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-59"><a href="#cb13-59" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Model 1: Poisson regression for <span class="in">`alcohol ~ sensation + sex`</span></span>
+<span id="cb13-60"><a href="#cb13-60" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Model 2: Negative binomial for <span class="in">`alcohol ~ sensation + sex`</span></span>
+<span id="cb13-61"><a href="#cb13-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-62"><a href="#cb13-62" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>How can we compare models 1 and 2? Do that comparison. Which model is preferred?</span>
+<span id="cb13-63"><a href="#cb13-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-64"><a href="#cb13-64" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Report the full results of the preferred model.</span>
+<span id="cb13-65"><a href="#cb13-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-66"><a href="#cb13-66" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Report the $R^2$ for the model</span>
+<span id="cb13-67"><a href="#cb13-67" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>For each coefficient (including intercept), report:</span>
+<span id="cb13-68"><a href="#cb13-68" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Regression coefficient</span>
+<span id="cb13-69"><a href="#cb13-69" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Standard error</span>
+<span id="cb13-70"><a href="#cb13-70" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>$z$ statistic</span>
+<span id="cb13-71"><a href="#cb13-71" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>$p$ value </span>
+<span id="cb13-72"><a href="#cb13-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-73"><a href="#cb13-73" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Calculate predicted counts for <span class="in">`alcohol`</span> for 6 predictor combinations:</span>
+<span id="cb13-74"><a href="#cb13-74" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Male, low sensation seeking</span>
+<span id="cb13-75"><a href="#cb13-75" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Male, mean sensation seeking</span>
+<span id="cb13-76"><a href="#cb13-76" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Male, high sensation seeking</span>
+<span id="cb13-77"><a href="#cb13-77" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Female, low sensation seeking</span>
+<span id="cb13-78"><a href="#cb13-78" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Female, mean sensation seeking</span>
+<span id="cb13-79"><a href="#cb13-79" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Female, high sensation seeking</span>
+<span id="cb13-80"><a href="#cb13-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-81"><a href="#cb13-81" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Report the **rate ratios** for each predictor and their confidence intervals. Interpret the **rate ratios** in words.</span>
+<span id="cb13-82"><a href="#cb13-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-83"><a href="#cb13-83" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>Describe the overall findings for this model. Be statistically accurate but avoid jargon and technical terms as much as you can. Be sure to use the names of the variables studied (i.e., sensation seeking, sex, alcoholic drinks consumed) rather than X and Y.</span>
+<span id="cb13-84"><a href="#cb13-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-85"><a href="#cb13-85" aria-hidden="true" tabindex="-1"></a><span class="fu">## Bonus task: Are there excess zeroes?</span></span>
+<span id="cb13-86"><a href="#cb13-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-87"><a href="#cb13-87" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Zero-inflated Poisson </span>
+<span id="cb13-88"><a href="#cb13-88" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`y ~ count_predictors | logistic_predictors`</span></span>
+<span id="cb13-89"><a href="#cb13-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-92"><a href="#cb13-92" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-93"><a href="#cb13-93" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb13-94"><a href="#cb13-94" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pscl)</span>
+<span id="cb13-95"><a href="#cb13-95" aria-hidden="true" tabindex="-1"></a>zip <span class="ot">&lt;-</span> <span class="fu">zeroinfl</span>(alcohol <span class="sc">~</span> sensationC <span class="sc">+</span> sex <span class="sc">|</span> sensationC <span class="sc">+</span> sex, </span>
+<span id="cb13-96"><a href="#cb13-96" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> dat,</span>
+<span id="cb13-97"><a href="#cb13-97" aria-hidden="true" tabindex="-1"></a>                <span class="at">dist =</span> <span class="st">&quot;poisson&quot;</span>)</span>
+<span id="cb13-98"><a href="#cb13-98" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(zip)</span>
+<span id="cb13-99"><a href="#cb13-99" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-100"><a href="#cb13-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-101"><a href="#cb13-101" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Zero-inflated negative binomial</span>
+<span id="cb13-102"><a href="#cb13-102" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`y ~ count_predictors | logistic_predictors`</span></span>
+<span id="cb13-103"><a href="#cb13-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-106"><a href="#cb13-106" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-107"><a href="#cb13-107" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb13-108"><a href="#cb13-108" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pscl)</span>
+<span id="cb13-109"><a href="#cb13-109" aria-hidden="true" tabindex="-1"></a>zinb <span class="ot">&lt;-</span> <span class="fu">zeroinfl</span>(alcohol <span class="sc">~</span> sensationC <span class="sc">+</span> sex <span class="sc">|</span> sensationC <span class="sc">+</span> sex, </span>
+<span id="cb13-110"><a href="#cb13-110" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> dat,</span>
+<span id="cb13-111"><a href="#cb13-111" aria-hidden="true" tabindex="-1"></a>                 <span class="at">dist =</span> <span class="st">&quot;negbin&quot;</span>)</span>
+<span id="cb13-112"><a href="#cb13-112" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(zinb)</span>
+<span id="cb13-113"><a href="#cb13-113" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-114"><a href="#cb13-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-115"><a href="#cb13-115" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Hurdle Poisson </span>
+<span id="cb13-116"><a href="#cb13-116" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`y ~ count_predictors | logistic_predictors`</span></span>
+<span id="cb13-117"><a href="#cb13-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-120"><a href="#cb13-120" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-121"><a href="#cb13-121" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb13-122"><a href="#cb13-122" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pscl)</span>
+<span id="cb13-123"><a href="#cb13-123" aria-hidden="true" tabindex="-1"></a>hurdle_poi <span class="ot">&lt;-</span> <span class="fu">hurdle</span>(alcohol <span class="sc">~</span> sensationC <span class="sc">+</span> sex <span class="sc">|</span> sensationC <span class="sc">+</span> sex, </span>
+<span id="cb13-124"><a href="#cb13-124" aria-hidden="true" tabindex="-1"></a>                     <span class="at">data =</span> dat, </span>
+<span id="cb13-125"><a href="#cb13-125" aria-hidden="true" tabindex="-1"></a>                     <span class="at">dist =</span> <span class="st">&quot;poisson&quot;</span>)</span>
+<span id="cb13-126"><a href="#cb13-126" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(hurdle_poi)</span>
+<span id="cb13-127"><a href="#cb13-127" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-128"><a href="#cb13-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-129"><a href="#cb13-129" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Hurdle negative binomial </span>
+<span id="cb13-130"><a href="#cb13-130" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span><span class="in">`y ~ count_predictors | logistic_predictors`</span></span>
+<span id="cb13-131"><a href="#cb13-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-134"><a href="#cb13-134" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-135"><a href="#cb13-135" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb13-136"><a href="#cb13-136" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pscl)</span>
+<span id="cb13-137"><a href="#cb13-137" aria-hidden="true" tabindex="-1"></a>hurdle_nb <span class="ot">&lt;-</span> <span class="fu">hurdle</span>(alcohol <span class="sc">~</span> sensationC <span class="sc">+</span> sex <span class="sc">|</span> sensationC <span class="sc">+</span> sex, </span>
+<span id="cb13-138"><a href="#cb13-138" aria-hidden="true" tabindex="-1"></a>                    <span class="at">data =</span> dat, </span>
+<span id="cb13-139"><a href="#cb13-139" aria-hidden="true" tabindex="-1"></a>                    <span class="at">dist =</span> <span class="st">&quot;negbin&quot;</span>)</span>
+<span id="cb13-140"><a href="#cb13-140" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(hurdle_nb)</span>
+<span id="cb13-141"><a href="#cb13-141" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb13-142"><a href="#cb13-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-143"><a href="#cb13-143" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>Compare using Vuong test and/or AIC and/or BIC</span>
+<span id="cb13-144"><a href="#cb13-144" aria-hidden="true" tabindex="-1"></a><span class="ss">  * </span>Think about your comparisons</span>
+<span id="cb13-145"><a href="#cb13-145" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>If there **NOT** overdispersion, does adding excess zeroes help?</span>
+<span id="cb13-146"><a href="#cb13-146" aria-hidden="true" tabindex="-1"></a><span class="ss">      * </span><span class="in">`m1`</span> vs <span class="in">`zip`</span></span>
+<span id="cb13-147"><a href="#cb13-147" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>If there **IS** overdispersion already, does adding excess zeroes help?</span>
+<span id="cb13-148"><a href="#cb13-148" aria-hidden="true" tabindex="-1"></a><span class="ss">      * </span><span class="in">`m2`</span> vs <span class="in">`zinb`</span></span>
+<span id="cb13-149"><a href="#cb13-149" aria-hidden="true" tabindex="-1"></a><span class="ss">    * </span>And so on...</span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
