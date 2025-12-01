@@ -2095,7 +2095,7 @@
     "href": "materials.html#week-12-poisson-regression",
     "title": "Materials",
     "section": "Week 12: Poisson regression",
-    "text": "Week 12: Poisson regression\n\nLearning objectives\n\nConduct Poisson regression for count outcomes\nInterpret results in terms of predicted counts\nDescribe when to use alternative models / specifications\n\nNegative binomial, inflated zeroes, offset, etc.\n\n\n\n\nBefore class: Lecture\n\nLecture 12\nLecture survey: Complete by Wednesday, December 3 at 8pm\nSlides (html)\n\n\n\nDuring class: Lab\n\nLab 12 (html with link to code)\n\nData for lab (right click, save as…)\n\n\n\n\nAfter class: Assignment\n\nTo be uploaded later",
+    "text": "Week 12: Poisson regression\n\nLearning objectives\n\nConduct Poisson regression for count outcomes\nInterpret results in terms of predicted counts\nDescribe when to use alternative models / specifications\n\nNegative binomial, inflated zeroes, offset, etc.\n\n\n\n\nBefore class: Lecture\n\nLecture 12\nLecture survey: Complete by Wednesday, December 3 at 8pm\nSlides (html)\n\n\n\nDuring class: Lab\n\nLab 12 (html with link to code)\n\nData for lab (right click, save as…)\n\n\n\n\nAfter class: Assignment\n\nHomework 5",
     "crumbs": [
       "Materials"
     ]
@@ -2539,101 +2539,45 @@
     "href": "assignments.html",
     "title": "Assignments",
     "section": "",
-    "text": "Final Project\n\n\n\n\n\nBig picture: You will select a dataset, propose some research questions that can be answered using linear models (i.e., regression), write up the results, and present your findings to the class.\n\nThere will be 4 parts to the project throughout the semester\n\nDataset selection\nProposal\nPresentation\nFinal paper\n\n\n\n\n\n\n\n\nPart 1: Due September 28, 2025\n\n\n\n\n\n\nDataset selection\n\n\n\n\n\n\n\n\n\n\nPart 2: Due November 2, 2025\n\n\n\n\n\n\nProposal\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHomework 1: Due September 14, 2025\n\n\n\n\n\n\nHomework 1\n\n\n\n\n\n\n\n\n\n\nHomework 2: Due October 12, 2025\n\n\n\n\n\n\nHomework 2\n\n\n\n\n\n\n\n\n\n\nHomework 3: Due October 26, 2025\n\n\n\n\n\n\nHomework 3\n\n\n\n\n\n\n\n\n\n\nHomework 4: Due November 16, 2025\n\n\n\n\n\n\nHomework 4",
+    "text": "Final Project\n\n\n\n\n\nBig picture: You will select a dataset, propose some research questions that can be answered using linear models (i.e., regression), write up the results, and present your findings to the class.\n\nThere will be 4 parts to the project throughout the semester\n\nDataset selection\nProposal\nPresentation\nFinal paper\n\n\n\n\n\n\n\n\nPart 1: Due September 28, 2025\n\n\n\n\n\n\nDataset selection\n\n\n\n\n\n\n\n\n\n\nPart 2: Due November 2, 2025\n\n\n\n\n\n\nProposal\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHomework 1: Due September 14, 2025\n\n\n\n\n\n\nHomework 1\n\n\n\n\n\n\n\n\n\n\nHomework 2: Due October 12, 2025\n\n\n\n\n\n\nHomework 2\n\n\n\n\n\n\n\n\n\n\nHomework 3: Due October 26, 2025\n\n\n\n\n\n\nHomework 3\n\n\n\n\n\n\n\n\n\n\nHomework 4: Due November 16, 2025\n\n\n\n\n\n\nHomework 4\n\n\n\n\n\n\n\n\n\n\nHomework 5: Due December 7, 2025\n\n\n\n\n\n\nHomework 5",
     "crumbs": [
       "Assignments"
     ]
   },
   {
-    "objectID": "assignments/hw4.html",
-    "href": "assignments/hw4.html",
-    "title": "Homework 4",
+    "objectID": "assignments/hw5.html",
+    "href": "assignments/hw5.html",
+    "title": "Homework 5",
     "section": "",
-    "text": "Due Sunday, November 16 by end of day (midnight)\nComplete the assignment in a Quarto (.qmd) document and render it to HTML and PDF. Email all 3 files (.qmd, .html, .pdf) to Stefany and Yujie.\n\nRemember to include embed-resources: true in the html options. If you don’t, we won’t see any of your figures when you send the files."
+    "text": "Due Sunday, December 7 by end of day (midnight)\nComplete the assignment in a Quarto (.qmd) document and render it to HTML and PDF. Email all 3 files (.qmd, .html, .pdf) to Stefany and Yujie.\n\nRemember to include embed-resources: true in the html options. If you don’t, we won’t see any of your figures when you send the files."
   },
   {
-    "objectID": "assignments/hw4.html#linear-regression",
-    "href": "assignments/hw4.html#linear-regression",
-    "title": "Homework 4",
+    "objectID": "assignments/hw5.html#logistic-and-poisson-regression",
+    "href": "assignments/hw5.html#logistic-and-poisson-regression",
+    "title": "Homework 5",
     "section": "",
-    "text": "Due Sunday, November 16 by end of day (midnight)\nComplete the assignment in a Quarto (.qmd) document and render it to HTML and PDF. Email all 3 files (.qmd, .html, .pdf) to Stefany and Yujie.\n\nRemember to include embed-resources: true in the html options. If you don’t, we won’t see any of your figures when you send the files."
+    "text": "Due Sunday, December 7 by end of day (midnight)\nComplete the assignment in a Quarto (.qmd) document and render it to HTML and PDF. Email all 3 files (.qmd, .html, .pdf) to Stefany and Yujie.\n\nRemember to include embed-resources: true in the html options. If you don’t, we won’t see any of your figures when you send the files."
   },
   {
-    "objectID": "assignments/hw4.html#data",
-    "href": "assignments/hw4.html#data",
-    "title": "Homework 4",
+    "objectID": "assignments/hw5.html#data",
+    "href": "assignments/hw5.html#data",
+    "title": "Homework 5",
     "section": "Data",
-    "text": "Data\n\nbirthwt dataset from the MASS package\n\nA dataset with 189 observations on the following 10 variables.\n\nlow: indicator of birth weight less than 2.5 kg.\nage: mother’s age in years.\nlwt: mother’s weight in pounds at last menstrual period.\nrace: mother’s race (1 = white, 2 = black, 3 = other).\nsmoke: smoking status during pregnancy.\nptl: number of previous premature labours.\nht: history of hypertension.\nui: presence of uterine irritability.\nftv: number of physician visits during the first trimester.\nbwt: birth weight in grams."
+    "text": "Data\n\nMedGPA dataset from the Stat2Data package\n\nA dataset with 55 observations on the following 11 variables.\n\nAccept: A=accepted to medical school or D=denied admission\nAcceptance: Indicator for Accept: 1=accepted or 0=denied\nSex: F=female or M=male\nBCPM: Bio/Chem/Physics/Math grade point average\nGPA: College grade point average\nVR: Verbal reasoning (subscore)\nPS: Physical sciences (subscore)\nWS: Writing sample (subcore)\nBS: Biological sciences (subscore)\nMCAT: Score on the MCAT exam (sum of CR+PS+WS+BS)\nApps: Number of medical schools applied to"
   },
   {
-    "objectID": "assignments/hw4.html#research-question",
-    "href": "assignments/hw4.html#research-question",
-    "title": "Homework 4",
-    "section": "Research question",
-    "text": "Research question\n\nThere are several known risk factors for infant low birth weight (defined as less than 2.5 kg or 5.5 pounds). Multiple risk factors may exacerbate one another or cancel each other out.\nHow do mother’s age (age), mother’s smoking status (smoke), and their interaction predict infant birth weight (bwt)?"
+    "objectID": "assignments/hw5.html#research-questions",
+    "href": "assignments/hw5.html#research-questions",
+    "title": "Homework 5",
+    "section": "Research questions",
+    "text": "Research questions\n\nHow do the 4 MCAT subscores (VR, PS, WS, and BS) predict whether a person is accepted into medical school (Acceptance)?\nHow do the 4 MCAT subscores (VR, PS, WS, and BS) predict how many medical schools a student applies to (Apps)?"
   },
   {
-    "objectID": "assignments/hw4.html#tasks",
-    "href": "assignments/hw4.html#tasks",
-    "title": "Homework 4",
+    "objectID": "assignments/hw5.html#tasks",
+    "href": "assignments/hw5.html#tasks",
+    "title": "Homework 5",
     "section": "Tasks",
-    "text": "Tasks\n\nConduct a linear regression with mother’s age, mother’s smoking status, and their interaction predicting birth weight. (Be sure to center any continuous predictors to improve interpretability.)\nPlot the simple slopes with the data points.\nConduct simple slopes analysis and the Johnson-Neyman procedure. Report the findings, including test statistics, degrees of freedom, and p-values.\n\n\nIs the slope with respect to age significant for each group?\nFor which values of age are the smoking groups different in birth weight?\n\n\nConduct outlier analysis for the model. Are there observations with extreme values on the predictors or predicted values? Are there observations that change the findings? Briefly report your findings.\nDescribe the overall findings for this model, including the analyses to probe the interaction. Be statistically accurate but avoid jargon and technical terms as much as you can. Be sure to use the names of the variables studied (i.e., birth weight, age, smoking status) rather than X and Y."
-  },
-  {
-    "objectID": "assignments/hw2.html",
-    "href": "assignments/hw2.html",
-    "title": "Homework 2",
-    "section": "",
-    "text": "Due Sunday, October 12 by end of day (midnight)\nComplete the assignment in a Quarto (.qmd) document and render it to HTML and PDF. Email all 3 files (.qmd, .html, .pdf) to Stefany and Yujie.\n\n\n\n\n\n\n\nImportant\n\n\n\n\nRemember to include embed-resources: true in the html options. If you don’t, we won’t see any of your figures when you send the files. THIS IS SUPER IMPORTANT FOR THIS ASSIGNMENT!"
-  },
-  {
-    "objectID": "assignments/hw2.html#plots-and-more-plots",
-    "href": "assignments/hw2.html#plots-and-more-plots",
-    "title": "Homework 2",
-    "section": "",
-    "text": "Due Sunday, October 12 by end of day (midnight)\nComplete the assignment in a Quarto (.qmd) document and render it to HTML and PDF. Email all 3 files (.qmd, .html, .pdf) to Stefany and Yujie.\n\n\n\n\n\n\n\nImportant\n\n\n\n\nRemember to include embed-resources: true in the html options. If you don’t, we won’t see any of your figures when you send the files. THIS IS SUPER IMPORTANT FOR THIS ASSIGNMENT!"
-  },
-  {
-    "objectID": "assignments/hw2.html#data",
-    "href": "assignments/hw2.html#data",
-    "title": "Homework 2",
-    "section": "Data",
-    "text": "Data\n\nPulse dataset from the Stat2Data package\n\nA dataset with 232 observations on the following 7 variables. Active: Pulse rate (beats per minute) after exercise Rest: Resting pulse rate (beats per minute) Smoke: 1=smoker or 0=nonsmoker Sex: 1=female or 0=male Exercise: Typical hours of exercise (per week) Hgt: Height (in inches) Wgt: Weight (in pounds)"
-  },
-  {
-    "objectID": "assignments/hw2.html#tasks",
-    "href": "assignments/hw2.html#tasks",
-    "title": "Homework 2",
-    "section": "Tasks",
-    "text": "Tasks\n\nPlot the distribution of resting pulse rate for smokers vs non-smokers. Use both a dotplot (with a good number of bins or bin width) and a box plot. You will make two plots. Which plot do you think best conveys the information and why?\nPlot the distribution of BMI using a histogram. You will need to calculate BMI from height and weight. Pick a good number of bins or bin width. Change the outline and fill colors on the histogram – your choice. Add vertical lines for the mean and median BMI. Make the two lines different colors – your choice. What are the mean and median of BMI? Is BMI skewed or symmetric? How can you tell?\nPlot the distribution of active pulse rate (Y) by hours of exercise (X). Use jittered points that have only been jittered horizontally. What do you notice about the distributions?\nPlot the relative numbers of male and female smokers and non-smokers using jittered points. Which group is largest? Which group is smallest?"
-  },
-  {
-    "objectID": "assignments/data.html",
-    "href": "assignments/data.html",
-    "title": "Final project: Part 1",
-    "section": "",
-    "text": "Email to Stefany by midnight on Sunday, September 28, 2025 \nSelect a dataset to use for your project\n\nThis can be a dataset from your lab or a publicly available dataset\nThe dataset should include at least 5 variables\n\nThe variables can be continuous or categorical\n\nThe dataset should include at least 50 subjects (people, animals, etc.)\n\nIf you work in a subfield that typically has much smaller samples than this, send me an email so we can talk about it. You can run these models with smaller samples, but you’re more likely to have problems\n\n\nFor the assignment, briefly describe the dataset\n\nWhere did the dataset come from?\nHow many subjects are in the dataset?\nWhat are the variables? Continuous, categorical?\n\nWhat variable(s) are you interested in predicting (outcome)?\nWhat variables might be predictors of that variable?\nIt’s ok if you’re not sure. This can change.\n\nWhat is the study design? Randomized groups, observational?\nAny other design or study details that might be important, like repeated measures, clustering of units within higher levels (e.g., people in neighborhoods)"
-  },
-  {
-    "objectID": "assignments/data.html#dataset-selection",
-    "href": "assignments/data.html#dataset-selection",
-    "title": "Final project: Part 1",
-    "section": "",
-    "text": "Email to Stefany by midnight on Sunday, September 28, 2025 \nSelect a dataset to use for your project\n\nThis can be a dataset from your lab or a publicly available dataset\nThe dataset should include at least 5 variables\n\nThe variables can be continuous or categorical\n\nThe dataset should include at least 50 subjects (people, animals, etc.)\n\nIf you work in a subfield that typically has much smaller samples than this, send me an email so we can talk about it. You can run these models with smaller samples, but you’re more likely to have problems\n\n\nFor the assignment, briefly describe the dataset\n\nWhere did the dataset come from?\nHow many subjects are in the dataset?\nWhat are the variables? Continuous, categorical?\n\nWhat variable(s) are you interested in predicting (outcome)?\nWhat variables might be predictors of that variable?\nIt’s ok if you’re not sure. This can change.\n\nWhat is the study design? Randomized groups, observational?\nAny other design or study details that might be important, like repeated measures, clustering of units within higher levels (e.g., people in neighborhoods)"
-  },
-  {
-    "objectID": "assignments/hw1.html",
-    "href": "assignments/hw1.html",
-    "title": "Homework 1",
-    "section": "",
-    "text": "Due Sunday, September 14 by end of day (midnight)\nComplete the assignment in a Quarto (.qmd) document and render it to HTML and PDF. Email all 3 files (.qmd, .html, .pdf) to Stefany and Yujie.\nPlease write your response to each question. Don’t just print out your data frame (though you can also do that. And then write / type your answer based on that.)\nUse the gapminder dataset that we’ve been working with. You can read it in via the gapminder package or via the external files. Either way, show the code for reading in the data.\n\n\nWhat is the mean GDP (not GDP per capita) for each continent in 1977?\nHow many countries had a life expectancy greater than 80 in 2002?\nWhat was the population of Japan in 2007?\nWhat continent had the highest mean life expectancy in 2002?\nWhich country had the highest GDP per capita in 2007, among countries with a population of at least 20 million?"
-  },
-  {
-    "objectID": "assignments/hw1.html#quarto-r-markdown-and-manipulating-data",
-    "href": "assignments/hw1.html#quarto-r-markdown-and-manipulating-data",
-    "title": "Homework 1",
-    "section": "",
-    "text": "Due Sunday, September 14 by end of day (midnight)\nComplete the assignment in a Quarto (.qmd) document and render it to HTML and PDF. Email all 3 files (.qmd, .html, .pdf) to Stefany and Yujie.\nPlease write your response to each question. Don’t just print out your data frame (though you can also do that. And then write / type your answer based on that.)\nUse the gapminder dataset that we’ve been working with. You can read it in via the gapminder package or via the external files. Either way, show the code for reading in the data.\n\n\nWhat is the mean GDP (not GDP per capita) for each continent in 1977?\nHow many countries had a life expectancy greater than 80 in 2002?\nWhat was the population of Japan in 2007?\nWhat continent had the highest mean life expectancy in 2002?\nWhich country had the highest GDP per capita in 2007, among countries with a population of at least 20 million?"
+    "text": "Tasks\n\nConduct a logistic regression to address the first research question.\nReport the results of the model, including full statistical results for each coefficient and the R^2 for the model. Which subscores are significantly related to the outcome?\nFor significant predictors, what are the predicted probabilities of acceptance at the mean, -1 SD, and +1 SD (holding all other predictors constant)?\nConduct a negative binomial regression to address the second research question.\nReport the results of the model, including full statistical results for each coefficient, the overdispersion parameter, and the R^2 for the model. Which subscores are significantly related to the outcome? Was there overdispersion?\nFor significant predictors, what are the predicted number of applications at the mean, -1 SD, and +1 SD (holding all other predictors constant)?"
   },
   {
     "objectID": "assignments/hw3.html",
@@ -2669,6 +2613,97 @@
     "title": "Homework 3",
     "section": "Tasks",
     "text": "Tasks\n\nConduct three linear regression models to address the above research question.\n\n\nModel 1: Patient sex predicts active pulse rate\nModel 2: Patient smoking status predicts active pulse rate\nModel 3: Patient sex and smoking status predict active pulse rate\n\n\nWhich is the best model?\n\n\nUse the F-test for R^2_{change} and the AIC values to help you decide. Report the tests and values that you used to decide this.\n\n\nReport the results of the best model, including:\n\n\nIntercept value, test statistic, p-value, interpretation (in words)\nSlope value(s), test statistic(s), p-value(s), interpretation(s) (in words)\nR^2 value, test statistic, p-value, interpretation (in words)\n\n\nBased on model 3, what are the predicted active pulse rates for the 4 combinations of sex and smoking status? (i.e., female non-smoker, male non-smoker, female smoker, male smoker)\nUsing the predicted and residual values, assess whether the assumptions are met for model 3. Include the plots and describe your conclusions based on them.\nIn plain language, answer the research question: How do patient sex and smoking status predict active pulse rate? (This should not be lengthy – just a couple sentences.)"
+  },
+  {
+    "objectID": "assignments/hw1.html",
+    "href": "assignments/hw1.html",
+    "title": "Homework 1",
+    "section": "",
+    "text": "Due Sunday, September 14 by end of day (midnight)\nComplete the assignment in a Quarto (.qmd) document and render it to HTML and PDF. Email all 3 files (.qmd, .html, .pdf) to Stefany and Yujie.\nPlease write your response to each question. Don’t just print out your data frame (though you can also do that. And then write / type your answer based on that.)\nUse the gapminder dataset that we’ve been working with. You can read it in via the gapminder package or via the external files. Either way, show the code for reading in the data.\n\n\nWhat is the mean GDP (not GDP per capita) for each continent in 1977?\nHow many countries had a life expectancy greater than 80 in 2002?\nWhat was the population of Japan in 2007?\nWhat continent had the highest mean life expectancy in 2002?\nWhich country had the highest GDP per capita in 2007, among countries with a population of at least 20 million?"
+  },
+  {
+    "objectID": "assignments/hw1.html#quarto-r-markdown-and-manipulating-data",
+    "href": "assignments/hw1.html#quarto-r-markdown-and-manipulating-data",
+    "title": "Homework 1",
+    "section": "",
+    "text": "Due Sunday, September 14 by end of day (midnight)\nComplete the assignment in a Quarto (.qmd) document and render it to HTML and PDF. Email all 3 files (.qmd, .html, .pdf) to Stefany and Yujie.\nPlease write your response to each question. Don’t just print out your data frame (though you can also do that. And then write / type your answer based on that.)\nUse the gapminder dataset that we’ve been working with. You can read it in via the gapminder package or via the external files. Either way, show the code for reading in the data.\n\n\nWhat is the mean GDP (not GDP per capita) for each continent in 1977?\nHow many countries had a life expectancy greater than 80 in 2002?\nWhat was the population of Japan in 2007?\nWhat continent had the highest mean life expectancy in 2002?\nWhich country had the highest GDP per capita in 2007, among countries with a population of at least 20 million?"
+  },
+  {
+    "objectID": "assignments/data.html",
+    "href": "assignments/data.html",
+    "title": "Final project: Part 1",
+    "section": "",
+    "text": "Email to Stefany by midnight on Sunday, September 28, 2025 \nSelect a dataset to use for your project\n\nThis can be a dataset from your lab or a publicly available dataset\nThe dataset should include at least 5 variables\n\nThe variables can be continuous or categorical\n\nThe dataset should include at least 50 subjects (people, animals, etc.)\n\nIf you work in a subfield that typically has much smaller samples than this, send me an email so we can talk about it. You can run these models with smaller samples, but you’re more likely to have problems\n\n\nFor the assignment, briefly describe the dataset\n\nWhere did the dataset come from?\nHow many subjects are in the dataset?\nWhat are the variables? Continuous, categorical?\n\nWhat variable(s) are you interested in predicting (outcome)?\nWhat variables might be predictors of that variable?\nIt’s ok if you’re not sure. This can change.\n\nWhat is the study design? Randomized groups, observational?\nAny other design or study details that might be important, like repeated measures, clustering of units within higher levels (e.g., people in neighborhoods)"
+  },
+  {
+    "objectID": "assignments/data.html#dataset-selection",
+    "href": "assignments/data.html#dataset-selection",
+    "title": "Final project: Part 1",
+    "section": "",
+    "text": "Email to Stefany by midnight on Sunday, September 28, 2025 \nSelect a dataset to use for your project\n\nThis can be a dataset from your lab or a publicly available dataset\nThe dataset should include at least 5 variables\n\nThe variables can be continuous or categorical\n\nThe dataset should include at least 50 subjects (people, animals, etc.)\n\nIf you work in a subfield that typically has much smaller samples than this, send me an email so we can talk about it. You can run these models with smaller samples, but you’re more likely to have problems\n\n\nFor the assignment, briefly describe the dataset\n\nWhere did the dataset come from?\nHow many subjects are in the dataset?\nWhat are the variables? Continuous, categorical?\n\nWhat variable(s) are you interested in predicting (outcome)?\nWhat variables might be predictors of that variable?\nIt’s ok if you’re not sure. This can change.\n\nWhat is the study design? Randomized groups, observational?\nAny other design or study details that might be important, like repeated measures, clustering of units within higher levels (e.g., people in neighborhoods)"
+  },
+  {
+    "objectID": "assignments/hw2.html",
+    "href": "assignments/hw2.html",
+    "title": "Homework 2",
+    "section": "",
+    "text": "Due Sunday, October 12 by end of day (midnight)\nComplete the assignment in a Quarto (.qmd) document and render it to HTML and PDF. Email all 3 files (.qmd, .html, .pdf) to Stefany and Yujie.\n\n\n\n\n\n\n\nImportant\n\n\n\n\nRemember to include embed-resources: true in the html options. If you don’t, we won’t see any of your figures when you send the files. THIS IS SUPER IMPORTANT FOR THIS ASSIGNMENT!"
+  },
+  {
+    "objectID": "assignments/hw2.html#plots-and-more-plots",
+    "href": "assignments/hw2.html#plots-and-more-plots",
+    "title": "Homework 2",
+    "section": "",
+    "text": "Due Sunday, October 12 by end of day (midnight)\nComplete the assignment in a Quarto (.qmd) document and render it to HTML and PDF. Email all 3 files (.qmd, .html, .pdf) to Stefany and Yujie.\n\n\n\n\n\n\n\nImportant\n\n\n\n\nRemember to include embed-resources: true in the html options. If you don’t, we won’t see any of your figures when you send the files. THIS IS SUPER IMPORTANT FOR THIS ASSIGNMENT!"
+  },
+  {
+    "objectID": "assignments/hw2.html#data",
+    "href": "assignments/hw2.html#data",
+    "title": "Homework 2",
+    "section": "Data",
+    "text": "Data\n\nPulse dataset from the Stat2Data package\n\nA dataset with 232 observations on the following 7 variables. Active: Pulse rate (beats per minute) after exercise Rest: Resting pulse rate (beats per minute) Smoke: 1=smoker or 0=nonsmoker Sex: 1=female or 0=male Exercise: Typical hours of exercise (per week) Hgt: Height (in inches) Wgt: Weight (in pounds)"
+  },
+  {
+    "objectID": "assignments/hw2.html#tasks",
+    "href": "assignments/hw2.html#tasks",
+    "title": "Homework 2",
+    "section": "Tasks",
+    "text": "Tasks\n\nPlot the distribution of resting pulse rate for smokers vs non-smokers. Use both a dotplot (with a good number of bins or bin width) and a box plot. You will make two plots. Which plot do you think best conveys the information and why?\nPlot the distribution of BMI using a histogram. You will need to calculate BMI from height and weight. Pick a good number of bins or bin width. Change the outline and fill colors on the histogram – your choice. Add vertical lines for the mean and median BMI. Make the two lines different colors – your choice. What are the mean and median of BMI? Is BMI skewed or symmetric? How can you tell?\nPlot the distribution of active pulse rate (Y) by hours of exercise (X). Use jittered points that have only been jittered horizontally. What do you notice about the distributions?\nPlot the relative numbers of male and female smokers and non-smokers using jittered points. Which group is largest? Which group is smallest?"
+  },
+  {
+    "objectID": "assignments/hw4.html",
+    "href": "assignments/hw4.html",
+    "title": "Homework 4",
+    "section": "",
+    "text": "Due Sunday, November 16 by end of day (midnight)\nComplete the assignment in a Quarto (.qmd) document and render it to HTML and PDF. Email all 3 files (.qmd, .html, .pdf) to Stefany and Yujie.\n\nRemember to include embed-resources: true in the html options. If you don’t, we won’t see any of your figures when you send the files."
+  },
+  {
+    "objectID": "assignments/hw4.html#linear-regression",
+    "href": "assignments/hw4.html#linear-regression",
+    "title": "Homework 4",
+    "section": "",
+    "text": "Due Sunday, November 16 by end of day (midnight)\nComplete the assignment in a Quarto (.qmd) document and render it to HTML and PDF. Email all 3 files (.qmd, .html, .pdf) to Stefany and Yujie.\n\nRemember to include embed-resources: true in the html options. If you don’t, we won’t see any of your figures when you send the files."
+  },
+  {
+    "objectID": "assignments/hw4.html#data",
+    "href": "assignments/hw4.html#data",
+    "title": "Homework 4",
+    "section": "Data",
+    "text": "Data\n\nbirthwt dataset from the MASS package\n\nA dataset with 189 observations on the following 10 variables.\n\nlow: indicator of birth weight less than 2.5 kg.\nage: mother’s age in years.\nlwt: mother’s weight in pounds at last menstrual period.\nrace: mother’s race (1 = white, 2 = black, 3 = other).\nsmoke: smoking status during pregnancy.\nptl: number of previous premature labours.\nht: history of hypertension.\nui: presence of uterine irritability.\nftv: number of physician visits during the first trimester.\nbwt: birth weight in grams."
+  },
+  {
+    "objectID": "assignments/hw4.html#research-question",
+    "href": "assignments/hw4.html#research-question",
+    "title": "Homework 4",
+    "section": "Research question",
+    "text": "Research question\n\nThere are several known risk factors for infant low birth weight (defined as less than 2.5 kg or 5.5 pounds). Multiple risk factors may exacerbate one another or cancel each other out.\nHow do mother’s age (age), mother’s smoking status (smoke), and their interaction predict infant birth weight (bwt)?"
+  },
+  {
+    "objectID": "assignments/hw4.html#tasks",
+    "href": "assignments/hw4.html#tasks",
+    "title": "Homework 4",
+    "section": "Tasks",
+    "text": "Tasks\n\nConduct a linear regression with mother’s age, mother’s smoking status, and their interaction predicting birth weight. (Be sure to center any continuous predictors to improve interpretability.)\nPlot the simple slopes with the data points.\nConduct simple slopes analysis and the Johnson-Neyman procedure. Report the findings, including test statistics, degrees of freedom, and p-values.\n\n\nIs the slope with respect to age significant for each group?\nFor which values of age are the smoking groups different in birth weight?\n\n\nConduct outlier analysis for the model. Are there observations with extreme values on the predictors or predicted values? Are there observations that change the findings? Briefly report your findings.\nDescribe the overall findings for this model, including the analyses to probe the interaction. Be statistically accurate but avoid jargon and technical terms as much as you can. Be sure to use the names of the variables studied (i.e., birth weight, age, smoking status) rather than X and Y."
   },
   {
     "objectID": "assignments/proposal.html",

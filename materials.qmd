@@ -362,9 +362,7 @@ title: "Materials"
 
 ### After class: Assignment
 
-* **To be uploaded later**
-
-<!-- * [Homework 5](/assignments/hw5.qmd) -->
+* [Homework 5](/assignments/hw5.qmd)
 
 :::
 
