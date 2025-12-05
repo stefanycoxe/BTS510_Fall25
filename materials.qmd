@@ -359,10 +359,11 @@ title: "Materials"
 
 * [Lab 12 (html with link to code)](/lab/BTS510-25-lab12.qmd){target="_blank"}
   * [Data for lab](/slides/jpapoisson.txt) (right click, save as...)
+* [Completed lab 12 from class](/labs_comp/Lab 12.qmd){target="_blank"}
 
 ### After class: Assignment
 
-* [Homework 5](/assignments/hw5.qmd)
+* [Homework 5](/assignments/hw5.qmd){target="_blank"}
 
 :::
 

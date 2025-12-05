@@ -1,0 +1,22 @@
+---
+title: "Final project: Part 3"
+format:
+  html:
+    embed-resources: true
+    self-contained: true
+    self-contained-math: true
+    html-math-method: katex
+    code-tools: true
+---
+
+## Presentation
+
+* **In class on Thursday, December 18, 2025 **  
+
+* Maximum of 3 slides
+  * Don't tell us everything you did
+  * Just tell us the most important / interesting parts of your findings
+  * Focus on the methods and results
+  * It’s ok if you didn’t find any significant effects
+  * This is very low key
+

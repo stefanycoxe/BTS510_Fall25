@@ -1,0 +1,28 @@
+---
+title: "Final project: Part 4"
+format:
+  html:
+    embed-resources: true
+    self-contained: true
+    self-contained-math: true
+    html-math-method: katex
+    code-tools: true
+---
+
+## Paper
+
+* **Email to Stefany by midnight on Sunday, December 21, 2025 **  
+
+* Write up your project article style
+  * Introduction: Background and motivation, does not need to be exhaustive or include a literature review
+    * What is your research question?
+  * Method: What methods did you use to answer your question?
+  * Results: Use lecture / homework as template for reporting results
+  * Discussion: Plain language description of your findings
+    * What is the answer to your research question?
+  * Make figures as appropriate
+
+* Very rough guidelines
+  * If you’re concise and have a simple project, you can do this in about 5 pages
+  * Most people will take 5 to 10 pages
+  * If you’ve gone over 10 pages, you’ve done too much!

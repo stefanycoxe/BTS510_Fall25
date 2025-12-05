@@ -24,19 +24,17 @@ title: "Assignments"
 
 :::
 
-<!-- ::: {.callout-note collapse=true} -->
+::: {.callout-note title="Part 3: Due December 18, 2025" collapse=false}
 
-<!-- ## Presentation -->
+* [Presentation](assignments/present.qmd){target="_blank"}
 
+:::
 
-<!-- ::: -->
+::: {.callout-note title="Part 4: Due December 21, 2025" collapse=false}
 
-<!-- ::: {.callout-note collapse=true} -->
+* [Paper](assignments/paper.qmd){target="_blank"}
 
-<!-- ## Final paper assignment -->
-
-
-<!-- ::: -->
+:::
 
 :::
 

@@ -1,0 +1,293 @@
+---
+title: "BTS 510 Lab 12"
+format:
+  html:
+    embed-resources: true
+    self-contained-math: true
+    html-math-method: katex
+    number-sections: true
+    toc: true
+    code-tools: true
+    code-block-bg: true
+    code-block-border-left: "#31BAE9"
+---
+
+```{r}
+#| label: setup
+set.seed(12345)
+library(tidyverse)
+library(Stat2Data)
+theme_set(theme_classic(base_size = 16))
+```
+
+## Learning objectives
+
+* **Conduct** Poisson regression for *count outcomes*
+* **Interpret** results in terms of *predicted counts*
+* **Describe** when to use alternative models / specifications
+  * Negative binomial, inflated zeroes, offset, etc.
+
+## Data 
+
+* Read in data from text file: `jpapoisson.txt`
+
+```{r}
+dat <- read_table("jpapoisson.txt",
+                  col_names = FALSE)
+colnames(dat) <- c("ID", "sensation", "sex", "alcohol")
+```
+
+* $n$ = **400** observations on 4 variables
+  * `ID`: ID variable
+  * `sensation`: 1 to 7 scale of sensation seeking
+  * `sex`: 0 = female, 1 = male
+  * `alcohol`: count of number of alcoholic drinks consumed
+
+## Analysis
+
+* Extend the analysis from the lecture
+  * `sensation` and `sex` predict `alcohol`
+  * Be sure to mean center `sensation` for interpretability
+
+## Tasks
+
+* Model 1: Poisson regression for `alcohol ~ sensation + sex`
+* Model 2: Negative binomial for `alcohol ~ sensation + sex`
+
+```{r}
+dat <- dat %>% mutate(sensationC = sensation - mean(sensation, na.rm = TRUE))
+m1 <- glm(data = dat, 
+          alcohol ~ sensationC + sex, 
+          family = poisson(link = "log"))
+library(MASS)
+m3 <- glm.nb(data = dat, 
+             alcohol ~ sensationC + sex)
+```
+
+### 1. How can we compare models 1 and 2? Do that comparison. Which model is preferred?
+
+* Poisson and negative binomial are **not nested**
+  * Dispersion parameter is different (slide 75)
+
+```{r}
+library(pscl)
+vuong(m1, m3)
+AIC(m1)
+AIC(m3)
+BIC(m1)
+BIC(m3)
+```
+
+
+### 2. Report the full results of the preferred model.
+
+* Report the $R^2$ for the model
+* For each coefficient (including intercept), report:
+  * Regression coefficient
+  * Standard error
+  * $z$ statistic
+  * $p$ value 
+  
+```{r}
+summary(m3)
+```
+
+```{r}
+dev_m3 <- m3$deviance
+dev_null <- m3$null.deviance
+```
+
+* $R^2_{deviance} = 1 - \frac{residual\ deviance}{null\ deviance} = 1 - \frac{`r round(dev_m3, 2)`}{`r round(dev_null, 2)`} = `r round(1 - (dev_m3 / dev_null), 3)`$
+  * These two predictors (sensation seeking and sex) account for $`r round(100*(1 - (dev_m3 / dev_null)), 1)`$% of the variance in number of alcoholic beverages consumed
+* Intercept: $b_0 = 0.57514, s.e. = 0.07264, z = 7.918 , p<.0001$
+  * For a woman (`sex` = 0) with mean sensation seeking (`sensationC` = 0), the predicted number of alcoholic beverages consumed is **greater than 1** because $b_0$ is **positive**
+* Sensation seeking effect: $b_1 = 0.23510, s.e. = 0.06216, z = 3.782 , p<.001$
+  * As sensation seeking **increases**, the predicted number of alcoholic drinks consumed **increases** because $b_1$ is **positive**
+* Sex effect: $b_2 = 0.82236, s.e. = 0.09580, z = 8.584 , p<.0001$
+  * Men (`sex` = 1) are predicted to consume **more** alcoholic beverages than women (`sex` = 0) because $b_2$ is **positive**
+  
+### 3. Calculate predicted counts for `alcohol` for 6 predictor combinations:
+* Male, low sensation seeking
+* Male, mean sensation seeking
+* Male, high sensation seeking
+* Female, low sensation seeking
+* Female, mean sensation seeking
+* Female, high sensation seeking
+
+```{r}
+sd(dat$sensationC, na.rm = TRUE)
+sen_vals <- data.frame(sensationC = c(-0.7682503, 0, 0.7682503, -0.7682503, 0, 0.7682503))
+sex_vals <- data.frame(sex = c(0, 0, 0, 1, 1, 1))
+vals <- data.frame(sen_vals, sex_vals)
+vals
+
+dat_pred <- data.frame(sen_vals, sex_vals)
+dat_pred <- dat_pred %>% mutate(pred = predict(m3, 
+                                               newdata = vals, 
+                                               type = "response"))
+dat_pred
+```
+
+* And you can make a plot
+
+```{r}
+ggplot(data = dat_pred, aes(x = sensationC, 
+                            y = pred, 
+                            group = sex)) +
+  geom_point(aes(color = as.factor(sex)),
+             size = 4) +
+  geom_line(aes(group = sex))
+```
+
+* And another plot
+  * Note that for the negative binomial family in `stat_smooth()`, you need to specify a numerical value for theta (the dispersion parameter), which you can get from the model output
+
+```{r}
+ggplot(data = dat, aes(x = sensationC, y = alcohol, group = sex)) +
+  geom_jitter(height = 0.1, 
+              alpha = 0.3, 
+              aes(color = as.factor(sex))) +
+  stat_smooth(method="glm", 
+              method.args=list(family = negative.binomial(1.959)), 
+              se=FALSE, 
+              aes(color = as.factor(sex), group = sex))
+```
+
+
+### 4. Report the **rate ratios** for each predictor and their confidence intervals. Interpret the **rate ratios** in words.
+
+```{r}
+exp(m3$coefficients)
+exp(confint(m3))
+```
+
+* The rate ratio for the intercept = $e^{b_0} = e^{0.57514} = 1.777$ with a confidence interval of [1.541, 2.049]
+  * This is the predicted value of the outcome **in the count metric** *when both predictors are equal to 0* (for women with mean sensation seeking)
+* The rate ratio for the sensation seeking effect = $e^{b_1} = e^{0.23510} = 1.265$ with a 95% confidence interval of [1.121, 1.428]
+  * For each one unit increase in sensation seeking, the predicted number of drinks consumed is **multiplied by 1.265**
+  * The confidence interval **does not contain 1**, indicating that this is a significant effect
+* The rate ratio for the sex effect = $e^{b_2} = e^{0.82236} = 2.276$ with a 95% confidence interval of [1.888, 2.746]
+  * Men (`sex` = 1) are predicted to consume **2.276 times as many** alcoholic beverages as women (`sex` = 0)
+  * The confidence interval **does not contain 1**, indicating that this is a significant effect
+* You can compare these to the predicted values
+  * e.g., the predicted outcome for **men** with *low sensation seeking* is **2.276** times the predicted outcome for **women** with *low sensation seeking* 
+  * This is literally the effect of `sex` (i.e., difference between men and women), holding `sensationC` constant (i.e., sensation seeking stays at "low")
+  
+### 5. Describe the overall findings for this model. Be statistically accurate but avoid jargon and technical terms as much as you can. Be sure to use the names of the variables studied (i.e., sensation seeking, sex, alcoholic drinks consumed) rather than X and Y.
+
+* Men consume about 2.3 times as many alcoholic drinks as women, on average
+* People with higher sensation seeking consume about 1.3 times as many alcoholic drinks as people with average sensation seeking
+
+## Bonus task: Are there excess zeroes?
+
+* Zero-inflated Poisson 
+  * `y ~ count_predictors | logistic_predictors`
+
+```{r}
+library(pscl)
+zip <- zeroinfl(alcohol ~ sensationC + sex | sensationC + sex, 
+                data = dat,
+                dist = "poisson")
+summary(zip)
+```
+
+* Zero-inflated negative binomial
+  * `y ~ count_predictors | logistic_predictors`
+
+```{r}
+library(pscl)
+zinb <- zeroinfl(alcohol ~ sensationC + sex | sensationC + sex, 
+                 data = dat,
+                 dist = "negbin")
+summary(zinb)
+```
+
+* Hurdle Poisson 
+  * `y ~ count_predictors | logistic_predictors`
+
+```{r}
+library(pscl)
+hurdle_poi <- hurdle(alcohol ~ sensationC + sex | sensationC + sex, 
+                     data = dat, 
+                     dist = "poisson")
+summary(hurdle_poi)
+```
+
+* Hurdle negative binomial 
+  * `y ~ count_predictors | logistic_predictors`
+
+```{r}
+library(pscl)
+hurdle_nb <- hurdle(alcohol ~ sensationC + sex | sensationC + sex, 
+                    data = dat, 
+                    dist = "negbin")
+summary(hurdle_nb)
+```
+
+* Compare using Vuong test and/or AIC and/or BIC
+  * Think about your comparisons
+    * If there **NOT** overdispersion, does adding excess zeroes help?
+      * `m1` vs `zip`
+    * If there **IS** overdispersion already, does adding excess zeroes help?
+      * `m2` vs `zinb`
+    * And so on...
+    
+### AICs
+
+* Lower AIC is better
+
+```{r}
+AIC(m1, m3, zip, zinb, hurdle_poi, hurdle_nb)
+```
+
+### BICs
+
+* Lower BIC is better
+
+```{r}
+BIC(m1, m3, zip, zinb, hurdle_poi, hurdle_nb)
+```
+* Overall, a negative binomial model of some kind looks best, whether that's negative binomial or a "zeroes" version of the model
+
+### Vuong tests
+
+* Negative binomial vs ZINB
+  * Once there's overdispersion, does adding **excess zeroes** improve the model?
+  * Result: No, but in a confusing way. Using the raw test statistic or AIC, no, they're the same (NS test). Using the BIC, model 1 (`m3`) is better than model 2 (`zinb`), so the excess zeroes model is **worse** (given the extra things you need to estimate)
+
+```{r}
+vuong(m3, zinb)
+```
+
+* Negative binomial vs hurdle NB
+  * Once there's overdispersion, does modeling **a hurdle** improve the model?
+  * Result: (Similar to the previous comparison.) No, but in a confusing way. Using the raw test statistic or AIC, no, they're the same (NS test). Using the BIC, model 1 (`m3`) is better than model 2 (`zinb`), so the hurdle addition to the model is **worse** (given the extra things you need to estimate)
+  
+```{r}
+vuong(m3, hurdle_nb)
+```
+* Are excess zeroes and hurdle models similar?
+  * Yes, not statistically different
+
+```{r}
+vuong(zinb, hurdle_nb)
+```
+
+### Summary
+
+* What model should we use?
+  * With these sets of predictors (`sensationC` and `sex` for both parts), the negative binomial model seems to do the best job **parsimoniously** modeling the data (best simplest model)
+* Two ways to think about zeroes
+  * **Excess zeroes models** split observed 0s into those that are always 0 and those that could be non-0
+    * People who didn't during the week in question but could have
+  * **Hurdle regression** looks at 0 vs not 0
+    * Drinkers vs teetotaler
+* What if you had some **other predictors** of the zero status that you could include in the **zeroes** portion of the model? 
+  * Religiosity 
+    * Many religions frown on excess or any drinking
+  * Age 
+    * It is harder to drink alcohol if you're under the legal drinking age
+  * I don't know what else, but it's worth thinking about
+  
+ 
+
