@@ -2148,36 +2148,48 @@ function tinytable_rank_sorter(a, b, aRow, bRow, column, dir, sorterParams) {
 
 .tinytable {
 
---tt-border-color: black;
---tt-header-border-color: black;
+--tt-text-color: inherit;
+--tt-line-color: black;
+--tt-border-color: var(--tt-line-color);
 --tt-striped-bg: rgba(0, 0, 0, .05);
 --tt-hover-bg: rgba(0, 0, 0, .075);
---tt-caption-color: #6c757d;
---tt-footnote-color: #6c757d;
+--tt-background-color: transparent;
+--tt-footnote-bg: var(--tt-background-color);
 
 --tt-cell-padding: .5rem;
---tt-cell-padding-sm: .25rem;
+--tt-cell-padding-sm: calc(var(--tt-cell-padding) / 2);
 --tt-table-margin: .5rem 0;
 --tt-caption-padding: .5rem 0;
 --tt-footnote-padding: .2rem .5rem;
 --tt-footnote-first-padding-top: .5rem;
 --tt-footnote-gap: .1rem;
+--tt-container-padding: 10px;
 
 --tt-font-size-footnote: 0.875rem;
+--tt-font-size-caption: 1rem;
 --tt-font-size-sup: 0.75em;
 --tt-line-height-footnote: 1.25;
 --tt-line-height-footnote-tight: 1.2;
 --tt-font-weight-header: normal;
+
+--tt-cell-valign: top;
+--tt-header-align: left;
+--tt-header-valign: bottom;
+--tt-caption-align: var(--tt-header-align);
+--tt-caption-side: top;
+
+--tt-table-width: 100%;
 
 --tt-border-width: 1px;
 --tt-border-width-tbody: 2px;
 }
 
 .tinytable {
-width: 100%;
+width: var(--tt-table-width);
 margin: var(--tt-table-margin);
 border-collapse: collapse;
-background-color: transparent;
+background-color: var(--tt-background-color);
+color: var(--tt-text-color);
 font-family: inherit;
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
@@ -2190,11 +2202,11 @@ font-family: inherit;
 .tinytable td {
 position: relative;
 padding: var(--tt-cell-padding);
-vertical-align: top;
+vertical-align: var(--tt-cell-valign);
 }
 .tinytable thead th {
-text-align: left;
-vertical-align: bottom;
+text-align: var(--tt-header-align);
+vertical-align: var(--tt-header-valign);
 font-weight: var(--tt-font-weight-header);
 border-bottom: none;
 }
@@ -2228,7 +2240,7 @@ background-color: var(--tt-hover-bg);
 }
 
 .tinytable-responsive {
-width: 100%;
+width: var(--tt-table-width);
 overflow-x: auto;
 -webkit-overflow-scrolling: touch;
 }
@@ -2288,7 +2300,7 @@ z-index: 2;
 }
 
 .tinytable-container {
-padding: 10px;
+padding: var(--tt-container-padding);
 overflow-x: auto;
 overflow-y: auto;
 width: auto;
@@ -2297,10 +2309,9 @@ height: auto;
 
 .tinytable caption {
 padding: var(--tt-caption-padding);
-
-caption-side: top;
-font-size: 1rem;
-text-align: left;
+caption-side: var(--tt-caption-side);
+font-size: var(--tt-font-size-caption);
+text-align: var(--tt-caption-align);
 }
 
 .tinytable tfoot tr:first-child td {
@@ -2309,8 +2320,8 @@ padding-top: var(--tt-footnote-first-padding-top);
 .tinytable tfoot td {
 padding: var(--tt-footnote-padding);
 font-size: var(--tt-font-size-footnote);
-line-height: 1.25;
-background-color: transparent;
+line-height: var(--tt-line-height-footnote);
+background-color: var(--tt-footnote-bg);
 }
 
 .tinytable tfoot tr + tr td {
@@ -2324,7 +2335,7 @@ vertical-align: text-top;
 }
 
 .tinytable tfoot tr:nth-child(n+2) td {
-line-height: 1.2;
+line-height: var(--tt-line-height-footnote-tight);
 }
 </style>
     <style>
@@ -2826,36 +2837,48 @@ function tinytable_rank_sorter(a, b, aRow, bRow, column, dir, sorterParams) {
 
 .tinytable {
 
---tt-border-color: black;
---tt-header-border-color: black;
+--tt-text-color: inherit;
+--tt-line-color: black;
+--tt-border-color: var(--tt-line-color);
 --tt-striped-bg: rgba(0, 0, 0, .05);
 --tt-hover-bg: rgba(0, 0, 0, .075);
---tt-caption-color: #6c757d;
---tt-footnote-color: #6c757d;
+--tt-background-color: transparent;
+--tt-footnote-bg: var(--tt-background-color);
 
 --tt-cell-padding: .5rem;
---tt-cell-padding-sm: .25rem;
+--tt-cell-padding-sm: calc(var(--tt-cell-padding) / 2);
 --tt-table-margin: .5rem 0;
 --tt-caption-padding: .5rem 0;
 --tt-footnote-padding: .2rem .5rem;
 --tt-footnote-first-padding-top: .5rem;
 --tt-footnote-gap: .1rem;
+--tt-container-padding: 10px;
 
 --tt-font-size-footnote: 0.875rem;
+--tt-font-size-caption: 1rem;
 --tt-font-size-sup: 0.75em;
 --tt-line-height-footnote: 1.25;
 --tt-line-height-footnote-tight: 1.2;
 --tt-font-weight-header: normal;
+
+--tt-cell-valign: top;
+--tt-header-align: left;
+--tt-header-valign: bottom;
+--tt-caption-align: var(--tt-header-align);
+--tt-caption-side: top;
+
+--tt-table-width: 100%;
 
 --tt-border-width: 1px;
 --tt-border-width-tbody: 2px;
 }
 
 .tinytable {
-width: 100%;
+width: var(--tt-table-width);
 margin: var(--tt-table-margin);
 border-collapse: collapse;
-background-color: transparent;
+background-color: var(--tt-background-color);
+color: var(--tt-text-color);
 font-family: inherit;
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
@@ -2868,11 +2891,11 @@ font-family: inherit;
 .tinytable td {
 position: relative;
 padding: var(--tt-cell-padding);
-vertical-align: top;
+vertical-align: var(--tt-cell-valign);
 }
 .tinytable thead th {
-text-align: left;
-vertical-align: bottom;
+text-align: var(--tt-header-align);
+vertical-align: var(--tt-header-valign);
 font-weight: var(--tt-font-weight-header);
 border-bottom: none;
 }
@@ -2906,7 +2929,7 @@ background-color: var(--tt-hover-bg);
 }
 
 .tinytable-responsive {
-width: 100%;
+width: var(--tt-table-width);
 overflow-x: auto;
 -webkit-overflow-scrolling: touch;
 }
@@ -2966,7 +2989,7 @@ z-index: 2;
 }
 
 .tinytable-container {
-padding: 10px;
+padding: var(--tt-container-padding);
 overflow-x: auto;
 overflow-y: auto;
 width: auto;
@@ -2975,10 +2998,9 @@ height: auto;
 
 .tinytable caption {
 padding: var(--tt-caption-padding);
-
-caption-side: top;
-font-size: 1rem;
-text-align: left;
+caption-side: var(--tt-caption-side);
+font-size: var(--tt-font-size-caption);
+text-align: var(--tt-caption-align);
 }
 
 .tinytable tfoot tr:first-child td {
@@ -2987,8 +3009,8 @@ padding-top: var(--tt-footnote-first-padding-top);
 .tinytable tfoot td {
 padding: var(--tt-footnote-padding);
 font-size: var(--tt-font-size-footnote);
-line-height: 1.25;
-background-color: transparent;
+line-height: var(--tt-line-height-footnote);
+background-color: var(--tt-footnote-bg);
 }
 
 .tinytable tfoot tr + tr td {
@@ -3002,7 +3024,7 @@ vertical-align: text-top;
 }
 
 .tinytable tfoot tr:nth-child(n+2) td {
-line-height: 1.2;
+line-height: var(--tt-line-height-footnote-tight);
 }
 </style>
     <style>
@@ -3393,36 +3415,48 @@ function tinytable_rank_sorter(a, b, aRow, bRow, column, dir, sorterParams) {
 
 .tinytable {
 
---tt-border-color: black;
---tt-header-border-color: black;
+--tt-text-color: inherit;
+--tt-line-color: black;
+--tt-border-color: var(--tt-line-color);
 --tt-striped-bg: rgba(0, 0, 0, .05);
 --tt-hover-bg: rgba(0, 0, 0, .075);
---tt-caption-color: #6c757d;
---tt-footnote-color: #6c757d;
+--tt-background-color: transparent;
+--tt-footnote-bg: var(--tt-background-color);
 
 --tt-cell-padding: .5rem;
---tt-cell-padding-sm: .25rem;
+--tt-cell-padding-sm: calc(var(--tt-cell-padding) / 2);
 --tt-table-margin: .5rem 0;
 --tt-caption-padding: .5rem 0;
 --tt-footnote-padding: .2rem .5rem;
 --tt-footnote-first-padding-top: .5rem;
 --tt-footnote-gap: .1rem;
+--tt-container-padding: 10px;
 
 --tt-font-size-footnote: 0.875rem;
+--tt-font-size-caption: 1rem;
 --tt-font-size-sup: 0.75em;
 --tt-line-height-footnote: 1.25;
 --tt-line-height-footnote-tight: 1.2;
 --tt-font-weight-header: normal;
+
+--tt-cell-valign: top;
+--tt-header-align: left;
+--tt-header-valign: bottom;
+--tt-caption-align: var(--tt-header-align);
+--tt-caption-side: top;
+
+--tt-table-width: 100%;
 
 --tt-border-width: 1px;
 --tt-border-width-tbody: 2px;
 }
 
 .tinytable {
-width: 100%;
+width: var(--tt-table-width);
 margin: var(--tt-table-margin);
 border-collapse: collapse;
-background-color: transparent;
+background-color: var(--tt-background-color);
+color: var(--tt-text-color);
 font-family: inherit;
 -webkit-font-smoothing: antialiased;
 -moz-osx-font-smoothing: grayscale;
@@ -3435,11 +3469,11 @@ font-family: inherit;
 .tinytable td {
 position: relative;
 padding: var(--tt-cell-padding);
-vertical-align: top;
+vertical-align: var(--tt-cell-valign);
 }
 .tinytable thead th {
-text-align: left;
-vertical-align: bottom;
+text-align: var(--tt-header-align);
+vertical-align: var(--tt-header-valign);
 font-weight: var(--tt-font-weight-header);
 border-bottom: none;
 }
@@ -3473,7 +3507,7 @@ background-color: var(--tt-hover-bg);
 }
 
 .tinytable-responsive {
-width: 100%;
+width: var(--tt-table-width);
 overflow-x: auto;
 -webkit-overflow-scrolling: touch;
 }
@@ -3533,7 +3567,7 @@ z-index: 2;
 }
 
 .tinytable-container {
-padding: 10px;
+padding: var(--tt-container-padding);
 overflow-x: auto;
 overflow-y: auto;
 width: auto;
@@ -3542,10 +3576,9 @@ height: auto;
 
 .tinytable caption {
 padding: var(--tt-caption-padding);
-
-caption-side: top;
-font-size: 1rem;
-text-align: left;
+caption-side: var(--tt-caption-side);
+font-size: var(--tt-font-size-caption);
+text-align: var(--tt-caption-align);
 }
 
 .tinytable tfoot tr:first-child td {
@@ -3554,8 +3587,8 @@ padding-top: var(--tt-footnote-first-padding-top);
 .tinytable tfoot td {
 padding: var(--tt-footnote-padding);
 font-size: var(--tt-font-size-footnote);
-line-height: 1.25;
-background-color: transparent;
+line-height: var(--tt-line-height-footnote);
+background-color: var(--tt-footnote-bg);
 }
 
 .tinytable tfoot tr + tr td {
@@ -3569,7 +3602,7 @@ vertical-align: text-top;
 }
 
 .tinytable tfoot tr:nth-child(n+2) td {
-line-height: 1.2;
+line-height: var(--tt-line-height-footnote-tight);
 }
 </style>
     <style>
